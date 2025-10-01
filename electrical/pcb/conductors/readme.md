@@ -1,1 +1,0 @@
-# Note on the schematic

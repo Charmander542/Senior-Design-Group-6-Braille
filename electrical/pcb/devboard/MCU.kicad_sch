@@ -2,7 +2,7 @@
 	(version 20250114)
 	(generator "eeschema")
 	(generator_version "9.0")
-	(uuid "f2f5a322-7777-475e-929b-12c2e5102867")
+	(uuid "ea5a59ba-c990-4011-bd4c-548cfe42d473")
 	(paper "A4")
 	(lib_symbols
 		(symbol "Device:C"
@@ -1228,6 +1228,12 @@
 		(color 0 0 0 0)
 		(uuid "7b54cabf-905b-4de3-84b5-3038f0c54eed")
 	)
+	(junction
+		(at 140.97 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b5f71355-f180-4a8d-8963-d63d594eac9a")
+	)
 	(wire
 		(pts
 			(xy 105.41 53.34) (xy 105.41 57.15)
@@ -1267,6 +1273,16 @@
 			(type default)
 		)
 		(uuid "3178c4ac-8ac0-43eb-b5e0-ca866273c48a")
+	)
+	(wire
+		(pts
+			(xy 140.97 50.8) (xy 140.97 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f6795c1-e27a-4615-96a6-bed5109d52d4")
 	)
 	(wire
 		(pts
@@ -1371,6 +1387,17 @@
 				(hide yes)
 			)
 		)
+	)
+	(hierarchical_label "3V3"
+		(shape input)
+		(at 140.97 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a8eb5029-e1e2-4ffc-acd7-959f0d6b5776")
 	)
 	(hierarchical_label "USB_DP"
 		(shape bidirectional)

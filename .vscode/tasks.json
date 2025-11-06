@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Braille Demo",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-std=c99",
+        "-I", "include",
+        "src/braille.c",
+        "examples/demo_array.c",
+        "-o", "demo.exe"
+      ],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}

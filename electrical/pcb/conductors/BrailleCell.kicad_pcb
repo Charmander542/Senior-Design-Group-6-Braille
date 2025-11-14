@@ -64,7 +64,6 @@
 			(dielectric_constraints no)
 		)
 		(pad_to_mask_clearance 0)
-		(solder_mask_min_width 0.1016)
 		(allow_soldermask_bridges_in_footprints no)
 		(tenting front back)
 		(grid_origin 153 55.75)
@@ -117,16 +116,16 @@
 	(net 6 "Net-(J1-Pin_7)")
 	(net 7 "Net-(J1-Pin_4)")
 	(net 8 "Net-(J1-Pin_5)")
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "03e9392a-481c-4c6a-b557-2a9a92da37fd")
-		(at 154.25 54.25)
+		(at 154.25 53.7)
 		(property "Reference" "J6"
 			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "5c0aee3a-dc75-48f3-82c1-29784bd695d2")
+			(uuid "c69e0322-851f-48e0-9dcd-cadeb07df576")
 			(effects
 				(font
 					(size 1 1)
@@ -135,10 +134,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at 8.75 0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "66bb5f82-cd9a-4d68-9ec6-422436f25e5e")
+			(uuid "2c5614af-89fc-49a0-88c7-c1d6606fd39d")
 			(effects
 				(font
 					(size 1 1)
@@ -151,7 +150,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d69c27bd-c5f5-4276-b802-1b9f0b1ec7f8")
+			(uuid "d2998e02-f244-4d01-9025-ec7771edaf92")
 			(effects
 				(font
 					(size 1 1)
@@ -164,7 +163,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8cbd2b52-b3cf-4789-9b07-989b15d5e2ea")
+			(uuid "745639a1-5549-43ea-8eb3-f8767236375f")
 			(effects
 				(font
 					(size 1 1)
@@ -179,7 +178,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -190,7 +189,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -201,7 +200,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -212,7 +211,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -223,7 +222,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -234,25 +233,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 8 "Net-(J1-Pin_5)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
 		)
 		(pad "1" smd circle
@@ -269,7 +256,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -280,7 +267,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -291,7 +278,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -302,7 +289,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -313,7 +300,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -324,7 +311,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -335,16 +322,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "226232f5-62a9-4f6b-bedc-b87df30eeac7")
-		(at 151.75 51.75)
+		(at 151.75 51.2)
 		(property "Reference" "J2"
-			(at -1.25 -3.25 0)
+			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "4c6142a2-6efa-4b7e-88cd-d0073bea7f7e")
+			(uuid "57e63dec-cdbe-4fad-a233-8818da8fb6be")
 			(effects
 				(font
 					(size 1 1)
@@ -353,10 +340,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at -8.75 -0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "f01bb903-e8e4-4391-99a2-d1d3ad4bdcc1")
+			(uuid "3793d7d7-08aa-4cda-90fc-0d8981828ebd")
 			(effects
 				(font
 					(size 1 1)
@@ -369,7 +356,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1604855b-b708-488c-a393-062d3eca75f7")
+			(uuid "fefbff12-ff86-4ce1-af3b-b4b8c56f4d2b")
 			(effects
 				(font
 					(size 1 1)
@@ -382,7 +369,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "718265e9-4b92-44c4-b299-051bd0ad6259")
+			(uuid "a7cedb59-686b-4f46-9c1d-98de510cc739")
 			(effects
 				(font
 					(size 1 1)
@@ -397,7 +384,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -408,7 +395,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -419,7 +406,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -430,7 +417,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -441,7 +428,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -452,25 +439,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 3 "Net-(J1-Pin_1)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
 		)
 		(pad "1" smd circle
@@ -487,7 +462,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -498,7 +473,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -509,7 +484,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -520,7 +495,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -531,7 +506,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -542,7 +517,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -553,16 +528,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "28b0e4d0-0097-4063-9189-ea5b637b78eb")
-		(at 154.25 51.75)
+		(at 154.25 51.2)
 		(property "Reference" "J9"
 			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "ef8960fb-f990-4646-acfc-c303194e7f84")
+			(uuid "cadb2bf7-a184-482c-9b8c-f34de8505172")
 			(effects
 				(font
 					(size 1 1)
@@ -574,7 +549,7 @@
 			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "ff46457e-b623-4215-8aed-a0f5f6f2de8e")
+			(uuid "876be3ca-bfe6-4559-86a0-5c1d96e424bb")
 			(effects
 				(font
 					(size 1 1)
@@ -587,7 +562,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "569748aa-bf7e-48f5-b906-20837497094b")
+			(uuid "462b965f-7e7e-4f95-a0b6-26c657681267")
 			(effects
 				(font
 					(size 1 1)
@@ -600,7 +575,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "52d7ce76-8f2a-4984-bc7c-1efa66946f32")
+			(uuid "47c3dd1b-5bb0-4238-b081-026bd8d22453")
 			(effects
 				(font
 					(size 1 1)
@@ -615,7 +590,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -626,7 +601,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -637,7 +612,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -648,7 +623,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -659,7 +634,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -670,25 +645,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 2 "Net-(J1-Pin_8)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
 		)
 		(pad "1" smd circle
@@ -705,7 +668,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -716,7 +679,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -727,7 +690,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -738,7 +701,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -749,7 +712,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -760,7 +723,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -771,16 +734,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "2d6e2792-2962-4951-8e64-d9136ec3bb37")
-		(at 151.75 54.25)
+		(at 151.75 53.7)
 		(property "Reference" "J5"
-			(at -1.25 -3.25 0)
+			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "5911322c-7b02-4c38-8882-c8ab516355af")
+			(uuid "2320cd09-606c-4749-aa54-862dcda466e6")
 			(effects
 				(font
 					(size 1 1)
@@ -789,10 +752,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at -8.75 -0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "0bb3a445-2b69-4a25-8941-c3c589ddd05a")
+			(uuid "839ca33c-145a-461c-ae3b-c05fc75598c7")
 			(effects
 				(font
 					(size 1 1)
@@ -805,7 +768,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ce2be489-e483-4873-afed-8f509495f6f4")
+			(uuid "9c494cea-ac94-4748-998a-ed5af4d59be6")
 			(effects
 				(font
 					(size 1 1)
@@ -818,7 +781,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a42bda3d-4fb8-4bb2-868d-57673d741790")
+			(uuid "517d5c24-ead7-4770-8657-af0b2a4ea793")
 			(effects
 				(font
 					(size 1 1)
@@ -833,7 +796,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -844,7 +807,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -855,7 +818,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -866,7 +829,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -877,7 +840,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -888,25 +851,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 7 "Net-(J1-Pin_4)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
 		)
 		(pad "1" smd circle
@@ -923,7 +874,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -934,7 +885,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -945,7 +896,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -956,7 +907,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -967,7 +918,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -978,7 +929,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -989,16 +940,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "3c239ee0-429b-47d7-88cf-cc60359c955d")
-		(at 151.75 56.75)
+		(at 151.75 56.2)
 		(property "Reference" "J4"
-			(at -1.25 -3.25 0)
+			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f33643aa-6f59-4866-9f2d-3a56b125209a")
+			(uuid "cedefcf8-074f-4045-bd04-f1cdf22a4410")
 			(effects
 				(font
 					(size 1 1)
@@ -1007,10 +958,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at -8.75 -0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "06484ecf-8411-4f77-8faf-90f5e48a48bd")
+			(uuid "6df22f86-384b-49af-8c79-19a5fa0d029c")
 			(effects
 				(font
 					(size 1 1)
@@ -1023,7 +974,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "06313906-5141-4d53-94ce-8bec2c2f7adf")
+			(uuid "40828453-984d-449d-8931-a0b30c20c535")
 			(effects
 				(font
 					(size 1 1)
@@ -1036,7 +987,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "fcae900c-332e-4ce1-858a-20b78e5a5b15")
+			(uuid "fdce5ded-1f22-470a-b676-efaddefbbe4c")
 			(effects
 				(font
 					(size 1 1)
@@ -1051,7 +1002,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1062,7 +1013,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1073,7 +1024,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1084,7 +1035,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1095,7 +1046,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1106,25 +1057,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 5 "Net-(J1-Pin_3)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
 		)
 		(pad "1" smd circle
@@ -1141,7 +1080,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1152,7 +1091,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1163,7 +1102,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1174,7 +1113,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1185,7 +1124,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1196,7 +1135,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1207,16 +1146,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "6e1ad4fb-d377-40af-be5b-232ce26d5c2b")
-		(at 151.75 59.25)
+		(at 151.75 58.7)
 		(property "Reference" "J3"
-			(at -1.25 -3.25 0)
+			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "84ef801b-26c7-4a13-a080-46942d616a71")
+			(uuid "51071a8e-310c-4323-8a61-1049f7386ae9")
 			(effects
 				(font
 					(size 1 1)
@@ -1225,10 +1164,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at -8.25 0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "479fd244-5cd4-4198-956a-c7b01035226c")
+			(uuid "ce93c925-ace2-43c2-b789-0bf9064aa2bb")
 			(effects
 				(font
 					(size 1 1)
@@ -1241,7 +1180,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bea887ab-fa4c-496b-85c8-58ce3bad51c3")
+			(uuid "599e1ea2-be48-4dff-b43c-0eacac81c734")
 			(effects
 				(font
 					(size 1 1)
@@ -1254,7 +1193,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "024c5726-3878-40bb-a9cc-00053dba786b")
+			(uuid "27a44bd0-8ff7-482d-86d6-768a4911e5f4")
 			(effects
 				(font
 					(size 1 1)
@@ -1269,7 +1208,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1280,7 +1219,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1291,7 +1230,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1302,7 +1241,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1313,7 +1252,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1324,25 +1263,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 4 "Net-(J1-Pin_2)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
 		)
 		(pad "1" smd circle
@@ -1359,7 +1286,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1370,7 +1297,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1381,7 +1308,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1392,7 +1319,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1403,7 +1330,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1414,7 +1341,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1425,16 +1352,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "7f0b0f2b-ceb6-44b8-ad9e-5f30c34fdeb8")
-		(at 154.25 56.75)
+		(at 154.25 56.2)
 		(property "Reference" "J7"
 			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f767d0c3-9efa-4114-a692-50d040fd94f6")
+			(uuid "49320e31-9aa3-4cf0-a07b-7a7466d96070")
 			(effects
 				(font
 					(size 1 1)
@@ -1443,10 +1370,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at 8.75 0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "65fe949c-e0e8-4cac-b45b-570e0fe44103")
+			(uuid "a368da31-c961-435b-996d-67005e43b416")
 			(effects
 				(font
 					(size 1 1)
@@ -1459,7 +1386,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f76370e3-1a67-4718-bbd2-79a3ef96ae1e")
+			(uuid "dfcc3ec2-bf2c-426b-8229-1d208646e81e")
 			(effects
 				(font
 					(size 1 1)
@@ -1472,7 +1399,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1319d8d3-a099-4379-8bdc-bcd6249c88fe")
+			(uuid "b4a0e0a8-3e46-49a1-b8e9-7cc5c677bc87")
 			(effects
 				(font
 					(size 1 1)
@@ -1487,7 +1414,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1498,7 +1425,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1509,7 +1436,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1520,7 +1447,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1531,7 +1458,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1542,25 +1469,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 1 "Net-(J1-Pin_6)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
 		)
 		(pad "1" smd circle
@@ -1577,7 +1492,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1588,7 +1503,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1599,7 +1514,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1610,7 +1525,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1621,7 +1536,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1632,7 +1547,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1647,15 +1562,174 @@
 		(layer "F.Cu")
 		(uuid "8b86173f-06d1-4c75-99ea-c9e699a4fc74")
 		(at 153 61 90)
-		(property "Reference" "J1"
-			(at -1.86 -0.02 0)
+		(property "Reference" "CONDUCTOR"
+			(at 10.6 -0.05 0)
 			(unlocked yes)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "fe32bcd0-71f0-4c63-8517-30572602ba4a")
 			(effects
 				(font
-					(size 1 1)
+					(face "Arial")
+					(size 0.5 0.5)
 					(thickness 0.1)
+				)
+			)
+			(render_cache "CONDUCTOR" 0
+				(polygon
+					(pts
+						(xy 151.094426 50.431645) (xy 151.160677 50.448375) (xy 151.147533 50.488256) (xy 151.130572 50.521693)
+						(xy 151.109983 50.549576) (xy 151.085695 50.572573) (xy 151.05763 50.591002) (xy 151.026597 50.604286)
+						(xy 150.99206 50.612477) (xy 150.953346 50.615315) (xy 150.912516 50.612995) (xy 150.877499 50.60645)
+						(xy 150.847455 50.596154) (xy 150.821668 50.582373) (xy 150.798188 50.564366) (xy 150.777576 50.542707)
+						(xy 150.759678 50.517051) (xy 150.744487 50.486905) (xy 150.72987 50.444524) (xy 150.72102 50.399924)
+						(xy 150.718018 50.352663) (xy 150.721554 50.30122) (xy 150.731672 50.256064) (xy 150.747907 50.216222)
+						(xy 150.764665 50.188518) (xy 150.784328 50.164757) (xy 150.807009 50.144572) (xy 150.832964 50.127745)
+						(xy 150.870731 50.111037) (xy 150.910999 50.100951) (xy 150.954384 50.09752) (xy 150.991749 50.100077)
+						(xy 151.024852 50.107422) (xy 151.054343 50.119253) (xy 151.080749 50.135531) (xy 151.104081 50.156093)
+						(xy 151.123677 50.180435) (xy 151.139709 50.208986) (xy 151.152129 50.242356) (xy 151.086916 50.257744)
+						(xy 151.072647 50.223009) (xy 151.055727 50.197159) (xy 151.036358 50.178517) (xy 151.013121 50.165049)
+						(xy 150.985678 50.15666) (xy 150.95301 50.153696) (xy 150.915398 50.157006) (xy 150.883597 50.166387)
+						(xy 150.856503 50.181448) (xy 150.833278 50.201993) (xy 150.815223 50.226613) (xy 150.802037 50.255912)
+						(xy 150.79332 50.28739) (xy 150.788095 50.319458) (xy 150.786345 50.352296) (xy 150.788575 50.394717)
+						(xy 150.794912 50.431758) (xy 150.804938 50.464129) (xy 150.820036 50.493885) (xy 150.839263 50.517388)
+						(xy 150.862823 50.535509) (xy 150.889819 50.548668) (xy 150.918022 50.556502) (xy 150.947881 50.559139)
+						(xy 150.975353 50.557021) (xy 150.999914 50.550897) (xy 151.022055 50.540927) (xy 151.042158 50.527021)
+						(xy 151.059221 50.509832) (xy 151.073661 50.48865) (xy 151.085471 50.462856)
+					)
+				)
+				(polygon
+					(pts
+						(xy 151.496232 50.099662) (xy 151.528301 50.105942) (xy 151.558409 50.116255) (xy 151.586851 50.130646)
+						(xy 151.613076 50.148857) (xy 151.635812 50.170165) (xy 151.65532 50.194761) (xy 151.671725 50.22297)
+						(xy 151.687704 50.263371) (xy 151.697544 50.30789) (xy 151.700942 50.357273) (xy 151.697375 50.407264)
+						(xy 151.687035 50.452406) (xy 151.670198 50.493469) (xy 151.65297 50.522054) (xy 151.632811 50.546506)
+						(xy 151.609614 50.567215) (xy 151.583126 50.584419) (xy 151.544573 50.601581) (xy 151.504227 50.61185)
+						(xy 151.461523 50.615315) (xy 151.42646 50.613099) (xy 151.393949 50.606613) (xy 151.363611 50.595986)
+						(xy 151.335128 50.581182) (xy 151.308889 50.56248) (xy 151.286239 50.540853) (xy 151.266912 50.516127)
+						(xy 151.250772 50.488004) (xy 151.23483 50.44783) (xy 151.225305 50.40634) (xy 151.22217 50.363959)
+						(xy 151.290401 50.363959) (xy 151.293789 50.409165) (xy 151.303338 50.447291) (xy 151.318463 50.479563)
+						(xy 151.339066 50.506933) (xy 151.365102 50.529874) (xy 151.393722 50.545992) (xy 151.425482 50.555771)
+						(xy 151.461188 50.559139) (xy 151.497598 50.555714) (xy 151.529728 50.545804) (xy 151.558438 50.529524)
+						(xy 151.584316 50.506413) (xy 151.604542 50.478873) (xy 151.619584 50.445577) (xy 151.6292 50.405359)
+						(xy 151.632646 50.356754) (xy 151.630184 50.316315) (xy 151.623164 50.280894) (xy 151.611977 50.249775)
+						(xy 151.595826 50.221217) (xy 151.575756 50.197781) (xy 151.551527 50.178884) (xy 151.52408 50.164953)
+						(xy 151.494493 50.156559) (xy 151.462195 50.153696) (xy 151.427936 50.156783) (xy 151.396733 50.165817)
+						(xy 151.367946 50.180795) (xy 151.341112 50.202148) (xy 151.324305 50.221975) (xy 151.310502 50.246946)
+						(xy 151.299881 50.278065) (xy 151.292928 50.316583) (xy 151.290401 50.363959) (xy 151.22217 50.363959)
+						(xy 151.222104 50.363073) (xy 151.22513 50.312532) (xy 151.233727 50.268629) (xy 151.247363 50.230414)
+						(xy 151.265785 50.197084) (xy 151.289027 50.168015) (xy 151.317237 50.142734) (xy 151.348161 50.123236)
+						(xy 151.382185 50.109178) (xy 151.419857 50.100517) (xy 151.461859 50.09752)
+					)
+				)
+				(polygon
+					(pts
+						(xy 151.785725 50.6075) (xy 151.785725 50.105336) (xy 151.853716 50.105336) (xy 152.116705 50.499605)
+						(xy 152.116705 50.105336) (xy 152.180239 50.105336) (xy 152.180239 50.6075) (xy 152.112278 50.6075)
+						(xy 151.849259 50.212895) (xy 151.849259 50.6075)
+					)
+				)
+				(polygon
+					(pts
+						(xy 152.51894 50.107432) (xy 152.553136 50.112541) (xy 152.580904 50.121135) (xy 152.60524 50.13313)
+						(xy 152.626592 50.148506) (xy 152.650562 50.172697) (xy 152.670265 50.201111) (xy 152.685821 50.234296)
+						(xy 152.696482 50.269644) (xy 152.703155 50.309233) (xy 152.705483 50.35367) (xy 152.703887 50.391691)
+						(xy 152.699338 50.425334) (xy 152.692141 50.455092) (xy 152.676373 50.496674) (xy 152.657978 50.528212)
+						(xy 152.635658 50.554582) (xy 152.612396 50.573763) (xy 152.585787 50.588061) (xy 152.552617 50.598951)
+						(xy 152.516238 50.605231) (xy 152.4722 50.6075) (xy 152.291522 50.6075) (xy 152.291522 50.54937)
+						(xy 152.357773 50.54937) (xy 152.46469 50.54937) (xy 152.511482 50.546724) (xy 152.54239 50.540088)
+						(xy 152.568337 50.528514) (xy 152.5873 50.513893) (xy 152.601352 50.496943) (xy 152.613625 50.475864)
+						(xy 152.623997 50.449963) (xy 152.631 50.422885) (xy 152.635532 50.390708) (xy 152.637156 50.352632)
+						(xy 152.635215 50.311913) (xy 152.629886 50.278835) (xy 152.621789 50.252171) (xy 152.611358 50.230846)
+						(xy 152.592099 50.204651) (xy 152.57129 50.186035) (xy 152.548709 50.173816) (xy 152.530406 50.168659)
+						(xy 152.502808 50.164928) (xy 152.46298 50.163466) (xy 152.357773 50.163466) (xy 152.357773 50.54937)
+						(xy 152.291522 50.54937) (xy 152.291522 50.105336) (xy 152.463988 50.105336)
+					)
+				)
+				(polygon
+					(pts
+						(xy 153.125184 50.105336) (xy 153.191434 50.105336) (xy 153.191434 50.395039) (xy 153.18921 50.445563)
+						(xy 153.183228 50.484916) (xy 153.174368 50.515115) (xy 153.160157 50.542576) (xy 153.139868 50.56656)
+						(xy 153.112727 50.587441) (xy 153.081782 50.602272) (xy 153.043363 50.611847) (xy 152.995735 50.615315)
+						(xy 152.949271 50.612295) (xy 152.911399 50.603944) (xy 152.880605 50.591044) (xy 152.853442 50.572266)
+						(xy 152.832352 50.54901) (xy 152.816735 50.520732) (xy 152.806824 50.489402) (xy 152.800122 50.448256)
+						(xy 152.797623 50.395039) (xy 152.797623 50.105336) (xy 152.863905 50.105336) (xy 152.863905 50.395802)
+						(xy 152.865593 50.439945) (xy 152.86994 50.471176) (xy 152.876025 50.492461) (xy 152.886053 50.511617)
+						(xy 152.899804 50.527458) (xy 152.917669 50.540363) (xy 152.938021 50.549437) (xy 152.961874 50.55516)
+						(xy 152.989934 50.557185) (xy 153.027139 50.554639) (xy 153.055797 50.547764) (xy 153.077658 50.537391)
+						(xy 153.094104 50.523877) (xy 153.106049 50.506679) (xy 153.115794 50.481412) (xy 153.122582 50.44549)
+						(xy 153.125184 50.395802)
+					)
+				)
+				(polygon
+					(pts
+						(xy 153.658976 50.431645) (xy 153.725227 50.448375) (xy 153.712083 50.488256) (xy 153.695122 50.521693)
+						(xy 153.674533 50.549576) (xy 153.650245 50.572573) (xy 153.62218 50.591002) (xy 153.591147 50.604286)
+						(xy 153.55661 50.612477) (xy 153.517896 50.615315) (xy 153.477066 50.612995) (xy 153.442049 50.60645)
+						(xy 153.412005 50.596154) (xy 153.386218 50.582373) (xy 153.362737 50.564366) (xy 153.342126 50.542707)
+						(xy 153.324228 50.517051) (xy 153.309037 50.486905) (xy 153.294419 50.444524) (xy 153.28557 50.399924)
+						(xy 153.282568 50.352663) (xy 153.286104 50.30122) (xy 153.296222 50.256064) (xy 153.312457 50.216222)
+						(xy 153.329215 50.188518) (xy 153.348878 50.164757) (xy 153.371559 50.144572) (xy 153.397514 50.127745)
+						(xy 153.435281 50.111037) (xy 153.475549 50.100951) (xy 153.518934 50.09752) (xy 153.556298 50.100077)
+						(xy 153.589402 50.107422) (xy 153.618892 50.119253) (xy 153.645299 50.135531) (xy 153.668631 50.156093)
+						(xy 153.688226 50.180435) (xy 153.704258 50.208986) (xy 153.716679 50.242356) (xy 153.651466 50.257744)
+						(xy 153.637197 50.223009) (xy 153.620276 50.197159) (xy 153.600908 50.178517) (xy 153.577671 50.165049)
+						(xy 153.550228 50.15666) (xy 153.51756 50.153696) (xy 153.479947 50.157006) (xy 153.448147 50.166387)
+						(xy 153.421053 50.181448) (xy 153.397828 50.201993) (xy 153.379773 50.226613) (xy 153.366587 50.255912)
+						(xy 153.35787 50.28739) (xy 153.352645 50.319458) (xy 153.350894 50.352296) (xy 153.353125 50.394717)
+						(xy 153.359462 50.431758) (xy 153.369487 50.464129) (xy 153.384586 50.493885) (xy 153.403813 50.517388)
+						(xy 153.427373 50.535509) (xy 153.454369 50.548668) (xy 153.482572 50.556502) (xy 153.512431 50.559139)
+						(xy 153.539903 50.557021) (xy 153.564464 50.550897) (xy 153.586605 50.540927) (xy 153.606708 50.527021)
+						(xy 153.62377 50.509832) (xy 153.638211 50.48865) (xy 153.650021 50.462856)
+					)
+				)
+				(polygon
+					(pts
+						(xy 153.934207 50.6075) (xy 153.934207 50.163466) (xy 153.769221 50.163466) (xy 153.769221 50.105336)
+						(xy 154.166116 50.105336) (xy 154.166116 50.163466) (xy 154.000458 50.163466) (xy 154.000458 50.6075)
+					)
+				)
+				(polygon
+					(pts
+						(xy 154.475506 50.099662) (xy 154.507575 50.105942) (xy 154.537683 50.116255) (xy 154.566125 50.130646)
+						(xy 154.59235 50.148857) (xy 154.615086 50.170165) (xy 154.634595 50.194761) (xy 154.650999 50.22297)
+						(xy 154.666979 50.263371) (xy 154.676818 50.30789) (xy 154.680217 50.357273) (xy 154.67665 50.407264)
+						(xy 154.666309 50.452406) (xy 154.649473 50.493469) (xy 154.632244 50.522054) (xy 154.612086 50.546506)
+						(xy 154.588889 50.567215) (xy 154.5624 50.584419) (xy 154.523848 50.601581) (xy 154.483502 50.61185)
+						(xy 154.440798 50.615315) (xy 154.405735 50.613099) (xy 154.373223 50.606613) (xy 154.342885 50.595986)
+						(xy 154.314402 50.581182) (xy 154.288163 50.56248) (xy 154.265514 50.540853) (xy 154.246186 50.516127)
+						(xy 154.230047 50.488004) (xy 154.214104 50.44783) (xy 154.204579 50.40634) (xy 154.201445 50.363959)
+						(xy 154.269675 50.363959) (xy 154.273064 50.409165) (xy 154.282612 50.447291) (xy 154.297737 50.479563)
+						(xy 154.31834 50.506933) (xy 154.344376 50.529874) (xy 154.372996 50.545992) (xy 154.404756 50.555771)
+						(xy 154.440462 50.559139) (xy 154.476872 50.555714) (xy 154.509003 50.545804) (xy 154.537712 50.529524)
+						(xy 154.563591 50.506413) (xy 154.583816 50.478873) (xy 154.598859 50.445577) (xy 154.608474 50.405359)
+						(xy 154.61192 50.356754) (xy 154.609458 50.316315) (xy 154.602439 50.280894) (xy 154.591251 50.249775)
+						(xy 154.5751 50.221217) (xy 154.55503 50.197781) (xy 154.530801 50.178884) (xy 154.503354 50.164953)
+						(xy 154.473767 50.156559) (xy 154.441469 50.153696) (xy 154.40721 50.156783) (xy 154.376007 50.165817)
+						(xy 154.34722 50.180795) (xy 154.320386 50.202148) (xy 154.303579 50.221975) (xy 154.289777 50.246946)
+						(xy 154.279156 50.278065) (xy 154.272202 50.316583) (xy 154.269675 50.363959) (xy 154.201445 50.363959)
+						(xy 154.201379 50.363073) (xy 154.204405 50.312532) (xy 154.213001 50.268629) (xy 154.226637 50.230414)
+						(xy 154.24506 50.197084) (xy 154.268301 50.168015) (xy 154.296511 50.142734) (xy 154.327436 50.123236)
+						(xy 154.361459 50.109178) (xy 154.399131 50.100517) (xy 154.441133 50.09752)
+					)
+				)
+				(polygon
+					(pts
+						(xy 155.033664 50.107156) (xy 155.06677 50.111929) (xy 155.090514 50.11877) (xy 155.112037 50.129915)
+						(xy 155.130478 50.145556) (xy 155.146171 50.166214) (xy 155.157734 50.189604) (xy 155.16467 50.214493)
+						(xy 155.167023 50.241318) (xy 155.164781 50.267275) (xy 155.158274 50.290511) (xy 155.147595 50.31154)
+						(xy 155.132524 50.330742) (xy 155.114352 50.346287) (xy 155.091219 50.359333) (xy 155.062158 50.369704)
+						(xy 155.025973 50.376965) (xy 155.050302 50.390432) (xy 155.065907 50.402183) (xy 155.093492 50.431677)
+						(xy 155.120922 50.469594) (xy 155.207995 50.6075) (xy 155.124678 50.6075) (xy 155.058396 50.501987)
+						(xy 155.010586 50.432133) (xy 154.991575 50.410326) (xy 154.976941 50.398214) (xy 154.961738 50.389907)
+						(xy 154.946716 50.384719) (xy 154.909836 50.382308) (xy 154.832991 50.382308) (xy 154.832991 50.6075)
+						(xy 154.766709 50.6075) (xy 154.766709 50.326132) (xy 154.832991 50.326132) (xy 154.975415 50.326132)
+						(xy 155.018274 50.323478) (xy 155.046459 50.31682) (xy 155.062482 50.309155) (xy 155.075309 50.299224)
+						(xy 155.085385 50.286931) (xy 155.095382 50.265454) (xy 155.098696 50.242295) (xy 155.095765 50.219928)
+						(xy 155.087257 50.200856) (xy 155.072898 50.184257) (xy 155.054292 50.17245) (xy 155.027995 50.164519)
+						(xy 154.991474 50.161512) (xy 154.832991 50.161512) (xy 154.832991 50.326132) (xy 154.766709 50.326132)
+						(xy 154.766709 50.105336) (xy 154.988726 50.105336)
+					)
 				)
 			)
 		)
@@ -1796,16 +1870,16 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "BrailleLibrary:Pump Pin"
+	(footprint "BrailleConnector:Pump Pin"
 		(layer "F.Cu")
 		(uuid "c271da19-4282-403f-b308-3bc802d81a4a")
-		(at 154.25 59.25)
+		(at 154.25 58.7)
 		(property "Reference" "J8"
 			(at -1.74 -2.14 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "e26aaecb-9164-4404-b2c6-4b76a6bdb7fc")
+			(uuid "d4d437d4-26b4-4f64-90b7-273d80baa8d6")
 			(effects
 				(font
 					(size 1 1)
@@ -1814,10 +1888,10 @@
 			)
 		)
 		(property "Value" "Conn_01x01_Pin"
-			(at 8.25 0.25 0)
+			(at 8.57 -0.08 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "4a2476f7-d434-4059-a301-bfda76133019")
+			(uuid "9200982d-0770-4a8c-a685-bf72d4a591b7")
 			(effects
 				(font
 					(size 1 1)
@@ -1830,7 +1904,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7ec8f7b7-a340-4a17-a72e-abc710b0754c")
+			(uuid "9ac7d2c3-15e5-4c5d-9bb2-0fae7eca7cc6")
 			(effects
 				(font
 					(size 1 1)
@@ -1843,7 +1917,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "91e7205e-280e-4781-9a61-77459d688573")
+			(uuid "55eaa5f3-0e8c-48ea-a7fd-9e00dd4bec52")
 			(effects
 				(font
 					(size 1 1)
@@ -1858,7 +1932,7 @@
 		(attr smd)
 		(pad "1" thru_hole circle
 			(at -0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1869,7 +1943,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1880,7 +1954,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1891,7 +1965,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1902,7 +1976,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1913,25 +1987,13 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
-		)
-		(pad "1" smd circle
-			(at 0 0)
-			(size 1.7 1.7)
-			(layers "F.Cu" "F.Mask")
-			(net 6 "Net-(J1-Pin_7)")
-			(pinfunction "Pin_1")
-			(pintype "passive")
-			(solder_mask_margin 0)
-			(solder_paste_margin 0)
-			(clearance 0)
 			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
 		)
 		(pad "1" smd circle
@@ -1948,7 +2010,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1959,7 +2021,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1970,7 +2032,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1981,7 +2043,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -1992,7 +2054,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -2003,7 +2065,7 @@
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
-			(size 0.35 0.35)
+			(size 0.2 0.2)
 			(drill 0.2)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
@@ -2015,8 +2077,8 @@
 		(embedded_fonts no)
 	)
 	(gr_rect
-		(start 150 50)
-		(end 156 61.5)
+		(start 149.5 49.5)
+		(end 156.5 61.5)
 		(stroke
 			(width 0.1)
 			(type solid)
@@ -2052,36 +2114,52 @@
 		(uuid "a2bd5892-23a2-4a45-85fc-f7cc237f754f")
 	)
 	(segment
-		(start 154.873308 60.4)
-		(end 155.486 59.787308)
+		(start 155.475 59.875)
+		(end 155.524595 59.825405)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 1)
-		(uuid "04162052-a01b-424c-8bfa-153e874df874")
+		(uuid "33a1f73b-4faf-4089-a53f-1c6aa29e1038")
 	)
 	(segment
 		(start 153.76 60.4)
-		(end 154.873308 60.4)
+		(end 154.95 60.4)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 1)
-		(uuid "88f5776f-2580-4602-9c20-49f8909951a3")
+		(uuid "4b80da31-af32-4516-b32a-f46e28af397e")
 	)
 	(segment
-		(start 155.486 57.986)
-		(end 154.25 56.75)
+		(start 155.524595 57.474595)
+		(end 154.5 56.45)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 1)
-		(uuid "aa42bd25-bbd5-43c1-833e-c6d6f31b6396")
+		(uuid "4bb3bcf0-fb64-44f5-aeb0-548364a41ded")
 	)
 	(segment
-		(start 155.486 59.787308)
-		(end 155.486 57.986)
+		(start 154.5 56.45)
+		(end 154.5 56.353)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 1)
-		(uuid "e62f4757-2e9a-41a4-93e4-b0aa6edacd62")
+		(uuid "8d2f3bf4-bdfd-49fc-be6c-39cbc0d2eef7")
+	)
+	(segment
+		(start 154.95 60.4)
+		(end 155.524595 59.825405)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 1)
+		(uuid "d0deca68-ea4c-4e6f-bff3-c1f72329485f")
+	)
+	(segment
+		(start 155.524595 59.825405)
+		(end 155.524595 57.474595)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 1)
+		(uuid "d4b9172b-030e-40b4-827e-cb97a9c705c2")
 	)
 	(segment
 		(start 154.75 61)
@@ -2092,28 +2170,20 @@
 		(uuid "075daf1b-0a85-4209-9c0c-8be9d03defb6")
 	)
 	(segment
-		(start 155.486 60.264)
-		(end 155.486 52.986)
-		(width 0.127)
-		(layer "F.Cu")
-		(net 2)
-		(uuid "26fc3a80-7a54-420e-ac08-4d32a8a47a18")
-	)
-	(segment
 		(start 154.75 61)
-		(end 155.486 60.264)
+		(end 155.525 60.225)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 2)
-		(uuid "35f676e0-e744-4873-84ac-cf172f177799")
+		(uuid "0bb7797a-57c9-4bd9-a471-3dbb5efa0da0")
 	)
 	(segment
-		(start 155.486 52.986)
-		(end 154.25 51.75)
+		(start 155.525 52.475)
+		(end 154.836 51.786)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 2)
-		(uuid "702ae639-4c0e-4896-836e-cd483e13b1fd")
+		(uuid "27d3f2e6-e51a-477a-bd57-10c669389fb6")
 	)
 	(segment
 		(start 154.75 60.98)
@@ -2124,36 +2194,60 @@
 		(uuid "7565dee1-03d4-4545-91de-0663eaa7047b")
 	)
 	(segment
-		(start 150.514 52.986)
-		(end 151.75 51.75)
+		(start 154.836 51.786)
+		(end 154.75 51.786)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 2)
+		(uuid "9b426431-4928-4aaa-b42c-f669bff1230f")
+	)
+	(segment
+		(start 155.525 60.225)
+		(end 155.525 52.475)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 2)
+		(uuid "afeefeca-400c-4010-abca-634baa7a0709")
+	)
+	(segment
+		(start 151.164 51.786)
+		(end 151.25 51.786)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 3)
-		(uuid "943088d5-1251-48f0-b564-05e32fcc3e5c")
+		(uuid "1b1027d1-f9e3-4a98-bff3-c83acb962851")
+	)
+	(segment
+		(start 150.45 52.5)
+		(end 151.164 51.786)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 3)
+		(uuid "aa3aaab8-c33f-4b59-a287-1bb84254b272")
 	)
 	(segment
 		(start 151.25 61)
-		(end 150.514 60.264)
+		(end 150.45 60.2)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 3)
-		(uuid "be210230-b70d-4f40-a7ff-2d7d7e8631e8")
+		(uuid "e3e015fc-8782-4443-af32-1efab45163cd")
 	)
 	(segment
-		(start 150.514 60.264)
-		(end 150.514 52.986)
+		(start 150.45 60.2)
+		(end 150.45 52.5)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 3)
-		(uuid "f87e4496-06ee-46d6-9b58-4bcfcf8234fe")
+		(uuid "ebecb9d1-106b-4be9-8817-46bf27e734f5")
 	)
 	(segment
-		(start 151.75 61)
-		(end 151.75 59.25)
+		(start 151.75 60.45)
+		(end 151.75 58.7)
 		(width 0.16)
 		(layer "F.Cu")
 		(net 4)
-		(uuid "b346a901-b5f5-4f01-ab6c-be277c9d67dc")
+		(uuid "8200e1eb-b8c5-4a2d-9e9a-44d4872a82a6")
 	)
 	(segment
 		(start 152.25 61)
@@ -2173,76 +2267,92 @@
 		(uuid "d11ef70c-e71a-4c29-b25f-295f6a42a0bc")
 	)
 	(segment
-		(start 150.514 57.986)
-		(end 151.75 56.75)
+		(start 150.45 57.5)
+		(end 151.164 56.786)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 5)
-		(uuid "853e237d-af57-42f8-b9f7-fa0e51a4a0e4")
-	)
-	(segment
-		(start 151.136692 60.41)
-		(end 150.514 59.787308)
-		(width 0.127)
-		(layer "B.Cu")
-		(net 5)
-		(uuid "b74771df-99d9-464d-b54e-dabbc9a025b9")
-	)
-	(segment
-		(start 150.514 59.787308)
-		(end 150.514 57.986)
-		(width 0.127)
-		(layer "B.Cu")
-		(net 5)
-		(uuid "b929014d-e263-449d-bb18-8913fdd60037")
+		(uuid "00335150-a96b-4697-b50a-4ab4d03ebd6a")
 	)
 	(segment
 		(start 152.25 60.41)
-		(end 151.136692 60.41)
+		(end 151.087372 60.41)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 5)
-		(uuid "c595c60e-b102-4da3-934b-722f74405926")
+		(uuid "24a3bd03-21d5-44af-9563-2ca151504481")
 	)
 	(segment
-		(start 154.25 61)
-		(end 154.25 59.25)
+		(start 151.164 56.786)
+		(end 151.25 56.786)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 5)
+		(uuid "5ca5dd69-367b-492a-86e2-3e0a1eaf1818")
+	)
+	(segment
+		(start 151.087372 60.41)
+		(end 150.45 59.772628)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 5)
+		(uuid "d8abc198-de0c-4de8-81b2-095a1da69663")
+	)
+	(segment
+		(start 150.45 59.772628)
+		(end 150.45 57.5)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 5)
+		(uuid "ee1162e2-6c02-4d3e-872f-e9e74af297cb")
+	)
+	(segment
+		(start 154.25 60.45)
+		(end 154.25 58.7)
 		(width 0.16)
 		(layer "F.Cu")
 		(net 6)
-		(uuid "e0e2451e-421c-4eb0-b74f-194164966791")
-	)
-	(segment
-		(start 152.986 59.613476)
-		(end 152.986 55.486)
-		(width 0.127)
-		(layer "F.Cu")
-		(net 7)
-		(uuid "4bfb28d1-4292-401b-a888-9e133e5d12d2")
-	)
-	(segment
-		(start 152.986 55.486)
-		(end 151.75 54.25)
-		(width 0.127)
-		(layer "F.Cu")
-		(net 7)
-		(uuid "749edfb8-0b70-4b57-99fe-da9b2361d997")
-	)
-	(segment
-		(start 152.75 59.849476)
-		(end 152.986 59.613476)
-		(width 0.127)
-		(layer "F.Cu")
-		(net 7)
-		(uuid "9b15c3b4-42ca-455a-8c90-ed7948c1b569")
+		(uuid "1d8e6974-ca1b-48d3-a9d7-c40eaa54a5ef")
 	)
 	(segment
 		(start 152.75 61)
-		(end 152.75 59.849476)
+		(end 152.75 60.012348)
 		(width 0.127)
 		(layer "F.Cu")
 		(net 7)
-		(uuid "d55cf983-5932-44ff-bff3-569e6c6d8964")
+		(uuid "12df4cc1-ce1d-4559-b79b-4143ae263195")
+	)
+	(segment
+		(start 152.336 54.286)
+		(end 152.25 54.286)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 7)
+		(uuid "4903a33d-77d7-408c-bb01-18257bd1fa37")
+	)
+	(segment
+		(start 153 59.762348)
+		(end 153 54.95)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 7)
+		(uuid "ace05621-105e-4ada-8d1a-55109826b9bb")
+	)
+	(segment
+		(start 153 54.95)
+		(end 152.336 54.286)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 7)
+		(uuid "e0c72f46-3df8-4a65-a494-3aa67d197eef")
+	)
+	(segment
+		(start 152.75 60.012348)
+		(end 153 59.762348)
+		(width 0.127)
+		(layer "F.Cu")
+		(net 7)
+		(uuid "e40c81d7-4c03-4098-83de-d266b5e6711c")
 	)
 	(segment
 		(start 153.25 60.41)
@@ -2262,28 +2372,36 @@
 		(uuid "1ae48c60-6a7a-48c8-921b-c5d7dab2d1b5")
 	)
 	(segment
-		(start 153.014 60.174)
-		(end 153.014 55.486)
+		(start 154 53.95)
+		(end 154 53.853)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 8)
-		(uuid "1c6d2eda-5dfb-4d1b-bf6e-e5de21955d97")
+		(uuid "083d0dbe-d10c-46dd-a103-77c60935d169")
+	)
+	(segment
+		(start 153 60.16)
+		(end 153 54.95)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "2491b74d-d9c0-41bf-bec0-f3925a806957")
+	)
+	(segment
+		(start 153 54.95)
+		(end 154 53.95)
+		(width 0.127)
+		(layer "B.Cu")
+		(net 8)
+		(uuid "32ef573a-136e-4160-9c80-ecf9216fd1df")
 	)
 	(segment
 		(start 153.25 60.41)
-		(end 153.014 60.174)
+		(end 153 60.16)
 		(width 0.127)
 		(layer "B.Cu")
 		(net 8)
-		(uuid "61698d12-1320-466c-8fb9-0cf06b792dbe")
-	)
-	(segment
-		(start 153.014 55.486)
-		(end 154.25 54.25)
-		(width 0.127)
-		(layer "B.Cu")
-		(net 8)
-		(uuid "ba95dc9c-c99a-4b6a-8460-48b252b94dfe")
+		(uuid "ac4fca62-8fdb-4401-a6f9-79710784f8d8")
 	)
 	(embedded_fonts no)
 )

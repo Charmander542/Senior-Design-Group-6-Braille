@@ -1,0 +1,5 @@
+# Arduino Integration Requirements
+
+# Serial communication
+pyserial>=3.5
+

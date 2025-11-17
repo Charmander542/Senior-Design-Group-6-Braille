@@ -5,12 +5,14 @@ A comprehensive Arduino library for converting ASCII text to 8-dot Braille patte
 ## Features
 
 - ✅ **8-Dot Braille Support** - Full support for 8-dot Braille cells (2x4 grid)
+- ✅ **8-Bit Hardware Output** - Direct conversion to 8-bit patterns for pin control
+- ✅ **TXT File Support** - Read and convert .txt files from SD card
 - ✅ **Complete ASCII Character Set** - Supports uppercase, lowercase, digits, punctuation, and special characters
 - ✅ **On-Device Conversion** - All conversion happens directly on the Arduino
 - ✅ **Easy to Use API** - Simple, intuitive functions for text conversion
 - ✅ **Hardware Ready** - Designed for driving solenoids, actuators, or other tactile displays
 - ✅ **Memory Efficient** - Optimized for Arduino's limited RAM
-- ✅ **Multiple Examples** - Includes basic, interactive, display, and file-based examples
+- ✅ **Multiple Examples** - Includes basic, interactive, display, file-based, and complete hardware examples
 
 ## 8-Dot Braille Layout
 
@@ -194,11 +196,14 @@ The library includes several examples:
 2. **SerialInput** - Interactive mode with Serial Monitor
 3. **BrailleDisplay** - Driving a physical 8-dot Braille display
 4. **FileConversion** - Reading and converting text from SD card
+5. **FileToHardware** - **Complete workflow**: .txt file → 8-bit output → hardware pins
 
 To run an example:
 1. Go to **File → Examples → BrailleConverter**
 2. Select an example
 3. Upload to your Arduino
+
+**⭐ Recommended**: Try `FileToHardware` for the complete .txt-to-hardware workflow!
 
 ## Dot Pattern Encoding
 

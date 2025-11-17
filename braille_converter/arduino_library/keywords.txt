@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map for BrailleConverter
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+BrailleConverter	KEYWORD1
+BrailleChar	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+convertChar	KEYWORD2
+convertText	KEYWORD2
+getCharAt	KEYWORD2
+getCharCount	KEYWORD2
+getDotPattern	KEYWORD2
+getDots	KEYWORD2
+patternToDots	KEYWORD2
+printChar	KEYWORD2
+printPattern	KEYWORD2
+printConvertedText	KEYWORD2
+charToDots	KEYWORD2
+charToPattern	KEYWORD2
+printDotPattern	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MAX_BRAILLE_DOTS	LITERAL1
+MAX_INPUT_LENGTH	LITERAL1
+

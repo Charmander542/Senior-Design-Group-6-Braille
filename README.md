@@ -44,6 +44,36 @@ cd braille_converter
 python demo.py
 ```
 
+### 🤖 `braille_converter/arduino_library/`
+**NEW!** Arduino C++ library for on-device 8-dot Braille conversion - no Python required!
+
+**Features:**
+- ⚡ Native Arduino C++ implementation
+- 8️⃣ Full 8-dot Braille support (2x4 grid)
+- 🔌 Direct hardware control - no computer needed
+- 💾 Memory efficient - runs on Arduino Uno
+- 🎯 Complete ASCII character set
+- 📚 Multiple examples included
+
+**Quick Start:**
+```cpp
+#include <BrailleConverter.h>
+
+BrailleConverter converter;
+
+void setup() {
+  Serial.begin(115200);
+  BrailleChar bc = converter.convertChar('A');
+  // bc.dots = {1, 7} - ready to drive hardware!
+}
+```
+
+**Documentation:**
+- [Arduino Library README](braille_converter/arduino_library/README.md) - Complete guide
+- [Installation Guide](braille_converter/arduino_library/INSTALLATION.md) - Setup instructions
+- [Quick Reference](braille_converter/arduino_library/QUICK_REFERENCE.md) - API cheat sheet
+- [Examples](braille_converter/arduino_library/examples/) - 4 working examples
+
 ### 🔌 `braille_converter/arduino_integration/`
 Arduino integration for sending braille patterns to hardware over serial.
 
@@ -88,7 +118,7 @@ python basic_usage.py
 python file_conversion.py
 ```
 
-### For Arduino Integration
+### For Arduino Integration (Python-based)
 ```bash
 # Install PySerial
 pip install pyserial
@@ -110,6 +140,20 @@ python examples.py
 ```
 
 See [Arduino Integration README](braille_converter/arduino_integration/README.md) for detailed setup.
+
+### For Arduino Library (Native C++ - No Python Required!)
+```bash
+# 1. Copy arduino_library folder to Arduino libraries directory
+cp -r braille_converter/arduino_library ~/Documents/Arduino/libraries/BrailleConverter
+
+# 2. Restart Arduino IDE
+
+# 3. Open example: File → Examples → BrailleConverter → BasicConversion
+
+# 4. Upload to your Arduino and open Serial Monitor (115200 baud)
+```
+
+See [Arduino Library Installation](braille_converter/arduino_library/INSTALLATION.md) for detailed setup.
 
 ### For Hardware Development
 Navigate to the `electrical/` directory to access:

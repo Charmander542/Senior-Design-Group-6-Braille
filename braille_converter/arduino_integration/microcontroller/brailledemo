@@ -1,0 +1,111 @@
+/*
+ * SerialInput.ino
+ * 
+ * Interactive example: Type text via Serial Monitor
+ * and see the Braille conversion in real-time
+ */
+
+#include <BrailleConverter.h>
+
+// 8-dot Braille hardware pins
+const uint8_t DOT_PINS[8] = {
+  2, 3, 4, 5, 6, 7, 8, 9
+};
+
+uint8_t prevPattern = 0;
+
+// Timing configuration
+const uint16_t CHAR_DISPLAY_TIME = 700;
+
+BrailleConverter converter;
+const uint16_t BUFFER_SIZE = 256;
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) {;}
+
+  // Initialize hardware pins
+  for (uint8_t i = 0; i < 8; i++) {
+    pinMode(DOT_PINS[i], OUTPUT);
+    digitalWrite(DOT_PINS[i], LOW);
+  }
+  
+  // Test hardware
+  testAllDots();
+  
+  Serial.println(F("Type text and press Enter to convert\n"));
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String text = Serial.readStringUntil('\n');
+
+    processInput(text);
+
+    // Display braille in real-time
+    for (int i = 0; i < text.length(); i++) {
+      BrailleChar bc = converter.convertChar(text[i]);
+      displayPattern8Bit(bc.dotPattern);
+      delay(CHAR_DISPLAY_TIME);
+    }
+    clearDisplay();
+  }
+}
+
+void processInput(String input) {
+  input.trim();
+  if (input.length() == 0) { return; }
+
+  // Convert and display regular text
+  convertAndDisplay(input);
+}
+
+void convertAndDisplay(String text) {
+  
+  // Convert text
+  char buffer[BUFFER_SIZE];
+  text.toCharArray(buffer, BUFFER_SIZE);
+  uint16_t count = converter.convertText(buffer);
+  
+  // Display each character
+  for (uint16_t i = 0; i < count; i++) {
+    BrailleChar bc = converter.getCharAt(i);
+        
+    if (bc.dotPattern < 0x10) Serial.print("0");
+    Serial.print(bc.dotPattern, HEX);
+    Serial.print("\n");
+  }
+}
+
+/**
+ * Output 8-bit pattern directly to Arduino pins
+ */
+void displayPattern8Bit(uint8_t newPattern) {
+  newPattern &= 0xFF; // ensure only 8 bits
+
+  for (uint8_t bit = 0; bit < 8; bit++) {
+    bool prevState = (prevPattern >> bit) & 1;
+    bool newState  = (newPattern >> bit) & 1;
+    digitalWrite(DOT_PINS[bit], newState ? HIGH : LOW);
+  }
+
+  prevPattern = newPattern;
+}
+
+/**
+ * Test each dot
+ */
+void testAllDots() {
+  for (uint8_t i = 0; i < 8; i++) {    
+    digitalWrite(DOT_PINS[i], HIGH);
+    delay(200);
+    digitalWrite(DOT_PINS[i], LOW);
+    delay(100);
+  }
+}
+
+void clearDisplay() {
+  for (uint8_t i = 0; i < 8; i++) {
+    digitalWrite(DOT_PINS[i], LOW);
+  }
+}

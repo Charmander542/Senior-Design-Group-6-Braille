@@ -4,7 +4,7 @@
 
 int main(void) {
   const char *inputs[] = {
-    "Hello, World!",
+    "Team 6 rules!  Love the application.  class of 2026. @# faileed zeros",
     "CS101",
     "data > code"
   };

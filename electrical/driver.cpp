@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <shlwapi.h>
 #include <shcore.h>
+#include <commdlg.h>
 #include <wincodec.h>
 #include <Windows.Graphics.Capture.Interop.h>
 
@@ -43,6 +44,7 @@
 #pragma comment(lib, "shlwapi.lib")
 #pragma comment(lib, "shcore.lib")
 #pragma comment(lib, "windowscodecs.lib")
+#pragma comment(lib, "comdlg32.lib")
 
 
 
@@ -58,16 +60,19 @@ enum : int {
     IDC_EDIT_TEXT = 1004,
     IDC_BTN_SEND = 1005,
     IDC_BTN_OCR_REGION = 1006,
-    IDC_BTN_OCR_FULLSCREEN = 1007
+    IDC_BTN_OCR_FULLSCREEN = 1007,
+    IDC_BTN_OPEN = 1008,
+    IDC_BTN_SAVE = 1009
 };
 
 
 
 
 HINSTANCE hInst;
-HWND hWndMain, hCbPorts, hBtnRefresh, hBtnConnect, hEditText, hBtnSend;
+HWND hWndMain, hCbPorts, hBtnRefresh, hBtnConnect, hEditText, hBtnSend, hBtnRegion, hBtnFull, hBtnOpen, hBtnSave;
 HANDLE hSerial = INVALID_HANDLE_VALUE;
 bool connected = false;
+WNDPROC OriginalEditProc;
 
 static winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice g_d3dDevice{ nullptr };
 static winrt::Windows::System::DispatcherQueueController g_dqController{ nullptr };
@@ -403,6 +408,102 @@ static std::wstring HrToStr(winrt::hresult hr)
     return msg;
 }
 
+static std::string WideToUtf8(const std::wstring& w) {
+    if (w.empty()) return {};
+    int len = WideCharToMultiByte(CP_UTF8, 0, w.data(), (int)w.size(), nullptr, 0, nullptr, nullptr);
+    std::string out(len, '\0');
+    WideCharToMultiByte(CP_UTF8, 0, w.data(), (int)w.size(), out.data(), len, nullptr, nullptr);
+    return out;
+}
+
+static bool LoadTextFileToEdit(HWND hEdit, const std::wstring& path) {
+    std::ifstream file(std::filesystem::path(path), std::ios::binary);
+    if (!file) return false;
+
+    std::ostringstream oss;
+    oss << file.rdbuf();
+    std::string bytes = oss.str();
+
+    // Handle UTF-8 BOM
+    if (bytes.size() >= 3 && (uint8_t)bytes[0] == 0xEF && (uint8_t)bytes[1] == 0xBB && (uint8_t)bytes[2] == 0xBF) {
+        bytes.erase(0, 3);
+    }
+
+    std::wstring w;
+    if (!bytes.empty()) {
+        int need = MultiByteToWideChar(CP_UTF8, 0, bytes.data(), (int)bytes.size(), nullptr, 0);
+        if (need > 0) {
+            w.resize(need);
+            MultiByteToWideChar(CP_UTF8, 0, bytes.data(), (int)bytes.size(), w.data(), need);
+        }
+    }
+    SetWindowTextW(hEdit, w.c_str());
+    return true;
+}
+
+static bool SaveEditToTextFile(HWND hEdit, const std::wstring& path) {
+    int len = GetWindowTextLengthW(hEdit);
+    std::wstring w;
+    w.resize(len);
+    GetWindowTextW(hEdit, w.data(), len + 1);
+
+    std::string utf8 = WideToUtf8(w);
+
+    std::ofstream file(std::filesystem::path(path), std::ios::binary | std::ios::trunc);
+    if (!file) return false;
+
+    // Optional: write UTF-8 BOM for Notepad compatibility
+    const unsigned char bom[3] = { 0xEF, 0xBB, 0xBF };
+    file.write((const char*)bom, 3);
+
+    file.write(utf8.data(), (std::streamsize)utf8.size());
+    return true;
+}
+
+static bool PickOpenTxtFile(HWND owner, std::wstring& outPath) {
+    wchar_t path[MAX_PATH] = L"";
+
+    OPENFILENAMEW ofn{};
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = owner;
+    ofn.lpstrFile = path;
+    ofn.nMaxFile = MAX_PATH;
+    ofn.lpstrFilter = L"Text Files (*.txt)\0*.txt\0All Files (*.*)\0*.*\0";
+    ofn.nFilterIndex = 1;
+    ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+
+    if (!GetOpenFileNameW(&ofn)) return false;
+    outPath = path;
+    return true;
+}
+
+static bool PickSaveTxtFile(HWND owner, std::wstring& outPath) {
+    wchar_t path[MAX_PATH] = L"";
+
+    OPENFILENAMEW ofn{};
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = owner;
+    ofn.lpstrFile = path;
+    ofn.nMaxFile = MAX_PATH;
+    ofn.lpstrDefExt = L"txt";
+    ofn.lpstrFilter = L"Text Files (*.txt)\0*.txt\0All Files (*.*)\0*.*\0";
+    ofn.nFilterIndex = 1;
+    ofn.Flags = OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST;
+
+    if (!GetSaveFileNameW(&ofn)) return false;
+
+    outPath = path;
+    // ensure .txt if user omitted extension
+    if (outPath.find(L'.') == std::wstring::npos) outPath += L".txt";
+    return true;
+}
+
+
+
+
+
+
+
 
 
 
@@ -689,6 +790,107 @@ bool SendText(const std::wstring& text) {
     
 }
 
+static winrt::Windows::Graphics::Imaging::SoftwareBitmap
+UpscaleIfLowResolution(
+    winrt::Windows::Graphics::Imaging::SoftwareBitmap const& src,
+    int minWidth = 1000,
+    int scaleFactor = 2)
+{
+    using namespace winrt;
+    using namespace winrt::Windows::Graphics::Imaging;
+
+    if (!src) return nullptr;
+
+    // Ensure format is BGRA8
+    SoftwareBitmap input = src;
+    if (input.BitmapPixelFormat() != BitmapPixelFormat::Bgra8)
+    {
+        input = SoftwareBitmap::Convert(
+            input,
+            BitmapPixelFormat::Bgra8,
+            BitmapAlphaMode::Ignore
+        );
+    }
+
+    int w = input.PixelWidth();
+    int h = input.PixelHeight();
+
+    // If resolution is already sufficient, return original
+    if (w >= minWidth)
+        return input;
+
+    int newW = w * scaleFactor;
+    int newH = h * scaleFactor;
+
+    SoftwareBitmap output(
+        BitmapPixelFormat::Bgra8,
+        newW,
+        newH,
+        BitmapAlphaMode::Ignore
+    );
+
+    auto inBuf = input.LockBuffer(BitmapBufferAccessMode::Read);
+    auto outBuf = output.LockBuffer(BitmapBufferAccessMode::Write);
+
+    auto inDesc = inBuf.GetPlaneDescription(0);
+    auto outDesc = outBuf.GetPlaneDescription(0);
+
+    struct __declspec(uuid("5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D"))
+        IMemoryBufferByteAccess : IUnknown {
+        virtual HRESULT __stdcall GetBuffer(uint8_t** buffer, uint32_t* capacity) = 0;
+    };
+
+    auto inRef = inBuf.CreateReference();
+    auto outRef = outBuf.CreateReference();
+
+    uint8_t* inPtr = nullptr;
+    uint32_t inCap = 0;
+    uint8_t* outPtr = nullptr;
+    uint32_t outCap = 0;
+
+    winrt::check_hresult(inRef.as<IMemoryBufferByteAccess>()->GetBuffer(&inPtr, &inCap));
+    winrt::check_hresult(outRef.as<IMemoryBufferByteAccess>()->GetBuffer(&outPtr, &outCap));
+
+    const int bytesPerPixel = 4;
+
+    // Bilinear interpolation
+    for (int y = 0; y < newH; ++y)
+    {
+        float srcY = (float)y / scaleFactor;
+        int y0 = (int)srcY;
+        int y1 = min(y0 + 1, h - 1);
+        float wy = srcY - y0;
+
+        for (int x = 0; x < newW; ++x)
+        {
+            float srcX = (float)x / scaleFactor;
+            int x0 = (int)srcX;
+            int x1 = min(x0 + 1, w - 1);
+            float wx = srcX - x0;
+
+            uint8_t* p00 = inPtr + y0 * inDesc.Stride + x0 * bytesPerPixel;
+            uint8_t* p10 = inPtr + y0 * inDesc.Stride + x1 * bytesPerPixel;
+            uint8_t* p01 = inPtr + y1 * inDesc.Stride + x0 * bytesPerPixel;
+            uint8_t* p11 = inPtr + y1 * inDesc.Stride + x1 * bytesPerPixel;
+
+            uint8_t* dst = outPtr + y * outDesc.Stride + x * bytesPerPixel;
+
+            for (int c = 0; c < 4; ++c)
+            {
+                float val =
+                    (1 - wx) * (1 - wy) * p00[c] +
+                    wx * (1 - wy) * p10[c] +
+                    (1 - wx) * wy * p01[c] +
+                    wx * wy * p11[c];
+
+                dst[c] = (uint8_t)val;
+            }
+        }
+    }
+
+    return output;
+}
+
 
 
 
@@ -853,26 +1055,60 @@ static bool SelectScreenRegion(HWND owner, RECT& outRect) {
     return true;
 }
 
+
+LRESULT CALLBACK EditSubclassProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    if (msg == WM_KEYDOWN)
+    {
+        if (GetKeyState(VK_CONTROL) & 0x8000)
+        {
+            switch (wParam)
+            {
+            case 'A':
+                SendMessageW(hwnd, EM_SETSEL, 0, -1);
+                return 0;
+
+            case 'S':
+            {
+                std::wstring path;
+                if (PickSaveTxtFile(hWndMain, path))
+                {
+                    SaveEditToTextFile(hwnd, path);
+                }
+                return 0;
+            }
+
+            case 'O':
+            {
+                std::wstring path;
+                if (PickOpenTxtFile(hWndMain, path))
+                {
+                    LoadTextFileToEdit(hwnd, path);
+                }
+                return 0;
+            }
+            }
+        }
+    }
+
+    return CallWindowProcW(OriginalEditProc, hwnd, msg, wParam, lParam);
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
     case WM_CREATE: {
         int margin = 10, rowH = 28, btnW = 100;
-        hCbPorts = CreateWindowW(L"COMBOBOX", nullptr, WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST,
-            margin, margin, 180, 200, hWnd, (HMENU)IDC_COMBO_PORTS, hInst, nullptr);
-        hBtnRefresh = CreateWindowW(L"BUTTON", L"Refresh", WS_CHILD | WS_VISIBLE,
-            margin + 190, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_REFRESH, hInst, nullptr);
-        hBtnConnect = CreateWindowW(L"BUTTON", L"Connect", WS_CHILD | WS_VISIBLE,
-            margin + 300, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_CONNECT, hInst, nullptr);
-        hEditText = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_MULTILINE | WS_VSCROLL,
-            margin, margin + rowH + 10, 460, 200, hWnd, (HMENU)IDC_EDIT_TEXT, hInst, nullptr);
-        hBtnSend = CreateWindowW(L"BUTTON", L"Send", WS_CHILD | WS_VISIBLE,
-            margin, margin + rowH + 220, 100, rowH, hWnd, (HMENU)IDC_BTN_SEND, hInst, nullptr);
+        hCbPorts = CreateWindowW(L"COMBOBOX", nullptr, WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST, margin, margin, 180, 200, hWnd, (HMENU)IDC_COMBO_PORTS, hInst, nullptr);
+        hBtnRefresh = CreateWindowW(L"BUTTON", L"Refresh", WS_CHILD | WS_VISIBLE, margin + 190, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_REFRESH, hInst, nullptr);
+        hBtnConnect = CreateWindowW(L"BUTTON", L"Connect", WS_CHILD | WS_VISIBLE, margin + 300, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_CONNECT, hInst, nullptr);
+        hEditText = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_MULTILINE | WS_VSCROLL, margin, margin + rowH + 10, 540, 200, hWnd, (HMENU)IDC_EDIT_TEXT, hInst, nullptr);
+        OriginalEditProc = (WNDPROC)SetWindowLongPtrW(hEditText, GWLP_WNDPROC, (LONG_PTR)EditSubclassProc);
+        hBtnSend = CreateWindowW(L"BUTTON", L"Send", WS_CHILD | WS_VISIBLE, margin + 410, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_SEND, hInst, nullptr);
 
-        CreateWindowW(L"BUTTON", L"OCR (region)", WS_CHILD | WS_VISIBLE,
-            margin + 110, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_REGION, hInst, nullptr);
-
-        CreateWindowW(L"BUTTON", L"OCR (full)", WS_CHILD | WS_VISIBLE,
-            margin + 240, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_FULLSCREEN, hInst, nullptr);
+        hBtnRegion = CreateWindowW(L"BUTTON", L"OCR (region)", WS_CHILD | WS_VISIBLE,  margin, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_REGION, hInst, nullptr);
+        hBtnFull = CreateWindowW(L"BUTTON", L"OCR (full)", WS_CHILD | WS_VISIBLE, margin + 130, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_FULLSCREEN, hInst, nullptr);
+        hBtnOpen = CreateWindowW(L"BUTTON", L"Open", WS_CHILD | WS_VISIBLE, margin + 260, margin + rowH + 220, btnW, rowH, hWnd, (HMENU)IDC_BTN_OPEN, hInst, nullptr);
+        hBtnSave = CreateWindowW(L"BUTTON", L"Save", WS_CHILD | WS_VISIBLE, margin + 370, margin + rowH + 220, btnW, rowH, hWnd, (HMENU)IDC_BTN_SAVE, hInst, nullptr);
 
         PopulatePorts();
         return 0;
@@ -998,6 +1234,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                         co_return;
                     }
 
+                    cropped = UpscaleIfLowResolution(cropped, 800, 2);
+                    cropped = UpscaleIfLowResolution(cropped, 200, 2);
+
                     auto text = co_await OcrBitmapAsync(cropped);
 
                     std::wstring t = text.c_str();
@@ -1021,6 +1260,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 co_return;
                 }());
         }
+        else if (id == IDC_BTN_OPEN && HIWORD(wParam) == BN_CLICKED) {
+            std::wstring path;
+            if (PickOpenTxtFile(hWndMain, path)) {
+                if (!LoadTextFileToEdit(hEditText, path)) MsgBox(L"Open failed.", MB_ICONERROR);
+            }
+}
+        else if (id == IDC_BTN_SAVE && HIWORD(wParam) == BN_CLICKED) {
+            std::wstring path;
+            if (PickSaveTxtFile(hWndMain, path)) {
+                if (!SaveEditToTextFile(hEditText, path)) MsgBox(L"Save failed.", MB_ICONERROR);
+            }
+}
 
         break;
     }
@@ -1086,9 +1337,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
     wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
     RegisterClassW(&wc);
 
-    hWndMain = CreateWindowW(L"UsbTextSender", L"Text Sender v1.1.0",
-        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU,
-        CW_USEDEFAULT, CW_USEDEFAULT, 520, 360,
+    hWndMain = CreateWindowW(L"UsbTextSender", L"Text Sender v1.1.0", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 
+        580, 360,
         nullptr, nullptr, hInstance, nullptr);
 
     ShowWindow(hWndMain, nCmdShow);

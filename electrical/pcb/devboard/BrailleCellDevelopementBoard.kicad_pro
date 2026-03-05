@@ -473,6 +473,30 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "clearance": 3.0,
+        "name": "HV450",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.6
+      },
+      {
+        "clearance": 0.25,
+        "name": "PWR24",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.8
+      },
+      {
+        "clearance": 0.25,
+        "name": "PWR3V3",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.4
       }
     ],
     "meta": {

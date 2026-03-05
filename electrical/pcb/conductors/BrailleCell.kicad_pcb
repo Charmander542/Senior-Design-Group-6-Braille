@@ -196,7 +196,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "778c22c9-9e3d-4a8d-8df0-1cf0ef1b0986")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -207,7 +207,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "fe37fb80-12e5-47e3-a63d-2d1b6d0475f0")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -218,7 +218,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "8ec6de4a-21c9-47a9-954e-3946e7866280")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -229,7 +229,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "e74ff73b-0ddc-45f0-a2d3-b7f71574ba30")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -240,7 +240,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "cb8a9c3b-fd4d-433e-aedf-dcd82724015e")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -252,7 +252,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "5f3263c3-a5a3-462b-ac76-f2d42301474a")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -263,7 +263,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "40ad0531-68bd-4b20-86bd-f1b762a88068")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -274,7 +274,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "08d448a3-ef52-489e-b384-e8155614ca07")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -285,7 +285,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "74e76c49-a3be-46e1-af70-4095f32f466a")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -296,7 +296,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "55746a22-64c0-4ab2-b59c-82875503d870")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -307,7 +307,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "7896a8d4-6899-470f-805f-70c6fafbf2d0")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -318,7 +318,7 @@
 			(net 8 "Net-(J1-Pin_5)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "ef76a63a-f706-498c-b4bf-f31fd4774955")
+			(uuid "cd64291f-ac88-4f8b-b9a1-e3ab6d097ca6")
 		)
 		(embedded_fonts no)
 	)
@@ -402,7 +402,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "1e8f5e30-0512-4e69-aa89-194eb13678d5")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -413,7 +413,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "1a7e3689-5a7b-4a7f-8b93-cbca59ddd93d")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -424,7 +424,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "5037088b-8b33-457e-aa06-d611458a52ba")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -435,7 +435,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "36b23621-a007-40a7-ad70-3959ac29b2d6")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -446,7 +446,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "2c30cece-2de1-449c-b4a8-32825318ba32")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -458,7 +458,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "8c8cbf12-2f7f-40a0-91cd-00e415046e5c")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -469,7 +469,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "49c62055-e0ed-4f58-9034-e75a24bbcee1")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -480,7 +480,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "8bbb3278-b295-4258-88fc-aabc6f07cda4")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -491,7 +491,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "5a263e30-5adf-4c7d-8ac2-8a4743ac45de")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -502,7 +502,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "09854461-4a58-44ce-ad96-b1292d3156b1")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -513,7 +513,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "b1af3c44-e9db-44f0-acf4-d88d352f214d")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -524,7 +524,7 @@
 			(net 3 "Net-(J1-Pin_1)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "048816f0-ce51-4518-901a-37d96ebe8749")
+			(uuid "e9b591a0-4708-4fd2-9502-79aa988c45c6")
 		)
 		(embedded_fonts no)
 	)
@@ -608,7 +608,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "25afbd99-d484-457f-8311-6a52e69bfcb3")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -619,7 +619,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "e52c1ceb-df85-4b40-8c17-2f0e6357c790")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -630,7 +630,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "7fcb93cc-000d-40b2-ae29-2846d95c152d")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -641,7 +641,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "ab630856-d6de-4bde-8ed1-39ead3429437")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -652,7 +652,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "752f420a-9f2b-45d3-a7ba-79e66e94a26a")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -664,7 +664,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "d38b6f27-03aa-489d-ac5c-1f096d0d379f")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -675,7 +675,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "c401cde5-18cd-42dd-92e8-aa8da4f78276")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -686,7 +686,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "afa4b87a-04f4-49b3-8e26-276f4260ddb3")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -697,7 +697,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "d7143988-b7ec-4e99-96f3-2a3ff00eb3b3")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -708,7 +708,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "5d5b276d-67f2-4c18-9f49-66488b890d75")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -719,7 +719,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "73947e16-ff21-4baf-abe9-ac818ae3d4d9")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -730,7 +730,7 @@
 			(net 2 "Net-(J1-Pin_8)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b68df58c-f4e3-4387-be0f-096fd9408e86")
+			(uuid "8c1f8e74-0962-4ce3-9088-1ab029f79fc3")
 		)
 		(embedded_fonts no)
 	)
@@ -814,7 +814,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "009c8779-ac17-49f5-bff5-f05436290cef")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -825,7 +825,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "d2a5d8bc-7ab2-446c-aff2-6a53199d31eb")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -836,7 +836,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "ee70bd08-7e75-4fe7-b301-7782954c1e4e")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -847,7 +847,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "91572946-9b93-4f38-b252-3546887f976d")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -858,7 +858,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "211a516b-5bb5-4b22-91d8-62843da6722f")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -870,7 +870,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "e746277a-0b23-4710-ad9d-3a5292d01377")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -881,7 +881,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "516ad565-2f07-4e49-a4a1-472a11ac0120")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -892,7 +892,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "507a816d-8ae2-4a42-b3b0-8fbca3f78b4e")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -903,7 +903,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "1e2f0235-ed7a-498c-a630-52168b19b437")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -914,7 +914,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "0bb0c4c1-ae6d-46ec-a6b3-2168307bcd1d")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -925,7 +925,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "e8ca7f16-8647-4735-8319-d0fee6f72f99")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -936,7 +936,7 @@
 			(net 7 "Net-(J1-Pin_4)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "b9e30633-95d3-45db-8186-724a925a4a3d")
+			(uuid "48120687-4f1d-4843-a149-6827817e074a")
 		)
 		(embedded_fonts no)
 	)
@@ -1020,7 +1020,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "d4c777ed-917a-47c6-9c54-8a4b6bba7caf")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -1031,7 +1031,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "64b7009d-1fb5-4c13-acb2-80f6aeca7889")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -1042,7 +1042,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "5cd15428-a574-47f5-a4a7-565c62d9f265")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -1053,7 +1053,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "315e0609-71f4-43a8-a93b-76ef1ad0df0b")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -1064,7 +1064,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "b57eaa6a-b6cf-4be3-ab46-54bbe9c11611")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -1076,7 +1076,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "225df844-65d7-46ac-9009-42ba599e3768")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -1087,7 +1087,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "9af4ebba-c1a2-42bb-82c6-f28a77ed6fca")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -1098,7 +1098,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "38711ddf-b114-41db-8430-8a5a47f20140")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -1109,7 +1109,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "7944b1c5-1825-4bb3-bdeb-85ca209d9a6e")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -1120,7 +1120,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "67819425-a415-4095-9c84-5c945e8c580a")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -1131,7 +1131,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "535fd85c-4f94-4255-ad43-147ff4fa075a")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -1142,7 +1142,7 @@
 			(net 5 "Net-(J1-Pin_3)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "d1c9af90-ee33-44eb-9c8f-742371586f2f")
+			(uuid "a0690a8e-09fe-4e9b-96f3-0914bff022ff")
 		)
 		(embedded_fonts no)
 	)
@@ -1226,7 +1226,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "47599a5b-7ee7-4753-9032-2a550455b108")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -1237,7 +1237,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "c211ebd6-1964-426c-ae98-637a0567da95")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -1248,7 +1248,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "5c4c00ea-0bba-4d7c-b560-22048501fadf")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -1259,7 +1259,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "8750d34e-646b-4a23-9a3e-de2988b8438b")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -1270,7 +1270,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "e5d2baa9-d9a5-4929-b7ae-6dc01e3c625a")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -1282,7 +1282,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "26f9a3c9-75bc-4bb4-9ffc-e8be1e075226")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -1293,7 +1293,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "463c23cb-3957-4364-ae37-b9cdddc4dd33")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -1304,7 +1304,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "e61fe0db-8c02-4c24-b379-1d7c227574ad")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -1315,7 +1315,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "bf6e0b80-0224-4f11-8abb-64f29d0b7761")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -1326,7 +1326,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "8f71be76-02d5-40d1-94eb-17654a9070ba")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -1337,7 +1337,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "6696d498-00e5-466b-b6e3-cfa8ff5e5469")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -1348,7 +1348,7 @@
 			(net 4 "Net-(J1-Pin_2)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "89726daa-fad3-4b42-b4b1-dd32f849065e")
+			(uuid "db10e635-a019-45a1-bdc2-2c6550d4af21")
 		)
 		(embedded_fonts no)
 	)
@@ -1432,7 +1432,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "c2c89417-06a3-4688-9f6d-c8e1d485423a")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -1443,7 +1443,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "35b726ae-e8c0-4dd9-ac6f-c2f61c04b418")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -1454,7 +1454,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "3ed6008b-3cb2-4c60-94c9-d95badda80b4")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -1465,7 +1465,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "142540cc-eae1-4b0a-b150-90aa6389de73")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -1476,7 +1476,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "7ad99944-fc79-4c9e-8545-3acdd2f7d33a")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -1488,7 +1488,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "fb93c20b-8ad9-4135-b5dc-98b0cb40e1bf")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -1499,7 +1499,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "09af7745-77cc-4b3f-a8cc-18f25fcccfbc")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -1510,7 +1510,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "5900a122-758c-4694-a536-b491396a0bf3")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -1521,7 +1521,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "8c13f4d4-68bc-457a-8aab-5748accfa63b")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -1532,7 +1532,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "b5a19d67-8136-4ed8-9f3c-557f8e568e04")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -1543,7 +1543,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "d22121e2-79fe-487b-b104-8f113b2570a7")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -1554,7 +1554,7 @@
 			(net 1 "Net-(J1-Pin_6)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "21caf421-31f4-4f29-8e34-cc7e15b37d28")
+			(uuid "525c9a8f-aacf-4742-bac2-fefde468bf22")
 		)
 		(embedded_fonts no)
 	)
@@ -1950,7 +1950,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "51c0c465-f96d-4b98-ad17-8683aeabe61e")
 		)
 		(pad "1" thru_hole circle
 			(at -0.5 0.586)
@@ -1961,7 +1961,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "8b1c377b-5367-45b2-8d0d-80c264b5696f")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 -0.713)
@@ -1972,7 +1972,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "e152897d-f518-4b47-a7b8-8964ae38ff54")
 		)
 		(pad "1" thru_hole circle
 			(at -0.25 0.153)
@@ -1983,7 +1983,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "0151083e-9f6c-4541-8adf-c3f84d8f99b0")
 		)
 		(pad "1" thru_hole circle
 			(at 0 -0.28)
@@ -1994,7 +1994,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "c0b7d20e-b123-4d7d-9436-4b8ed2e205d7")
 		)
 		(pad "1" smd circle
 			(at 0 0)
@@ -2006,7 +2006,7 @@
 			(solder_mask_margin 0)
 			(solder_paste_margin 0)
 			(clearance 0)
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "df941697-16c6-4c8d-b449-8e6a078a454c")
 		)
 		(pad "1" thru_hole circle
 			(at 0 0.586)
@@ -2017,7 +2017,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "2ae3b0bc-fe03-4ca8-8248-02b4ebc93897")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 -0.713)
@@ -2028,7 +2028,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "a83ff9af-f2b0-4f1d-b238-92e3aa58145b")
 		)
 		(pad "1" thru_hole circle
 			(at 0.25 0.153)
@@ -2039,7 +2039,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "b25fc755-ed73-4de9-bb88-8af9db633f97")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 -0.28)
@@ -2050,7 +2050,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "a80d844d-0714-4071-a2d5-a052592dd750")
 		)
 		(pad "1" thru_hole circle
 			(at 0.5 0.586)
@@ -2061,7 +2061,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "0a2b51ba-d7b8-4128-9a72-c49b80ebd344")
 		)
 		(pad "1" thru_hole circle
 			(at 0.75 0.153)
@@ -2072,7 +2072,7 @@
 			(net 6 "Net-(J1-Pin_7)")
 			(pinfunction "Pin_1")
 			(pintype "passive")
-			(uuid "1de76f72-01b4-42bd-a0cf-6b76e7c6bff8")
+			(uuid "b8d85210-0790-46fc-be61-04dac4a5678c")
 		)
 		(embedded_fonts no)
 	)
@@ -2086,6 +2086,82 @@
 		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "39affc08-537f-47cf-acdc-25a4be0dbbc5")
+	)
+	(dimension
+		(type orthogonal)
+		(layer "F.Cu")
+		(uuid "1beb9927-e62e-4aae-a6ae-3bd1f6ba32b4")
+		(pts
+			(xy 154.25 51.2) (xy 156.5 49.5)
+		)
+		(height -3.5)
+		(orientation 0)
+		(format
+			(prefix "")
+			(suffix "")
+			(units 3)
+			(units_format 0)
+			(precision 4)
+			(suppress_zeroes yes)
+		)
+		(style
+			(thickness 0.2)
+			(arrow_length 1.27)
+			(text_position_mode 0)
+			(arrow_direction outward)
+			(extension_height 0.58642)
+			(extension_offset 0.5)
+			(keep_text_aligned yes)
+		)
+		(gr_text "2.25"
+			(at 155.375 46.5 0)
+			(layer "F.Cu")
+			(uuid "1beb9927-e62e-4aae-a6ae-3bd1f6ba32b4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.2)
+				)
+			)
+		)
+	)
+	(dimension
+		(type orthogonal)
+		(layer "F.Cu")
+		(uuid "9c2b287d-f3cc-47c8-a3c0-8e3656e0594d")
+		(pts
+			(xy 154.25 51.2) (xy 156.5 49.5)
+		)
+		(height 5.8)
+		(orientation 1)
+		(format
+			(prefix "")
+			(suffix "")
+			(units 3)
+			(units_format 0)
+			(precision 4)
+			(suppress_zeroes yes)
+		)
+		(style
+			(thickness 0.2)
+			(arrow_length 1.27)
+			(text_position_mode 0)
+			(arrow_direction outward)
+			(extension_height 0.58642)
+			(extension_offset 0.5)
+			(keep_text_aligned yes)
+		)
+		(gr_text "1.7"
+			(at 158.85 50.35 90)
+			(layer "F.Cu")
+			(uuid "9c2b287d-f3cc-47c8-a3c0-8e3656e0594d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.2)
+				)
+			)
+		)
 	)
 	(segment
 		(start 153.76 60.4)

@@ -1246,6 +1246,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 74.93) (xy 163.83 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13699591-7d03-40e4-8608-3315d7695679")
+	)
+	(wire
+		(pts
 			(xy 123.19 72.39) (xy 125.73 72.39)
 		)
 		(stroke
@@ -1344,6 +1354,72 @@
 		)
 		(uuid "bbd5b51e-47ec-4697-b99e-606188ca228e")
 	)
+	(global_label "OFF"
+		(shape input)
+		(at 156.21 82.55 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "264e9e55-cd83-4b5b-a100-e15a27934f6c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 162.7029 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SDA"
+		(shape input)
+		(at 156.21 72.39 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5c494c9d-bd52-4dce-9e06-54d47dbd005f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 162.7633 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SCL"
+		(shape input)
+		(at 163.83 74.93 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "655c751c-605c-4714-bec2-1319d80eef71")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 170.3228 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "CHIP_PU"
 		(shape input)
 		(at 102.87 66.04 180)
@@ -1357,6 +1433,28 @@
 		(uuid "70dda22f-b233-43f1-aa60-16fd8e8ea10f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 91.8414 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "TEMP_VAL"
+		(shape input)
+		(at 125.73 74.93 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "717031f5-a83e-463e-9367-dc85ca51db32")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 113.7339 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1636,7 +1734,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 106.3752 76.2 0)
 			(effects
 				(font
@@ -1706,7 +1804,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 103.632 60.96 90)
 			(effects
 				(font

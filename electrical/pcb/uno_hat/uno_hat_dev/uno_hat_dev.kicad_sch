@@ -3945,6 +3945,26 @@
 		)
 		(uuid ce0a0060-8961-4591-b678-90ebf7c8b74c)
 	)
+	(text "Leakage L: 4.04e-6\nLp (uH):202.00\nNS1-NP: 4.00\n"
+		(exclude_from_sim no)
+		(at 225.044 140.208 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "49c79053-2199-4002-a967-3a479ee84fec")
+	)
+	(text "CSD19534KCS"
+		(exclude_from_sim no)
+		(at 206.502 135.636 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7f2be542-6da5-4aa5-a0e2-cb3cc48565b6")
+	)
 	(junction
 		(at 186.69 154.94)
 		(diameter 0)
@@ -10180,7 +10200,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
 			(at 201.93 129.54 0)
 			(effects
 				(font
@@ -12780,7 +12800,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PWP0014G-IPC_A"
+		(property "Footprint" "Package_SO:Texas_HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3.155x3.255mm"
 			(at 140.97 127 0)
 			(effects
 				(font

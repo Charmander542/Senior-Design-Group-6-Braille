@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "Braille Converter",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 200,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "label",
+      "top": 10,
+      "left": 300,
+      "attrs": { "text": "BRAILLE CELL" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 50, "left": 300, "attrs": { "color": "blue", "label": "1" } },
+    { "type": "wokwi-led", "id": "led4", "top": 50, "left": 370, "attrs": { "color": "blue", "label": "4" } },
+    { "type": "wokwi-led", "id": "led2", "top": 100, "left": 300, "attrs": { "color": "blue", "label": "2" } },
+    { "type": "wokwi-led", "id": "led5", "top": 100, "left": 370, "attrs": { "color": "blue", "label": "5" } },
+    { "type": "wokwi-led", "id": "led3", "top": 150, "left": 300, "attrs": { "color": "blue", "label": "3" } },
+    { "type": "wokwi-led", "id": "led6", "top": 150, "left": 370, "attrs": { "color": "blue", "label": "6" } },
+    { "type": "wokwi-led", "id": "led7", "top": 200, "left": 300, "attrs": { "color": "yellow", "label": "7" } },
+    { "type": "wokwi-led", "id": "led8", "top": 200, "left": 370, "attrs": { "color": "yellow", "label": "8" } }
+  ],
+  "connections": [
+    ["uno:2", "led1:A", "green", ["v0"]],
+    ["led1:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:3", "led2:A", "green", ["v0"]],
+    ["led2:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:4", "led3:A", "green", ["v0"]],
+    ["led3:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:5", "led7:A", "orange", ["v0"]],
+    ["led7:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:6", "led4:A", "green", ["v0"]],
+    ["led4:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:7", "led5:A", "green", ["v0"]],
+    ["led5:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:8", "led6:A", "green", ["v0"]],
+    ["led6:C", "uno:GND.1", "black", ["v0"]],
+    ["uno:9", "led8:A", "orange", ["v0"]],
+    ["led8:C", "uno:GND.1", "black", ["v0"]]
+  ]
+}

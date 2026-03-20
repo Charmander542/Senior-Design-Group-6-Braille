@@ -6994,7 +6994,7 @@
 		)
 		(uuid "9e1ae458-8667-416c-ae71-eb5e0523f4dd")
 	)
-	(label "DOT7"
+	(label "DOT5"
 		(at 96.52 189.23 0)
 		(effects
 			(font
@@ -7014,7 +7014,7 @@
 		)
 		(uuid "9e1ae458-8667-416c-ae71-eb5e0523f4df")
 	)
-	(label "DOT5"
+	(label "DOT7"
 		(at 96.52 184.15 0)
 		(effects
 			(font

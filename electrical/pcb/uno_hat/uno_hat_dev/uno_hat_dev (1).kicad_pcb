@@ -416,7 +416,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "Css2"
-			(at 0 -1.65 0)
+			(at 2.55 1.3 90)
 			(layer "F.SilkS")
 			(uuid "0c1b561d-3de3-4408-a472-7bb9d19c0c01")
 			(effects
@@ -427,7 +427,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 1.65 0)
+			(at 0 4.8 0)
 			(layer "F.Fab")
 			(uuid "a6007178-1f79-430e-ae2c-d975bf890887")
 			(effects
@@ -1239,7 +1239,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D21"
-			(at 0 -1.65 90)
+			(at -1 -1.65 90)
 			(layer "F.SilkS")
 			(uuid "51189791-3a02-42f8-b04a-8d81df61737e")
 			(effects
@@ -2430,7 +2430,7 @@
 			)
 		)
 		(property "Value" "10kΩ"
-			(at 0 1.65 0)
+			(at -4.05 0.65 90)
 			(layer "F.Fab")
 			(uuid "010e9059-0643-4755-b4b7-0d529ef6cd38")
 			(effects
@@ -2618,7 +2618,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R1"
-			(at 3.81 -2.37 90)
+			(at 0.31 2.69 90)
 			(layer "F.SilkS")
 			(uuid "f4f4a669-9e2c-43cb-919a-8b90868fd5cd")
 			(effects
@@ -2821,7 +2821,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D14"
-			(at 0 -1.65 90)
+			(at -2.5 0.5 180)
 			(layer "F.SilkS")
 			(uuid "d8fae565-a8ae-445d-acbf-78565c367c50")
 			(effects
@@ -3055,7 +3055,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R12"
-			(at 3.81 -2.37 0)
+			(at -2.38 0 90)
 			(layer "F.SilkS")
 			(uuid "5251a086-3845-4d98-9b98-807018a87b6f")
 			(effects
@@ -3258,7 +3258,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D18"
-			(at 0 -1.65 90)
+			(at 0 3 90)
 			(layer "F.SilkS")
 			(uuid "36ab9905-f102-4564-b0d0-86d8d798ee1c")
 			(effects
@@ -3702,7 +3702,7 @@
 			)
 		)
 		(property "Value" "100p"
-			(at 0 1.65 0)
+			(at -0.25 1.65 0)
 			(layer "F.Fab")
 			(uuid "0728094e-4da3-4626-a09c-b61b54617d4f")
 			(effects
@@ -3890,7 +3890,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R3"
-			(at 3.81 -2.37 0)
+			(at -2.19 0 90)
 			(layer "F.SilkS")
 			(uuid "5db0b770-d6e0-42b4-868c-33ebfaac4cec")
 			(effects
@@ -4367,7 +4367,7 @@
 		(descr "Amphenol F32Q/T FPC connector, 8 top-side contacts, 0.5mm pitch, SMT, https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/f32q-f32t.pdf")
 		(tags "F32T")
 		(property "Reference" "J1"
-			(at 0 -4.65 0)
+			(at 7 -0.5 0)
 			(layer "F.SilkS")
 			(uuid "6c434a51-274a-4103-8e0f-21237f3e7ee3")
 			(effects
@@ -4785,7 +4785,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R46"
-			(at 0.65 -1.65 0)
+			(at 2.65 -0.25 90)
 			(layer "F.SilkS")
 			(uuid "49981b78-797b-4f18-9013-cf463ec06ac4")
 			(effects
@@ -4796,7 +4796,7 @@
 			)
 		)
 		(property "Value" "10kΩ"
-			(at 0 1.65 0)
+			(at -2.35 0.25 90)
 			(layer "F.Fab")
 			(uuid "41f6f7a8-f26c-4086-bf50-264491face06")
 			(effects
@@ -4984,7 +4984,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R10"
-			(at 3.81 -2.37 0)
+			(at 0.31 2 0)
 			(layer "F.SilkS")
 			(uuid "2d447080-657e-4aeb-9cb1-d4e1ff4638b4")
 			(effects
@@ -5187,7 +5187,7 @@
 		(descr "CP, Radial_Tantal series, Radial, pin pitch=2.50mm, diameter=8.0mm, height=10mm, Tantal Electrolytic Capacitor, http://cdn-reichelt.de/documents/datenblatt/B300/TANTAL-TB-Serie%23.pdf")
 		(tags "CP Radial_Tantal series Radial pin pitch 2.50mm diameter 8.0mm height 10mm Tantal Electrolytic Capacitor")
 		(property "Reference" "C17"
-			(at 1.25 -5.25 90)
+			(at 4.502651 -8.95 180)
 			(layer "F.SilkS")
 			(uuid "d0fbe87f-668b-4e88-8889-76e9cdf0b4a7")
 			(effects
@@ -5198,7 +5198,7 @@
 			)
 		)
 		(property "Value" "250U"
-			(at 1.25 5.25 90)
+			(at 1.25 5.05 90)
 			(layer "F.Fab")
 			(uuid "37662677-0494-4450-ad61-ddb18b0816a3")
 			(effects
@@ -5373,7 +5373,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 4.92 -0.5 180)
 			(layer "F.Fab")
 			(uuid "5e755354-dea0-4d1a-ab3f-94e76623f23a")
 			(effects
@@ -5819,7 +5819,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R45"
-			(at 0 -1.65 90)
+			(at -0.35 -2.6 0)
 			(layer "F.SilkS")
 			(uuid "e911152b-ddea-477e-bf72-bc8bf74fc96f")
 			(effects
@@ -5830,7 +5830,7 @@
 			)
 		)
 		(property "Value" "1k54"
-			(at 0 1.65 90)
+			(at 0.15 2.4 90)
 			(layer "F.Fab")
 			(uuid "c426ed94-fd03-4cf5-90d2-e53521c630b7")
 			(effects
@@ -6018,7 +6018,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R30"
-			(at 0 -1.65 0)
+			(at 2 1.5 0)
 			(layer "F.SilkS")
 			(uuid "53872def-ce8d-4725-a33c-08ddba8ef987")
 			(effects
@@ -6029,7 +6029,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 2.5 90)
+			(at -1 1.5 180)
 			(layer "F.Fab")
 			(uuid "f16dbd29-1e13-47f1-aa3f-ba101761c569")
 			(effects
@@ -6619,7 +6619,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R2"
-			(at 3.81 -2.37 0)
+			(at -1.88 0 90)
 			(layer "F.SilkS")
 			(uuid "d5add56e-c5a4-487e-8cb2-ef2088290dce")
 			(effects
@@ -6833,7 +6833,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at -1.5 6.69 180)
 			(layer "F.Fab")
 			(uuid "24635167-6b9a-4abb-89bb-286c77eb20d5")
 			(effects
@@ -7081,7 +7081,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D19"
-			(at 0 -1.65 90)
+			(at 0 3 90)
 			(layer "F.SilkS")
 			(uuid "449bcfec-d8a3-4290-bd51-f0cf7931fac5")
 			(effects
@@ -7315,7 +7315,7 @@
 		(descr "Texas  HTSSOP, 14 Pin (Texas Instruments PWP0014A, based on JEDEC MO-153 variation ABT-1, 1.00mm body thickness, https://www.ti.com/lit/ml/pptd287a/pptd287a.pdf, https://www.ti.com/lit/ds/symlink/lm5161.pdf#page=34, https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "Texas HTSSOP SO Texas_PowerPAD-TSSOP")
 		(property "Reference" "U5"
-			(at 0 -3.45 0)
+			(at 3.14 -3.45 0)
 			(layer "F.SilkS")
 			(uuid "3d13ea09-7492-40ce-9e6a-05d0967437ea")
 			(effects
@@ -7816,7 +7816,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at -0.5 -3 0)
 			(layer "F.Fab")
 			(uuid "01eea848-90de-4b9e-9663-71559932f122")
 			(effects
@@ -8004,7 +8004,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R17"
-			(at 0 -1.65 0)
+			(at 2.5 0 90)
 			(layer "F.SilkS")
 			(uuid "64ea7aac-59c5-40c1-9488-8c5518c20df3")
 			(effects
@@ -8671,7 +8671,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D24"
-			(at 0 -1.65 90)
+			(at -2.5 -0.5 180)
 			(layer "F.SilkS")
 			(uuid "57b79c9c-5bd9-4629-8206-5ee8df3fa266")
 			(effects
@@ -8682,7 +8682,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at -0.5 -2 90)
 			(layer "F.Fab")
 			(uuid "fd7d15de-1c22-4a4f-8876-a69f6ac9487d")
 			(effects
@@ -8905,7 +8905,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R16"
-			(at 3.81 -2.37 90)
+			(at 0.62 6 180)
 			(layer "F.SilkS")
 			(uuid "83ed5ad8-2e0c-47b7-b434-57ab95f13898")
 			(effects
@@ -8916,7 +8916,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at 0.62 3 180)
 			(layer "F.Fab")
 			(uuid "29c670bc-a927-42be-94f9-9fd4a15b01c2")
 			(effects
@@ -9108,7 +9108,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R14"
-			(at 3.81 -2.37 90)
+			(at -2.19 0.31 180)
 			(layer "F.SilkS")
 			(uuid "ca0ab39b-a78f-4e69-bff9-85760925857e")
 			(effects
@@ -9119,7 +9119,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at -0.19 3.31 180)
 			(layer "F.Fab")
 			(uuid "6d20fdd1-0763-41a0-bfc4-d1173f5f7ade")
 			(effects
@@ -9322,7 +9322,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5 0 180)
 			(layer "F.Fab")
 			(uuid "bf11dbc0-6ceb-4181-83c1-5be0c87e8029")
 			(effects
@@ -9569,7 +9569,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R4"
-			(at 3.81 -2.37 90)
+			(at -1.69 3 180)
 			(layer "F.SilkS")
 			(uuid "23cd97b1-a63a-4e0e-9cd4-e6936037f970")
 			(effects
@@ -9580,7 +9580,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at -0.19 3 180)
 			(layer "F.Fab")
 			(uuid "4c0564d5-b00c-41e3-a8d8-16bfd83cb8ee")
 			(effects
@@ -9772,7 +9772,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R29"
-			(at 0 -1.65 0)
+			(at 1.5 -1.65 0)
 			(layer "F.SilkS")
 			(uuid "37e587bc-5f1d-4c36-ba65-6ed7dea64bed")
 			(effects
@@ -9971,7 +9971,7 @@
 		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q13"
-			(at 1.27 -3.56 90)
+			(at 2.5 -3.56 90)
 			(layer "F.SilkS")
 			(uuid "8d3090e4-4f47-41ed-87de-df89dce266d0")
 			(effects
@@ -9982,7 +9982,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 5 -1 180)
 			(layer "F.Fab")
 			(uuid "e5c1633a-21cf-4775-8a54-429c233f1b85")
 			(effects
@@ -10240,7 +10240,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 4.88 -0.5 180)
 			(layer "F.Fab")
 			(uuid "3a3b20b0-36e6-44e6-acab-8164bb8e9350")
 			(effects
@@ -10498,7 +10498,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at 0 -3 0)
 			(layer "F.Fab")
 			(uuid "7abaf877-4460-42c1-ae60-d30850249592")
 			(effects
@@ -10686,7 +10686,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R13"
-			(at 3.81 -2.37 0)
+			(at 3.81 2.34 0)
 			(layer "F.SilkS")
 			(uuid "26b6b6c4-d858-4408-86ed-0e81ca269b59")
 			(effects
@@ -10697,7 +10697,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at -1.88 0.5 90)
+			(at -2.07 -0.16 90)
 			(layer "F.Fab")
 			(uuid "5ab08dc8-29a0-42d6-88f5-3fba0d6cf8cb")
 			(effects
@@ -10889,7 +10889,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R9"
-			(at 3.81 -2.37 90)
+			(at 3.81 -5.81 90)
 			(layer "F.SilkS")
 			(uuid "2ea400be-d501-418b-ace2-241eb4a02734")
 			(effects
@@ -10900,7 +10900,7 @@
 			)
 		)
 		(property "Value" "10M"
-			(at 3.81 2.37 90)
+			(at 1.15 2.19 90)
 			(layer "F.Fab")
 			(uuid "16b21c51-239e-44e4-9dfe-513f5bb2d2e6")
 			(effects
@@ -11092,7 +11092,7 @@
 		(descr "CP, Radial_Tantal series, Radial, pin pitch=2.50mm, diameter=8.0mm, height=10mm, Tantal Electrolytic Capacitor, http://cdn-reichelt.de/documents/datenblatt/B300/TANTAL-TB-Serie%23.pdf")
 		(tags "CP Radial_Tantal series Radial pin pitch 2.50mm diameter 8.0mm height 10mm Tantal Electrolytic Capacitor")
 		(property "Reference" "C14"
-			(at 1.25 -5.25 90)
+			(at -0.897349 -5.2 180)
 			(layer "F.SilkS")
 			(uuid "d4637b9d-82ff-444c-a4e9-d695d66d810c")
 			(effects
@@ -11103,7 +11103,7 @@
 			)
 		)
 		(property "Value" "250U"
-			(at 1.25 5.25 90)
+			(at 4.602651 8.8 180)
 			(layer "F.Fab")
 			(uuid "9693d116-ff81-46b3-94d6-0f0549111e07")
 			(effects
@@ -11267,7 +11267,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D12"
-			(at -0.0875 -1.7 90)
+			(at -0.5 -1.7 90)
 			(layer "F.SilkS")
 			(uuid "803db997-59d9-4f73-9b0a-cb607bde6277")
 			(effects
@@ -11278,7 +11278,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at -0.5 -3 90)
 			(layer "F.Fab")
 			(uuid "efe71038-797e-4582-b99f-6e38690ec7b2")
 			(effects
@@ -11501,7 +11501,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D23"
-			(at 0 -1.65 90)
+			(at -1 -1.65 90)
 			(layer "F.SilkS")
 			(uuid "dc21c04a-c092-4e72-8c35-e9f296e2df95")
 			(effects
@@ -11512,7 +11512,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at -2.5 3 180)
 			(layer "F.Fab")
 			(uuid "3df51ad6-0c24-4bae-ae00-609451d58f9f")
 			(effects
@@ -11735,7 +11735,7 @@
 		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q12"
-			(at 1.27 -3.56 90)
+			(at 3.5 -3.56 90)
 			(layer "F.SilkS")
 			(uuid "9a59fb2d-7aa3-4a3d-8dd4-80037fdc0c3a")
 			(effects
@@ -11746,7 +11746,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 6 0.5 180)
 			(layer "F.Fab")
 			(uuid "1bf17931-b5f8-4f5d-aafb-a4d76ab25662")
 			(effects
@@ -11993,7 +11993,7 @@
 		(descr "Through hole straight socket strip, 1x04, 2.54mm pitch, single row (from Kicad 4.0.7), script generated")
 		(tags "Through hole socket strip THT 1x04 2.54mm single row")
 		(property "Reference" "T2"
-			(at 0 -2.77 0)
+			(at 2.4 -1.3 0)
 			(layer "F.SilkS")
 			(uuid "c3d0f609-f945-4e1e-ac9e-5946ffafc8b3")
 			(effects
@@ -12278,7 +12278,7 @@
 			)
 		)
 		(property "Value" "10pF"
-			(at 0 1.65 90)
+			(at 3.05 -0.8 180)
 			(layer "F.Fab")
 			(uuid "ad9792e4-3071-4c23-8418-e1ff3568c68b")
 			(effects
@@ -12477,7 +12477,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5.2 0 180)
 			(layer "F.Fab")
 			(uuid "ec6affbb-660f-42e6-a5be-b22bf5ecb4fb")
 			(effects
@@ -13153,7 +13153,7 @@
 			)
 		)
 		(property "Value" "10M"
-			(at 3.81 2.37 0)
+			(at 0.81 2.37 0)
 			(layer "F.Fab")
 			(uuid "9628a318-5a63-45df-a4ef-2715d43c8e3a")
 			(effects
@@ -13345,7 +13345,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D16"
-			(at 0 -1.65 90)
+			(at -2.5 0.5 180)
 			(layer "F.SilkS")
 			(uuid "7c4955de-d7d4-4643-bb90-50b73af8c1a8")
 			(effects
@@ -13356,7 +13356,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at -0.5 2 90)
 			(layer "F.Fab")
 			(uuid "8c8cfedf-f71e-4cec-832a-ab7fe959df70")
 			(effects
@@ -13579,7 +13579,7 @@
 		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q8"
-			(at 1.27 -3.56 90)
+			(at 3.54 -3.5 90)
 			(layer "F.SilkS")
 			(uuid "d97a1998-4724-4a08-a6e7-c0f85268df3c")
 			(effects
@@ -13590,7 +13590,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 5.54 0 180)
 			(layer "F.Fab")
 			(uuid "ef4ccaec-fc29-4085-a456-b57fb593025a")
 			(effects
@@ -13837,7 +13837,7 @@
 		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q3"
-			(at 1.27 -3.56 90)
+			(at -0.93 -2.7 90)
 			(layer "F.SilkS")
 			(uuid "2fd11366-9054-4599-8f5b-202512739a28")
 			(effects
@@ -13848,7 +13848,7 @@
 			)
 		)
 		(property "Value" "NPN"
-			(at 2.07 2.79 90)
+			(at 4.57 -0.2 180)
 			(layer "F.Fab")
 			(uuid "b6e3d0f5-39cb-4936-ae6c-682582171f75")
 			(effects
@@ -14106,7 +14106,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at 0.81 7 180)
 			(layer "F.Fab")
 			(uuid "f53c585f-40fe-44da-84d3-b1e4f83112b4")
 			(effects
@@ -14354,7 +14354,7 @@
 		(descr "4 contacts shunt resistor,https://www.ohmite.com/assets/docs/res_lvk.pdf")
 		(tags "4 contacts resistor smd")
 		(property "Reference" "R48"
-			(at 0 -5.2 0)
+			(at -3.25 -3.75 90)
 			(layer "F.SilkS")
 			(uuid "81a52dbe-9d14-45c3-a50b-dd1d9cb53619")
 			(effects
@@ -14365,7 +14365,7 @@
 			)
 		)
 		(property "Value" "R_Shunt"
-			(at 0 5.325 0)
+			(at -2.25 8.25 90)
 			(layer "F.Fab")
 			(uuid "bebab056-b56b-4632-96cf-c802f87b29ba")
 			(effects
@@ -14610,7 +14610,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 4.88 -0.31 180)
 			(layer "F.Fab")
 			(uuid "f1eea99d-6565-4cd7-92dd-adb4af58b04a")
 			(effects
@@ -14868,7 +14868,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 5 -1.5 180)
 			(layer "F.Fab")
 			(uuid "e5a60c91-b53b-4a35-b916-1fb02323714f")
 			(effects
@@ -15314,7 +15314,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R8"
-			(at 3.81 -2.37 90)
+			(at -0.69 2 180)
 			(layer "F.SilkS")
 			(uuid "8b36206c-9c62-4b63-99e3-78cb03348603")
 			(effects
@@ -15325,7 +15325,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at 2.31 4 180)
 			(layer "F.Fab")
 			(uuid "8c0257fb-a25e-4130-810f-d09f1a764f02")
 			(effects
@@ -15517,7 +15517,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D9"
-			(at 0 -1.65 90)
+			(at -2.5 0 180)
 			(layer "F.SilkS")
 			(uuid "4b114de0-bf55-4bd9-8d5d-67db5dd9ecfa")
 			(effects
@@ -15528,7 +15528,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at 0 -1.5 90)
 			(layer "F.Fab")
 			(uuid "3e6f5925-601f-4dcd-ae4a-7278f5a6e7d7")
 			(effects
@@ -15751,7 +15751,7 @@
 		(descr "TO-92 leads in-line, narrow, oval pads, drill 0.75mm (see NXP sot054_po.pdf)")
 		(tags "to-92 sc-43 sc-43a sot54 PA33 transistor")
 		(property "Reference" "Q6"
-			(at 1.27 -3.56 90)
+			(at 3 -3.56 90)
 			(layer "F.SilkS")
 			(uuid "f9d37154-b70d-4aea-9dde-7f8f3421e7af")
 			(effects
@@ -15762,7 +15762,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 5.5 0.5 180)
 			(layer "F.Fab")
 			(uuid "2cf9e3c4-78e2-4bec-b1c9-1889d7fc48d8")
 			(effects
@@ -16020,7 +16020,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at -2.84 7.5 180)
 			(layer "F.Fab")
 			(uuid "b52781c7-0ab1-48ed-86fb-b014ea74c101")
 			(effects
@@ -16279,7 +16279,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5.04 -2.5 180)
 			(layer "F.Fab")
 			(uuid "09d885fb-096a-4f55-b10b-afdc664f7190")
 			(effects
@@ -16526,7 +16526,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R32"
-			(at 0 -1.65 0)
+			(at 1.5 -1.5 0)
 			(layer "F.SilkS")
 			(uuid "564d9b6a-23e4-458f-bddf-0e65790cf7c3")
 			(effects
@@ -16725,7 +16725,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R20"
-			(at 0 -1.65 0)
+			(at 0 3 0)
 			(layer "F.SilkS")
 			(uuid "6fc6fe7c-15b7-4275-9542-a571941538f0")
 			(effects
@@ -16924,7 +16924,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R15"
-			(at 3.81 -2.37 90)
+			(at 2.31 3.5 180)
 			(layer "F.SilkS")
 			(uuid "fa64c189-06c5-4f77-8278-bc765f7023ab")
 			(effects
@@ -16935,7 +16935,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at -0.69 3 180)
 			(layer "F.Fab")
 			(uuid "3ce6be5c-69b4-454a-99a7-7f13ae6aa087")
 			(effects
@@ -17138,7 +17138,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 6.27 -0.19 90)
 			(layer "F.Fab")
 			(uuid "6c1c804e-dad8-427d-b7d5-372795492745")
 			(effects
@@ -17385,7 +17385,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R18"
-			(at 0 -1.65 0)
+			(at 0 3 0)
 			(layer "F.SilkS")
 			(uuid "a1d370ee-a8e8-4e54-9986-309034164cd2")
 			(effects
@@ -17880,7 +17880,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5 -0.5 180)
 			(layer "F.Fab")
 			(uuid "8df86621-379a-4321-a28d-61e157cdbdd9")
 			(effects
@@ -18337,7 +18337,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at 1.16 8.5 180)
 			(layer "F.Fab")
 			(uuid "88d9c5b4-6e57-4e98-b4e0-ecbf52608e6d")
 			(effects
@@ -18795,7 +18795,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at 0 -3 90)
 			(layer "F.Fab")
 			(uuid "ab6f50bd-b7a3-4a5d-8543-593e731794ee")
 			(effects
@@ -19029,7 +19029,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at 0 -3 0)
 			(layer "F.Fab")
 			(uuid "223b1758-acda-4a61-9c99-3ac44223fd2f")
 			(effects
@@ -19228,7 +19228,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5.04 -0.5 180)
 			(layer "F.Fab")
 			(uuid "f99febeb-42be-40ea-871d-43f7365a4c63")
 			(effects
@@ -19486,7 +19486,7 @@
 			)
 		)
 		(property "Value" "0.1Ω"
-			(at 0 1.65 0)
+			(at 0 2.2 0)
 			(layer "F.Fab")
 			(uuid "a88e59ab-c8d5-4bf7-8875-1e89ec78b3e1")
 			(effects
@@ -19674,7 +19674,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D11"
-			(at 0 -1.65 90)
+			(at -0.5 -1.65 90)
 			(layer "F.SilkS")
 			(uuid "dddaa196-ed47-4dfc-a731-7ed6c3c7d91e")
 			(effects
@@ -19685,7 +19685,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 2.5 90)
+			(at -0.5 -3 90)
 			(layer "F.Fab")
 			(uuid "5c0b28a7-dab0-4c45-9934-cb2c9918c00b")
 			(effects
@@ -19919,7 +19919,7 @@
 			)
 		)
 		(property "Value" "100Ω"
-			(at 0.05 1.65 0)
+			(at -0.8725 2.465 180)
 			(layer "F.Fab")
 			(uuid "6d2fe90d-0105-43cd-98ee-3ee3fc4540e9")
 			(effects
@@ -20107,7 +20107,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D17"
-			(at 0 -1.65 90)
+			(at -2.5 0.5 180)
 			(layer "F.SilkS")
 			(uuid "e1d79af0-a31a-47ec-af39-e45ed6a55cfe")
 			(effects
@@ -20118,7 +20118,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at 0 2 270)
 			(layer "F.Fab")
 			(uuid "e439ea86-ca97-4513-94ab-8741018cefa9")
 			(effects
@@ -20352,7 +20352,7 @@
 			)
 		)
 		(property "Value" "4.7uF"
-			(at 0 1.65 0)
+			(at -3.3725 -0.585 180)
 			(layer "F.Fab")
 			(uuid "d5d1d3e4-1e05-4069-96e8-3a66978eac6f")
 			(effects
@@ -20540,7 +20540,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R25"
-			(at 0 -1.65 0)
+			(at 2.5 0 90)
 			(layer "F.SilkS")
 			(uuid "30389ca9-c5df-446b-96e3-71d72fc4a55a")
 			(effects
@@ -20551,7 +20551,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at -0.5 -1.5 180)
 			(layer "F.Fab")
 			(uuid "e7e42795-bfb5-48b8-bc8d-461020e13c0f")
 			(effects
@@ -20739,7 +20739,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R19"
-			(at 0 -1.65 0)
+			(at 0 3 0)
 			(layer "F.SilkS")
 			(uuid "dd506d4f-e162-46dd-b842-4a7d1828dff5")
 			(effects
@@ -20949,7 +20949,7 @@
 			)
 		)
 		(property "Value" "PMOS"
-			(at 1.27 2.79 90)
+			(at 5.12 0 180)
 			(layer "F.Fab")
 			(uuid "4abb2157-924e-4869-b058-8ee2e46e79d7")
 			(effects
@@ -21196,7 +21196,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D20"
-			(at 0 -1.65 90)
+			(at 0 3 90)
 			(layer "F.SilkS")
 			(uuid "de8c8b07-fd75-4717-a335-307f30e039e0")
 			(effects
@@ -21430,7 +21430,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "C18"
-			(at 0 -1.65 90)
+			(at -0.2 1.95 270)
 			(layer "F.SilkS")
 			(uuid "fb7c7144-05a6-441d-ae5b-d41372c9ece1")
 			(effects
@@ -21441,7 +21441,7 @@
 			)
 		)
 		(property "Value" "820pF"
-			(at 0 1.65 90)
+			(at 2.3 0.95 180)
 			(layer "F.Fab")
 			(uuid "a65f7195-b700-4993-9bbc-5259fda64d3c")
 			(effects
@@ -21629,7 +21629,7 @@
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D22"
-			(at 0 -1.65 90)
+			(at -2.5 0 180)
 			(layer "F.SilkS")
 			(uuid "1ae0596e-af40-4598-921c-cfc49ebbf8b7")
 			(effects
@@ -21640,7 +21640,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 0 1.65 90)
+			(at -0.5 -2 270)
 			(layer "F.Fab")
 			(uuid "f3b642e0-0577-4abc-9ff0-f65591f1fc14")
 			(effects
@@ -21863,7 +21863,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R5"
-			(at 3.81 -2.37 0)
+			(at 0.81 2.5 0)
 			(layer "F.SilkS")
 			(uuid "1b50b65c-0116-419c-ae69-9ade8b74368c")
 			(effects
@@ -22066,7 +22066,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R6"
-			(at 3.81 -2.37 90)
+			(at -1.88 0.5 180)
 			(layer "F.SilkS")
 			(uuid "c8b4e254-d44f-42f8-b1e7-9933e55696ae")
 			(effects
@@ -22077,7 +22077,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 3.81 2.37 90)
+			(at -0.88 3 180)
 			(layer "F.Fab")
 			(uuid "8cc16628-8008-4228-8dd1-e89308e7a906")
 			(effects
@@ -22280,7 +22280,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at -0.34 7.5 180)
 			(layer "F.Fab")
 			(uuid "58f67651-f12b-4a46-9f73-3c2048950c67")
 			(effects
@@ -22539,7 +22539,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at 0 -3 0)
 			(layer "F.Fab")
 			(uuid "b25f5bc4-22a7-475d-b736-f914a00737ef")
 			(effects
@@ -22738,7 +22738,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at -2.34 5 180)
 			(layer "F.Fab")
 			(uuid "b1ddcc66-a828-4818-9bc5-0bd02cd17a34")
 			(effects
@@ -22997,7 +22997,7 @@
 			)
 		)
 		(property "Value" "NMOS"
-			(at 1.27 2.79 90)
+			(at 4.92 0 180)
 			(layer "F.Fab")
 			(uuid "37143bdc-69cd-4e3e-abde-4567f5d7b5a9")
 			(effects
@@ -23255,7 +23255,7 @@
 			)
 		)
 		(property "Value" "1N47xxA"
-			(at 5.08 2.47 90)
+			(at -0.8 8 180)
 			(layer "F.Fab")
 			(uuid "1918357a-f326-4984-9dc1-c9a9377fbab5")
 			(effects
@@ -23503,7 +23503,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R31"
-			(at 0 -1.65 0)
+			(at 1.4125 -1.65 0)
 			(layer "F.SilkS")
 			(uuid "18ddbdcf-b660-48ed-ba8e-3441566b01f0")
 			(effects
@@ -23514,7 +23514,7 @@
 			)
 		)
 		(property "Value" "330"
-			(at 0 1.65 0)
+			(at 0.4125 1.65 0)
 			(layer "F.Fab")
 			(uuid "4da5dd42-4418-41a0-95bc-4e8d0776cdbf")
 			(effects

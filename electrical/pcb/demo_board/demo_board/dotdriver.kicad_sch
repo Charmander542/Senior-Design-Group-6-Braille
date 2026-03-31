@@ -2480,7 +2480,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 82.042 52.07 90)
 			(effects
 				(font
@@ -2560,7 +2560,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 76.2 32.258 90)
 			(effects
 				(font
@@ -2736,7 +2736,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 156.972 52.07 90)
 			(effects
 				(font
@@ -2818,7 +2818,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 184.15 27.94 0)
 			(effects
 				(font
@@ -3008,7 +3008,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 74.93 58.42 0)
 			(effects
 				(font
@@ -3118,7 +3118,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 151.13 32.258 90)
 			(effects
 				(font
@@ -3200,7 +3200,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 184.15 78.74 0)
 			(effects
 				(font
@@ -3303,7 +3303,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 170.18 78.7399 90)
 			(effects
 				(font
@@ -3312,7 +3312,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 163.195 77.47 0)
 			(effects
 				(font
@@ -3321,7 +3321,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 167.64 77.47 0)
 			(effects
 				(font
@@ -3472,7 +3472,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 82.042 26.67 90)
 			(effects
 				(font
@@ -3554,7 +3554,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 74.93 83.82 0)
 			(effects
 				(font
@@ -3760,7 +3760,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 149.86 58.42 0)
 			(effects
 				(font
@@ -3872,7 +3872,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 156.972 26.67 90)
 			(effects
 				(font
@@ -3954,7 +3954,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 149.86 33.02 0)
 			(effects
 				(font
@@ -4064,7 +4064,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 76.2 83.058 90)
 			(effects
 				(font
@@ -4146,7 +4146,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 74.93 33.02 0)
 			(effects
 				(font
@@ -4249,7 +4249,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 95.25 53.3399 90)
 			(effects
 				(font
@@ -4258,7 +4258,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 88.265 52.07 0)
 			(effects
 				(font
@@ -4267,7 +4267,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 92.71 52.07 0)
 			(effects
 				(font
@@ -4340,7 +4340,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 149.86 83.82 0)
 			(effects
 				(font
@@ -4443,7 +4443,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 95.25 78.7399 90)
 			(effects
 				(font
@@ -4452,7 +4452,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 88.265 77.47 0)
 			(effects
 				(font
@@ -4461,7 +4461,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 92.71 77.47 0)
 			(effects
 				(font
@@ -4525,7 +4525,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 170.18 53.3399 90)
 			(effects
 				(font
@@ -4534,7 +4534,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 163.195 52.07 0)
 			(effects
 				(font
@@ -4543,7 +4543,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 167.64 52.07 0)
 			(effects
 				(font
@@ -4616,7 +4616,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 109.22 78.74 0)
 			(effects
 				(font
@@ -4728,7 +4728,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 82.042 77.47 90)
 			(effects
 				(font
@@ -4966,7 +4966,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 109.22 53.34 0)
 			(effects
 				(font
@@ -5076,7 +5076,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 151.13 83.058 90)
 			(effects
 				(font
@@ -5156,7 +5156,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 151.13 57.658 90)
 			(effects
 				(font
@@ -5394,7 +5394,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 184.15 53.34 0)
 			(effects
 				(font
@@ -5506,7 +5506,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
 			(at 109.22 27.94 0)
 			(effects
 				(font
@@ -5694,7 +5694,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 76.2 57.658 90)
 			(effects
 				(font
@@ -5767,7 +5767,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 170.18 27.9399 90)
 			(effects
 				(font
@@ -5776,7 +5776,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 163.195 26.67 0)
 			(effects
 				(font
@@ -5785,7 +5785,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 167.64 26.67 0)
 			(effects
 				(font
@@ -5858,7 +5858,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 156.972 77.47 90)
 			(effects
 				(font
@@ -5931,7 +5931,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1N47xxA"
+		(property "Value" "BZT52C9V1-7-F"
 			(at 95.25 27.9399 90)
 			(effects
 				(font
@@ -5940,7 +5940,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 88.265 26.67 0)
 			(effects
 				(font
@@ -5949,7 +5949,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/85816/1n4728a.pdf"
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/ds18004.pdf"
 			(at 92.71 26.67 0)
 			(effects
 				(font

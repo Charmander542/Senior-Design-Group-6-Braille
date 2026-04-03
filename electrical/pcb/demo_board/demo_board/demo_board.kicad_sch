@@ -4221,16 +4221,16 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x06_Socket")
-		(at 59.69 140.97 0)
+		(at 29.21 118.11 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2944a2e4-2d0f-4122-a55b-f51d0cc3aa6e")
 		(property "Reference" "J7"
-			(at 60.96 140.9699 0)
+			(at 27.94 118.1099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4239,7 +4239,7 @@
 			)
 		)
 		(property "Value" "Conn_01x06_Socket"
-			(at 60.96 143.5099 0)
+			(at 27.94 120.6499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4248,7 +4248,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Horizontal"
-			(at 59.69 140.97 0)
+			(at 29.21 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4257,7 +4257,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 59.69 140.97 0)
+			(at 29.21 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4266,7 +4266,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated"
-			(at 59.69 140.97 0)
+			(at 29.21 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4293,7 +4293,7 @@
 			(uuid "a2487c5a-eec0-4f71-b9c8-b6051a24d315")
 		)
 		(instances
-			(project ""
+			(project "demo_board"
 				(path "/23e003c8-bfa5-4ac4-b719-34dc5a23b231"
 					(reference "J7")
 					(unit 1)
@@ -4303,16 +4303,16 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x06_Pin")
-		(at 29.21 118.11 0)
+		(at 59.69 140.97 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2e14d772-d5cf-4d19-8121-14d4dea3291d")
 		(property "Reference" "J8"
-			(at 29.845 107.95 0)
+			(at 59.055 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4320,7 +4320,7 @@
 			)
 		)
 		(property "Value" "Conn_01x06_Pin"
-			(at 29.845 110.49 0)
+			(at 59.055 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4328,7 +4328,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Horizontal"
-			(at 29.21 118.11 0)
+			(at 59.69 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4337,7 +4337,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 118.11 0)
+			(at 59.69 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4346,7 +4346,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated"
-			(at 29.21 118.11 0)
+			(at 59.69 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4373,7 +4373,7 @@
 			(uuid "e99edab5-1272-4773-a18d-c5215cde847c")
 		)
 		(instances
-			(project ""
+			(project "demo_board"
 				(path "/23e003c8-bfa5-4ac4-b719-34dc5a23b231"
 					(reference "J8")
 					(unit 1)

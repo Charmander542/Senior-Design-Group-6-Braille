@@ -2386,6 +2386,28 @@
 		)
 		(uuid "ea45c8cb-f52d-4ec4-b0e0-6dc9a1ed45c1")
 	)
+	(global_label "+450V"
+		(shape input)
+		(at 106.68 22.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e25f98b8-a072-48cc-83c0-d1a677a3c782")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 115.9547 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(hierarchical_label "UP5"
 		(shape input)
 		(at 59.69 86.36 180)

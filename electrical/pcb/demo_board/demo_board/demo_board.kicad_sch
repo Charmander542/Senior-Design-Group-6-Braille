@@ -3142,6 +3142,28 @@
 			)
 		)
 	)
+	(global_label "+450V"
+		(shape input)
+		(at 27.94 173.99 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "30a803d3-9005-4334-bff9-9428eb7dc27c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 27.94 164.7153 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "SER"
 		(shape input)
 		(at 152.4 31.75 180)
@@ -3446,6 +3468,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+450V"
+		(shape input)
+		(at 55.88 173.99 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b4d9220c-84f0-4875-8bb5-affd69c57870")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 55.88 164.7153 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)

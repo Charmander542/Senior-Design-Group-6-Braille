@@ -46,6 +46,78 @@ _PART_WORD = {
 _PART_WORD_ORDER = sorted(_PART_WORD.keys(), key=len, reverse=True)
 
 
+def to_shorthand_patterns(text: str) -> list[int | None]:
+    """
+    Convert text to shorthand Braille cell patterns.
+    Returns a list of patterns; None means newline.
+    """
+    cleaned = "".join(c for c in text if c == "\n" or (32 <= ord(c) <= 126))
+    if not cleaned.strip():
+        return []
+
+    cells: list[int | None] = []
+    in_number_mode = False
+    i = 0
+
+    while i < len(cleaned):
+        c = cleaned[i]
+
+        if c == "\n":
+            cells.append(None)
+            in_number_mode = False
+            i += 1
+            continue
+
+        if c == " ":
+            cells.append(0)
+            in_number_mode = False
+            i += 1
+            continue
+
+        if c.isdigit():
+            if not in_number_mode:
+                cells.append(NUMBER_INDICATOR_PATTERN)
+            in_number_mode = True
+            cells.append(char_to_braille(c))
+            i += 1
+            continue
+
+        in_number_mode = False
+
+        if c.isalpha():
+            j = i
+            while j < len(cleaned) and cleaned[j].isalpha():
+                j += 1
+            word = cleaned[i:j]
+            lower = word.lower()
+
+            whole = _WHOLE_WORD.get(lower)
+            if whole is not None:
+                cells.append(whole)
+            else:
+                k = 0
+                while k < len(word):
+                    remaining = lower[k:]
+                    matched = False
+                    for token in _PART_WORD_ORDER:
+                        if remaining.startswith(token):
+                            cells.append(_PART_WORD[token])
+                            k += len(token)
+                            matched = True
+                            break
+                    if not matched:
+                        cells.append(char_to_braille(word[k]))
+                        k += 1
+
+            i = j
+            continue
+
+        cells.append(char_to_braille(c))
+        i += 1
+
+    return cells
+
+
 def to_shorthand_braille_report(text: str) -> str:
     """Convert text to a terminal-style shorthand Braille report."""
     cleaned = "".join(c for c in text if c == "\n" or (32 <= ord(c) <= 126))

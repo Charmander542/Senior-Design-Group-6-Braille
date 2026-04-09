@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Braille ESP32 Controller</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d0f1a;
+      --surface:      #151829;
+      --card:         #1a1d2e;
+      --card-border:  #252840;
+      --primary:      #6366f1;
+      --primary-h:    #818cf8;
+      --success:      #10b981;
+      --danger:       #ef4444;
+      --warning:      #f59e0b;
+      --warning-glow: rgba(245,158,11,0.45);
+      --text:         #e2e8f0;
+      --muted:        #64748b;
+      --dot-off:      #1a1d2e;
+      --dot-border:   #2a2d42;
+      --radius:       14px;
+      --radius-sm:    8px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 20px 24px 40px;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--warning));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: bold; color: white;
+    }
+    .header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #a5b4fc, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header p { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--muted);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .status-pill.connected .status-dot {
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* ── Layout ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    .col { display: flex; flex-direction: column; gap: 18px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* ── Form elements ── */
+    select, textarea {
+      width: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus, textarea:focus { border-color: var(--primary); }
+    textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+    textarea::placeholder { color: var(--muted); }
+
+    .row { display: flex; gap: 8px; align-items: stretch; }
+    .row select { flex: 1; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 10px 18px;
+      border: none; border-radius: var(--radius-sm);
+      font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .btn:disabled { opacity: .38; cursor: not-allowed; }
+    .btn-primary  { background: var(--primary); color: white; }
+    .btn-primary:not(:disabled):hover  { background: var(--primary-h); transform: translateY(-1px); }
+    .btn-success  { background: var(--success); color: white; }
+    .btn-success:not(:disabled):hover  { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-danger   { background: var(--danger);  color: white; }
+    .btn-danger:not(:disabled):hover   { filter: brightness(1.1); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--card-border);
+    }
+    .btn-ghost:not(:disabled):hover { color: var(--text); border-color: var(--muted); }
+    .btn-icon {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      cursor: pointer; font-size: 1rem; transition: all 0.2s;
+    }
+    .btn-icon:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-full { width: 100%; margin-top: 6px; }
+    .btn-row  { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── Braille cell ── */
+    .braille-wrapper {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .current-char {
+      font-size: 3.5rem; font-weight: 800;
+      color: var(--warning);
+      min-height: 1.2em; text-align: center;
+      text-shadow: 0 0 30px var(--warning-glow);
+      transition: all 0.2s;
+      letter-spacing: -0.02em;
+    }
+    .braille-cell {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+      row-gap: 0;
+      padding: 18px 24px;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+    }
+    .dot-item {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 6px 0;
+    }
+    .dot {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--dot-off);
+      border: 2px solid var(--dot-border);
+      transition: all 0.18s ease;
+    }
+    .dot.on {
+      background: var(--warning);
+      border-color: var(--warning);
+      box-shadow: 0 0 14px var(--warning-glow), 0 0 3px var(--warning);
+    }
+    @keyframes glow-pulse {
+      0%,100% { box-shadow: 0 0 14px var(--warning-glow), 0 0 3px var(--warning); }
+      50%      { box-shadow: 0 0 28px var(--warning-glow), 0 0 8px var(--warning); }
+    }
+    .dot.on.sending { animation: glow-pulse 0.9s infinite; }
+    .dot-num {
+      font-size: 0.58rem; color: var(--muted);
+      margin-top: 4px; font-weight: 600; letter-spacing: .04em;
+    }
+    .active-dots {
+      font-size: 0.78rem; color: var(--muted); text-align: center;
+      min-height: 1.2em;
+    }
+    .active-dots b { color: var(--warning); }
+
+    /* ── Speed slider ── */
+    .speed-wrap { margin-bottom: 16px; }
+    .speed-header {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; color: var(--muted); margin-bottom: 8px;
+    }
+    .speed-header strong { color: var(--text); }
+    input[type="range"] {
+      width: 100%; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px; background: var(--card-border); outline: none; cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 16px; height: 16px;
+      border-radius: 50%; background: var(--primary);
+      cursor: pointer; transition: transform .2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+
+    /* ── Progress ── */
+    .prog-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 8px;
+    }
+    .prog-header strong { color: var(--text); font-size: 0.9rem; }
+    .prog-track {
+      background: var(--surface); border-radius: 999px; height: 6px;
+      overflow: hidden; margin-bottom: 14px;
+    }
+    .prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--warning));
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+    .char-seq {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      max-height: 96px; overflow-y: auto;
+      padding: 2px;
+    }
+    .char-seq::-webkit-scrollbar { width: 4px; }
+    .char-seq::-webkit-scrollbar-track { background: transparent; }
+    .char-seq::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 2px; }
+    .cb {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
+      border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+      background: var(--surface); border: 1px solid var(--card-border);
+      color: var(--muted); transition: all 0.18s;
+      flex-shrink: 0;
+    }
+    .cb.current {
+      background: var(--warning); border-color: var(--warning);
+      color: #000; transform: scale(1.15);
+      box-shadow: 0 0 12px var(--warning-glow);
+    }
+    .cb.done {
+      background: rgba(16,185,129,.15); border-color: var(--success);
+      color: var(--success);
+    }
+
+    /* ── Log ── */
+    .log-box {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      max-height: 190px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+    .log-box::-webkit-scrollbar { width: 4px; }
+    .log-box::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 2px; }
+    .le { padding: 1px 0; }
+    .le.esp32   { color: #93c5fd; }
+    .le.system  { color: var(--muted); }
+    .le.ok      { color: var(--success); }
+    .le.err     { color: var(--danger); }
+    .le .ts     { color: #374151; margin-right: 6px; }
+    .log-title  {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+
+    /* ── Mode toggle ── */
+    .mode-toggle {
+      display: flex; gap: 0; border-radius: var(--radius-sm); overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .mode-btn {
+      flex: 1; padding: 8px 0; border: none; background: var(--surface);
+      color: var(--muted); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: all 0.18s; font-family: inherit;
+    }
+    .mode-btn:hover { color: var(--text); }
+    .mode-btn.active {
+      background: var(--primary); color: white;
+    }
+
+    /* ── Keyboard hint ── */
+    .hint { font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
+    kbd {
+      display: inline-block; padding: 1px 5px;
+      background: var(--surface); border: 1px solid var(--card-border);
+      border-radius: 4px; font-family: inherit; font-size: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">⠿</div>
+    <div>
+      <h1>Braille ESP32 Controller</h1>
+      <p>Send text to 8-LED braille display via Serial or WiFi</p>
+    </div>
+  </div>
+  <div class="status-pill" id="statusPill">
+    <div class="status-dot"></div>
+    <span id="statusText">Disconnected</span>
+  </div>
+</div>
+
+<!-- Main grid -->
+<div class="grid">
+
+  <!-- LEFT column -->
+  <div class="col">
+
+    <!-- Connection -->
+    <div class="card">
+      <div class="card-title">Connection</div>
+
+      <!-- Mode toggle -->
+      <div class="mode-toggle" style="margin-bottom:12px">
+        <button class="mode-btn active" id="modeSerial" onclick="setMode('serial')">USB Serial</button>
+        <button class="mode-btn" id="modeWifi" onclick="setMode('wifi')">WiFi TCP</button>
+      </div>
+
+      <!-- Serial controls -->
+      <div id="serialControls">
+        <div class="row" style="margin-bottom:8px">
+          <select id="portSelect"><option value="">Loading ports…</option></select>
+          <button class="btn-icon" onclick="refreshPorts()" title="Refresh">↺</button>
+        </div>
+      </div>
+
+      <!-- WiFi controls -->
+      <div id="wifiControls" style="display:none">
+        <div class="row" style="margin-bottom:8px">
+          <input type="text" id="espIp" placeholder="ESP32 IP (e.g. 10.193.237.143)"
+                 style="flex:1;background:var(--surface);color:var(--text);border:1px solid var(--card-border);
+                        border-radius:var(--radius-sm);padding:9px 12px;font-size:0.9rem;outline:none;
+                        font-family:inherit;transition:border-color .2s"
+                 onfocus="this.style.borderColor='var(--primary)'"
+                 onblur="this.style.borderColor='var(--card-border)'" />
+        </div>
+        <div class="row" style="margin-bottom:8px">
+          <input type="number" id="espPort" value="3333" min="1" max="65535"
+                 style="width:90px;background:var(--surface);color:var(--text);border:1px solid var(--card-border);
+                        border-radius:var(--radius-sm);padding:9px 12px;font-size:0.9rem;outline:none;
+                        font-family:inherit" />
+          <span style="color:var(--muted);font-size:0.8rem;align-self:center">TCP port</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full" id="connectBtn" onclick="toggleConnect()">
+        Connect
+      </button>
+    </div>
+
+    <!-- Braille cell -->
+    <div class="card">
+      <div class="card-title">Live Braille Cell</div>
+      <div class="braille-wrapper">
+        <div class="current-char" id="currentChar">—</div>
+
+        <!--
+          Standard 8-dot layout:
+            dot1  dot4
+            dot2  dot5
+            dot3  dot6
+            dot7  dot8
+        -->
+        <div class="braille-cell">
+          <!-- Left column: 1, 2, 3, 7 -->
+          <div>
+            <div class="dot-item"><div class="dot" id="dot1"></div><div class="dot-num">1</div></div>
+            <div class="dot-item"><div class="dot" id="dot2"></div><div class="dot-num">2</div></div>
+            <div class="dot-item"><div class="dot" id="dot3"></div><div class="dot-num">3</div></div>
+            <div class="dot-item"><div class="dot" id="dot7"></div><div class="dot-num">7</div></div>
+          </div>
+          <!-- Right column: 4, 5, 6, 8 -->
+          <div>
+            <div class="dot-item"><div class="dot" id="dot4"></div><div class="dot-num">4</div></div>
+            <div class="dot-item"><div class="dot" id="dot5"></div><div class="dot-num">5</div></div>
+            <div class="dot-item"><div class="dot" id="dot6"></div><div class="dot-num">6</div></div>
+            <div class="dot-item"><div class="dot" id="dot8"></div><div class="dot-num">8</div></div>
+          </div>
+        </div>
+
+        <div class="active-dots" id="activeDots">No dots active</div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="card">
+      <div class="card-title">Quick Actions</div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="clearBtn" onclick="clearLEDs()" disabled>Clear LEDs</button>
+        <button class="btn btn-ghost" id="testBtn"  onclick="testLEDs()"  disabled>LED Sweep</button>
+      </div>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- RIGHT column -->
+  <div class="col">
+
+    <!-- Message input -->
+    <div class="card">
+      <div class="card-title">Send Message</div>
+      <textarea id="msgInput" placeholder="Type your message here…" rows="3"></textarea>
+      <div class="speed-wrap">
+        <div class="speed-header">
+          Display speed &nbsp;<strong><span id="speedVal">1000</span> ms / character</strong>
+        </div>
+        <input type="range" id="speedRange" min="200" max="3000" step="100" value="1000"
+               oninput="document.getElementById('speedVal').textContent=this.value">
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-success" id="sendBtn" onclick="sendMsg()" disabled>
+          ▶&nbsp; Send Message
+        </button>
+        <button class="btn btn-danger" id="stopBtn" onclick="stopMsg()" style="display:none">
+          ■&nbsp; Stop
+        </button>
+      </div>
+      <p class="hint">Tip: <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to send</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="card" id="progressCard" style="display:none">
+      <div class="card-title">Progress</div>
+      <div class="prog-header">
+        <strong id="progLabel">0 / 0</strong>
+        <span id="progPct">0%</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <div class="char-seq" id="charSeq"></div>
+    </div>
+
+    <!-- Log -->
+    <div class="card">
+      <div class="log-title">
+        <span class="card-title" style="margin-bottom:0">ESP32 Log</span>
+        <button class="btn-icon" style="padding:2px 8px;font-size:.7rem" onclick="clearLog()">Clear</button>
+      </div>
+      <div class="log-box" id="logBox">
+        <div class="le system"><span class="ts">--:--:--</span>Waiting for connection…</div>
+      </div>
+    </div>
+
+  </div><!-- /right -->
+</div><!-- /grid -->
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+let isConnected = false;
+let isSending   = false;
+let currentText = '';
+let currentIdx  = 0;
+let es          = null;   // EventSource
+let connMode    = 'serial';  // 'serial' or 'wifi'
+
+// ── SSE ───────────────────────────────────────────────────────────────────────
+function connectSSE() {
+  if (es) es.close();
+  es = new EventSource('/api/stream');
+  es.onmessage = onEvent;
+  es.onerror   = () => setTimeout(connectSSE, 3000);
+}
+
+function onEvent(e) {
+  const d = JSON.parse(e.data);
+  if (d.type === 'ping') return;
+
+  switch (d.type) {
+
+    case 'connected':
+      isConnected = true;
+      setConnectionUI(true, d.port);
+      log(`Connected to ${d.port}`, 'ok');
+      break;
+
+    case 'disconnected':
+      isConnected = false;
+      setConnectionUI(false);
+      log('Disconnected', 'system');
+      clearDots();
+      setChar('—');
+      break;
+
+    case 'esp32':
+      log(d.message, 'esp32');
+      break;
+    case 'tx':
+      log('TX> ' + d.message, 'system');
+      break;
+
+    case 'sending_start':
+      startProgress(d.text);
+      break;
+
+    case 'char':
+      setChar(d.char);
+      setDots(d.dots);
+      advanceProgress(d.index);
+      break;
+
+    case 'done':
+      finishProgress();
+      break;
+
+    case 'stopped':
+      isSending = false;
+      log('Sending stopped', 'system');
+      showSendBtn(true);
+      clearDots();
+      setChar('—');
+      break;
+
+    case 'cleared':
+      clearDots();
+      setChar('—');
+      break;
+
+    case 'test_started':
+      log('Running 8-LED sweep test…', 'system');
+      break;
+  }
+}
+
+// ── Dot helpers ───────────────────────────────────────────────────────────────
+function setDots(activeDotNums) {
+  for (let i = 1; i <= 8; i++) {
+    const el = document.getElementById('dot' + i);
+    const on = activeDotNums.includes(i);
+    el.classList.toggle('on',      on);
+    el.classList.toggle('sending', on && isSending);
+  }
+  const lbl = document.getElementById('activeDots');
+  if (activeDotNums.length) {
+    lbl.innerHTML = 'Dots: <b>' + activeDotNums.join(', ') + '</b>';
+  } else {
+    lbl.textContent = 'No dots active';
+  }
+}
+
+function clearDots() {
+  setDots([]);
+}
+
+function setChar(ch) {
+  document.getElementById('currentChar').textContent =
+    ch === ' ' ? '␣' : ch;
+}
+
+// ── Progress ──────────────────────────────────────────────────────────────────
+function startProgress(text) {
+  currentText = text;
+  currentIdx  = 0;
+  isSending   = true;
+
+  document.getElementById('progressCard').style.display = 'block';
+  document.getElementById('progFill').style.width = '0%';
+  document.getElementById('progLabel').textContent  = `0 / ${text.length}`;
+  document.getElementById('progPct').textContent    = '0%';
+
+  const seq = document.getElementById('charSeq');
+  seq.innerHTML = '';
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    const b = document.createElement('div');
+    b.className = 'cb' + (ch === ' ' ? '' : '');
+    b.id = 'cb' + i;
+    b.textContent = ch === ' ' ? '·' : ch;
+    seq.appendChild(b);
+  }
+  showSendBtn(false);
+}
+
+function advanceProgress(idx) {
+  // Mark previous char done
+  if (idx > 0) {
+    const prev = document.getElementById('cb' + (idx - 1));
+    if (prev) { prev.classList.remove('current'); prev.classList.add('done'); }
+  }
+  const curr = document.getElementById('cb' + idx);
+  if (curr) {
+    curr.classList.add('current');
+    curr.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+  currentIdx = idx + 1;
+  const pct = Math.round((currentIdx / currentText.length) * 100);
+  document.getElementById('progFill').style.width  = pct + '%';
+  document.getElementById('progLabel').textContent = `${currentIdx} / ${currentText.length}`;
+  document.getElementById('progPct').textContent   = pct + '%';
+}
+
+function finishProgress() {
+  isSending = false;
+  // Mark last char done
+  const last = document.getElementById('cb' + (currentText.length - 1));
+  if (last) { last.classList.remove('current'); last.classList.add('done'); }
+  document.getElementById('progFill').style.width  = '100%';
+  document.getElementById('progLabel').textContent = `✓ ${currentText.length} / ${currentText.length}`;
+  document.getElementById('progPct').textContent   = '100%';
+  clearDots();
+  setChar('—');
+  log(`Done — "${currentText}"`, 'ok');
+  showSendBtn(true);
+}
+
+function showSendBtn(show) {
+  document.getElementById('sendBtn').style.display = show ? 'inline-flex' : 'none';
+  document.getElementById('stopBtn').style.display = show ? 'none' : 'inline-flex';
+}
+
+// ── Mode toggle ───────────────────────────────────────────────────────────────
+function setMode(mode) {
+  if (isConnected) return;
+  connMode = mode;
+  document.getElementById('modeSerial').className = mode === 'serial' ? 'mode-btn active' : 'mode-btn';
+  document.getElementById('modeWifi').className   = mode === 'wifi'   ? 'mode-btn active' : 'mode-btn';
+  document.getElementById('serialControls').style.display = mode === 'serial' ? 'block' : 'none';
+  document.getElementById('wifiControls').style.display   = mode === 'wifi'   ? 'block' : 'none';
+}
+
+// ── Connection ────────────────────────────────────────────────────────────────
+async function refreshPorts() {
+  const sel = document.getElementById('portSelect');
+  sel.innerHTML = '<option value="">Loading…</option>';
+  try {
+    const ports = await fetch('/api/ports').then(r => r.json());
+    sel.innerHTML = '';
+    if (!ports.length) {
+      sel.innerHTML = '<option value="">No ports found</option>';
+      return;
+    }
+    for (const p of ports) {
+      const opt = document.createElement('option');
+      opt.value = p.device;
+      opt.textContent = `${p.device}  —  ${p.description}${p.likely_esp32 ? '  ★' : ''}`;
+      sel.appendChild(opt);
+    }
+    const esp = ports.find(p => p.likely_esp32);
+    if (esp) sel.value = esp.device;
+  } catch {
+    sel.innerHTML = '<option value="">Error loading ports</option>';
+  }
+}
+
+async function toggleConnect() {
+  if (isConnected) {
+    await fetch('/api/disconnect', { method: 'POST' });
+    return;
+  }
+
+  const btn = document.getElementById('connectBtn');
+  btn.disabled = true;
+  btn.textContent = 'Connecting…';
+
+  let body;
+  if (connMode === 'wifi') {
+    const ip = document.getElementById('espIp').value.trim();
+    const tcpPort = document.getElementById('espPort').value.trim() || '3333';
+    if (!ip) { log('Enter the ESP32 IP address', 'err'); btn.disabled = false; btn.textContent = 'Connect'; return; }
+    log(`Connecting via WiFi to ${ip}:${tcpPort}…`, 'system');
+    body = { mode: 'wifi', ip, tcp_port: parseInt(tcpPort) };
+  } else {
+    const port = document.getElementById('portSelect').value;
+    if (!port) { log('Select a serial port first', 'err'); btn.disabled = false; btn.textContent = 'Connect'; return; }
+    log(`Connecting to ${port}…`, 'system');
+    body = { mode: 'serial', port };
+  }
+
+  const res = await fetch('/api/connect', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const d = await res.json();
+    log(`Connection failed: ${d.message}`, 'err');
+    btn.disabled = false;
+    btn.textContent = 'Connect';
+  }
+}
+
+function setConnectionUI(connected, port) {
+  const pill = document.getElementById('statusPill');
+  const txt  = document.getElementById('statusText');
+  const btn  = document.getElementById('connectBtn');
+  pill.className = connected ? 'status-pill connected' : 'status-pill';
+  txt.textContent = connected ? port : 'Disconnected';
+  btn.textContent = connected ? 'Disconnect' : 'Connect';
+  btn.className   = connected
+    ? 'btn btn-danger btn-full'
+    : 'btn btn-primary btn-full';
+  btn.disabled = false;
+
+  document.getElementById('sendBtn').disabled  = !connected;
+  document.getElementById('clearBtn').disabled = !connected;
+  document.getElementById('testBtn').disabled  = !connected;
+
+  // Lock/unlock mode toggle when connected
+  document.getElementById('modeSerial').style.opacity = connected ? '0.5' : '1';
+  document.getElementById('modeWifi').style.opacity   = connected ? '0.5' : '1';
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+async function sendMsg() {
+  const text = document.getElementById('msgInput').value;
+  if (!text.trim()) { log('Enter a message first', 'err'); return; }
+  const delay = parseInt(document.getElementById('speedRange').value);
+  const res = await fetch('/api/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, delay_ms: delay }),
+  });
+  if (!res.ok) {
+    const d = await res.json();
+    log('Send error: ' + d.message, 'err');
+  }
+}
+
+async function stopMsg() {
+  await fetch('/api/stop', { method: 'POST' });
+}
+
+async function clearLEDs() {
+  await fetch('/api/clear', { method: 'POST' });
+}
+
+async function testLEDs() {
+  await fetch('/api/test', { method: 'POST' });
+}
+
+// ── Log ───────────────────────────────────────────────────────────────────────
+function log(msg, type) {
+  const box = document.getElementById('logBox');
+  const ts  = new Date().toTimeString().slice(0, 8);
+  const div = document.createElement('div');
+  div.className = 'le ' + (type || 'system');
+  div.innerHTML = `<span class="ts">${ts}</span>${esc(msg)}`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  while (box.children.length > 120) box.removeChild(box.firstChild);
+}
+
+function clearLog() {
+  document.getElementById('logBox').innerHTML = '';
+}
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Keyboard shortcut ─────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && isConnected && !isSending)
+    sendMsg();
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+refreshPorts();
+connectSSE();
+
+fetch('/api/status').then(r => r.json()).then(d => {
+  if (d.connected) {
+    setConnectionUI(true, d.port);
+    if (d.mode === 'wifi') setMode('wifi');
+  }
+});
+</script>
+</body>
+</html>

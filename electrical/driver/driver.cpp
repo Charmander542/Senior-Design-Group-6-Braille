@@ -21,6 +21,7 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Media.Ocr.h>
 #include <winrt/Windows.Graphics.Imaging.h>
+#include <winrt/Windows.Data.Pdf.h>
 #include <winrt/Windows.Storage.h>
 #include <winrt/Windows.Storage.Streams.h>
 #include <winrt/Windows.Graphics.Capture.h>
@@ -74,20 +75,35 @@ enum : int {
     IDC_BTN_OCR_REGION = 1006,
     IDC_BTN_OCR_FULLSCREEN = 1007,
     IDC_BTN_OPEN = 1008,
-    IDC_BTN_SAVE = 1009
+    IDC_BTN_SAVE = 1009,
+    IDC_RADIO_REGULAR = 1010,
+    IDC_RADIO_SHORTHAND = 1011
 };
 
 
 
 
 HINSTANCE hInst;
-HWND hWndMain, hCbPorts, hBtnRefresh, hBtnConnect, hEditText, hBtnSend, hBtnRegion, hBtnFull, hBtnOpen, hBtnSave;
+HWND hWndMain, hCbPorts, hBtnRefresh, hBtnConnect, hEditText, hBtnSend, hBtnRegion, hBtnFull, hBtnOpen, hBtnSave, hRadioRegular, hRadioShorthand;
 HANDLE hSerial = INVALID_HANDLE_VALUE;
 bool connected = false;
+bool g_useShorthand = false;
 WNDPROC OriginalEditProc;
 
 static winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice g_d3dDevice{ nullptr };
 static winrt::Windows::System::DispatcherQueueController g_dqController{ nullptr };
+
+static std::wstring GetExeDir()
+{
+    wchar_t path[MAX_PATH]{};
+    GetModuleFileNameW(nullptr, path, MAX_PATH);
+    std::wstring p = path;
+    size_t pos = p.find_last_of(L"\\/");
+    if (pos != std::wstring::npos) {
+        p.resize(pos);
+    }
+    return p;
+}
 
 
 
@@ -95,7 +111,11 @@ static winrt::Windows::System::DispatcherQueueController g_dqController{ nullptr
 static PyObject* g_pySerialModule = nullptr;
 static PyObject* g_pyDocModule = nullptr;
 static PyObject* g_pyArduinoObj = nullptr;
-std::wstring scriptDir = L".\\braille\\tools";
+static PyObject* g_pyShorthandModule = nullptr;
+
+std::wstring scriptDir = GetExeDir() + L"\\braille\\tools";
+std::wstring sitePkgDir = GetExeDir() + L"\\Lib\\site-packages";
+std::wstring sitePackagesDir = GetExeDir() + L"\\Lib\\site-packages";
 
 static std::wstring Utf8ToWide(const std::string& s) {
     if (s.empty()) return L"";
@@ -143,6 +163,8 @@ static bool InitEmbeddedPython(const std::wstring& scriptDir) {
 
     PyRun_SimpleString("import sys");
 
+    
+
     std::string dirUtf8 = WideToUtf8(scriptDir);
     std::string cmd = "sys.path.insert(0, r'" + dirUtf8 + "')";
     PyRun_SimpleString(cmd.c_str());
@@ -153,6 +175,71 @@ static bool InitEmbeddedPython(const std::wstring& scriptDir) {
         Py_DECREF(name);
         if (!g_pySerialModule) return false;
     }
+
+    if (!g_pyDocModule) {
+        PyObject* name = PyUnicode_FromString("doc_to_braille");
+        g_pyDocModule = PyImport_Import(name);
+        Py_DECREF(name);
+        if (!g_pyDocModule) return false;
+    }
+
+    if (!g_pyShorthandModule) {
+        PyObject* name = PyUnicode_FromString("shorthand_braille");
+        g_pyShorthandModule = PyImport_Import(name);
+        Py_DECREF(name);
+        if (!g_pyShorthandModule) return false;
+    }
+
+    return true;
+}
+
+static bool InitSerialPython(const std::wstring& scriptDir, const std::wstring& sitePackagesDir) {
+    if (!Py_IsInitialized()) {
+        Py_Initialize();
+    }
+
+    PyRun_SimpleString("import sys");
+
+    std::string s1 = WideToUtf8(scriptDir);
+    std::string s2 = WideToUtf8(sitePackagesDir);
+
+    std::string cmd =
+        "import sys\n"
+        "p1 = r'" + s1 + "'\n"
+        "p2 = r'" + s2 + "'\n"
+        "if p1 not in sys.path: sys.path.insert(0, p1)\n"
+        "if p2 not in sys.path: sys.path.insert(0, p2)\n";
+
+    PyRun_SimpleString(cmd.c_str());
+
+    if (!g_pySerialModule) {
+        PyObject* name = PyUnicode_FromString("serial_braille");
+        g_pySerialModule = PyImport_Import(name);
+        Py_DECREF(name);
+        if (!g_pySerialModule) return false;
+    }
+
+    return true;
+}
+
+static bool InitDocPython(const std::wstring& scriptDir, const std::wstring& sitePackagesDir) {
+    if (!Py_IsInitialized()) {
+        Py_Initialize();
+    }
+
+    PyRun_SimpleString("import sys");
+
+    std::string s1 = WideToUtf8(scriptDir);
+    std::string s2 = WideToUtf8(sitePackagesDir);
+
+    std::string cmd =
+        "import sys\n"
+        "p1 = r'" + s1 + "'\n"
+        "p2 = r'" + s2 + "'\n"
+        "if p1 not in sys.path: sys.path.insert(0, p1)\n"
+        "if p2 not in sys.path: sys.path.insert(0, p2)\n";
+
+    PyRun_SimpleString(cmd.c_str());
 
     if (!g_pyDocModule) {
         PyObject* name = PyUnicode_FromString("doc_to_braille");
@@ -330,21 +417,181 @@ static void ShutdownEmbeddedPython() {
     Py_XDECREF(g_pyDocModule);
     g_pyDocModule = nullptr;
 
+    Py_XDECREF(g_pyShorthandModule);
+    g_pyShorthandModule = nullptr;
+
     if (Py_IsInitialized()) {
         Py_Finalize();
     }
 }
+
+static bool PyExtractPdfText(const std::wstring& filePath, std::wstring& outText) {
+    PyObject* modName = PyUnicode_FromString("pdf_to_braille");
+    PyObject* module = PyImport_Import(modName);
+    Py_DECREF(modName);
+
+    if (!module) return false;
+
+    PyObject* extractFunc = PyObject_GetAttrString(module, "extract_text_from_pdf");
+    PyObject* cleanFunc = PyObject_GetAttrString(module, "clean_extracted_text");
+
+    if (!extractFunc || !cleanFunc ||
+        !PyCallable_Check(extractFunc) || !PyCallable_Check(cleanFunc)) {
+        Py_XDECREF(extractFunc);
+        Py_XDECREF(cleanFunc);
+        Py_DECREF(module);
+        return false;
+    }
+
+    PyObject* args = PyTuple_New(1);
+    PyTuple_SetItem(args, 0, PyUnicode_FromString(WideToUtf8(filePath).c_str()));
+
+    PyObject* raw = PyObject_CallObject(extractFunc, args);
+    Py_DECREF(args);
+    Py_DECREF(extractFunc);
+
+    if (!raw) {
+        Py_DECREF(cleanFunc);
+        Py_DECREF(module);
+        return false;
+    }
+
+    PyObject* cleanArgs = PyTuple_New(1);
+    PyTuple_SetItem(cleanArgs, 0, raw); // steals ref
+    PyObject* cleaned = PyObject_CallObject(cleanFunc, cleanArgs);
+    Py_DECREF(cleanArgs);
+    Py_DECREF(cleanFunc);
+    Py_DECREF(module);
+
+    if (!cleaned) return false;
+
+    const char* s = PyUnicode_AsUTF8(cleaned);
+    outText = s ? Utf8ToWide(s) : L"";
+    Py_DECREF(cleaned);
+
+    return true;
+}
+
+static bool IsTextUsable(const std::wstring& text) {
+    size_t letters = 0;
+    for (wchar_t ch : text) {
+        if (!iswspace(ch)) {
+            ++letters;
+        }
+    }
+    return letters >= 10;
+}
+
+static bool PySendShorthandTextToArduino(const std::wstring& text, int delayMs = 600) {
+    if (!g_pyShorthandModule || !g_pyArduinoObj) return false;
+
+    PyObject* func = PyObject_GetAttrString(g_pyShorthandModule, "to_shorthand_patterns");
+    if (!func || !PyCallable_Check(func)) {
+        Py_XDECREF(func);
+        return false;
+    }
+
+    std::string utf8 = WideToUtf8(text);
+
+    PyObject* arg = PyTuple_New(1);
+    PyTuple_SetItem(arg, 0, PyUnicode_FromString(utf8.c_str()));
+
+    PyObject* patterns = PyObject_CallObject(func, arg);
+    Py_DECREF(arg);
+    Py_DECREF(func);
+
+    if (!patterns || !PyList_Check(patterns)) {
+        Py_XDECREF(patterns);
+        return false;
+    }
+
+    PyObject* sendPatternMethod = PyObject_GetAttrString(g_pyArduinoObj, "send_pattern");
+    PyObject* clearMethod = PyObject_GetAttrString(g_pyArduinoObj, "clear");
+
+    if (!sendPatternMethod || !PyCallable_Check(sendPatternMethod) ||
+        !clearMethod || !PyCallable_Check(clearMethod)) {
+        Py_XDECREF(sendPatternMethod);
+        Py_XDECREF(clearMethod);
+        Py_DECREF(patterns);
+        return false;
+    }
+
+    Py_ssize_t n = PyList_Size(patterns);
+    for (Py_ssize_t i = 0; i < n; ++i) {
+        PyObject* item = PyList_GetItem(patterns, i); // borrowed ref
+
+        if (item == Py_None) {
+            PyObject* r = PyObject_CallObject(clearMethod, nullptr);
+            if (r) Py_DECREF(r);
+            else {
+                Py_DECREF(sendPatternMethod);
+                Py_DECREF(clearMethod);
+                Py_DECREF(patterns);
+                return false;
+            }
+            Sleep(delayMs);
+            continue;
+        }
+
+        long pattern = PyLong_AsLong(item);
+        if (PyErr_Occurred()) {
+            Py_DECREF(sendPatternMethod);
+            Py_DECREF(clearMethod);
+            Py_DECREF(patterns);
+            return false;
+        }
+
+        PyObject* args = PyTuple_New(1);
+        PyTuple_SetItem(args, 0, PyLong_FromLong(pattern));
+        PyObject* ret = PyObject_CallObject(sendPatternMethod, args);
+        Py_DECREF(args);
+
+        if (!ret) {
+            Py_DECREF(sendPatternMethod);
+            Py_DECREF(clearMethod);
+            Py_DECREF(patterns);
+            return false;
+        }
+
+        bool ok = PyObject_IsTrue(ret);
+        Py_DECREF(ret);
+
+        if (!ok) {
+            Py_DECREF(sendPatternMethod);
+            Py_DECREF(clearMethod);
+            Py_DECREF(patterns);
+            return false;
+        }
+
+        Sleep(delayMs);
+    }
+
+    PyObject* r = PyObject_CallObject(clearMethod, nullptr);
+    if (r) Py_DECREF(r);
+
+    Py_DECREF(sendPatternMethod);
+    Py_DECREF(clearMethod);
+    Py_DECREF(patterns);
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 void MsgBox(const wstring& msg, UINT icon = MB_ICONINFORMATION) {
     MessageBoxW(hWndMain, msg.c_str(), L"USB Text Sender", MB_OK | icon);
 }
-
-
-
-
-
 
 
 // From Windows.Graphics.Capture.Interop (we declare them ourselves to avoid extra headers)
@@ -539,6 +786,49 @@ static winrt::Windows::Foundation::IAsyncOperation<winrt::hstring>OcrBitmapAsync
 
     auto res = co_await engine.RecognizeAsync(sb);
     co_return res ? res.Text() : L"";
+}
+
+static winrt::Windows::Foundation::IAsyncOperation<winrt::hstring>OcrPdfFileAsync(const std::wstring& path)
+{
+    using namespace winrt;
+    using namespace winrt::Windows::Storage;
+    using namespace winrt::Windows::Data::Pdf;
+    using namespace winrt::Windows::Storage::Streams;
+    using namespace winrt::Windows::Graphics::Imaging;
+
+    std::wstring allText;
+
+    StorageFile file = co_await StorageFile::GetFileFromPathAsync(path);
+    PdfDocument pdf = co_await PdfDocument::LoadFromFileAsync(file);
+
+    for (uint32_t i = 0; i < pdf.PageCount(); ++i) {
+        PdfPage page = pdf.GetPage(i);
+
+        InMemoryRandomAccessStream stream;
+        co_await page.RenderToStreamAsync(stream);
+
+        BitmapDecoder decoder = co_await BitmapDecoder::CreateAsync(stream);
+        SoftwareBitmap sb = co_await decoder.GetSoftwareBitmapAsync();
+
+        if (sb.BitmapPixelFormat() != BitmapPixelFormat::Bgra8 ||
+            sb.BitmapAlphaMode() != BitmapAlphaMode::Premultiplied)
+        {
+            sb = SoftwareBitmap::Convert(
+                sb,
+                BitmapPixelFormat::Bgra8,
+                BitmapAlphaMode::Premultiplied
+            );
+        }
+
+        winrt::hstring pageText = co_await OcrBitmapAsync(sb);
+        allText += pageText.c_str();
+
+        if (i + 1 < pdf.PageCount()) {
+            allText += L"\r\n\r\n";
+        }
+    }
+
+    co_return winrt::hstring(allText);
 }
 
 static std::wstring GetTempPathFile(const wchar_t* name) {
@@ -759,6 +1049,7 @@ static bool PickSaveTxtFile(HWND owner, std::wstring& outPath) {
     if (outPath.find(L'.') == std::wstring::npos) outPath += L".txt";
     return true;
 }
+
 
 
 
@@ -1361,18 +1652,24 @@ LRESULT CALLBACK EditSubclassProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPa
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
     case WM_CREATE: {
-        int margin = 10, rowH = 28, btnW = 100;
-        hCbPorts = CreateWindowW(L"COMBOBOX", nullptr, WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST, margin, margin, 180, 200, hWnd, (HMENU)IDC_COMBO_PORTS, hInst, nullptr);
-        hBtnRefresh = CreateWindowW(L"BUTTON", L"Refresh", WS_CHILD | WS_VISIBLE, margin + 190, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_REFRESH, hInst, nullptr);
-        hBtnConnect = CreateWindowW(L"BUTTON", L"Connect", WS_CHILD | WS_VISIBLE, margin + 300, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_CONNECT, hInst, nullptr);
-        hEditText = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_MULTILINE | WS_VSCROLL, margin, margin + rowH + 10, 540, 200, hWnd, (HMENU)IDC_EDIT_TEXT, hInst, nullptr);
+        int margin = 10, marginw = 140, rowH = 40, btnW = 100;
+        hCbPorts = CreateWindowW(L"COMBOBOX", nullptr, WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST, marginw, margin+5, 180, 200, hWnd, (HMENU)IDC_COMBO_PORTS, hInst, nullptr);
+        hBtnRefresh = CreateWindowW(L"BUTTON", L"Refresh", WS_CHILD | WS_VISIBLE, marginw + 190, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_REFRESH, hInst, nullptr);
+        hBtnConnect = CreateWindowW(L"BUTTON", L"Connect", WS_CHILD | WS_VISIBLE, marginw + 300, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_CONNECT, hInst, nullptr);
+        hEditText = CreateWindowW(L"EDIT", L"", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_MULTILINE | WS_VSCROLL, marginw, margin + rowH + 10, 500, 240, hWnd, (HMENU)IDC_EDIT_TEXT, hInst, nullptr);
         OriginalEditProc = (WNDPROC)SetWindowLongPtrW(hEditText, GWLP_WNDPROC, (LONG_PTR)EditSubclassProc);
-        hBtnSend = CreateWindowW(L"BUTTON", L"Send", WS_CHILD | WS_VISIBLE, margin + 410, margin, btnW, rowH, hWnd, (HMENU)IDC_BTN_SEND, hInst, nullptr);
 
-        hBtnRegion = CreateWindowW(L"BUTTON", L"OCR (region)", WS_CHILD | WS_VISIBLE, margin, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_REGION, hInst, nullptr);
-        hBtnFull = CreateWindowW(L"BUTTON", L"OCR (full)", WS_CHILD | WS_VISIBLE, margin + 130, margin + rowH + 220, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_FULLSCREEN, hInst, nullptr);
-        hBtnOpen = CreateWindowW(L"BUTTON", L"Open", WS_CHILD | WS_VISIBLE, margin + 260, margin + rowH + 220, btnW, rowH, hWnd, (HMENU)IDC_BTN_OPEN, hInst, nullptr);
-        hBtnSave = CreateWindowW(L"BUTTON", L"Save", WS_CHILD | WS_VISIBLE, margin + 370, margin + rowH + 220, btnW, rowH, hWnd, (HMENU)IDC_BTN_SAVE, hInst, nullptr);
+        hBtnOpen = CreateWindowW(L"BUTTON", L"Open", WS_CHILD | WS_VISIBLE, marginw, margin + rowH + 260, btnW, rowH, hWnd, (HMENU)IDC_BTN_OPEN, hInst, nullptr);
+        hBtnSave = CreateWindowW(L"BUTTON", L"Save", WS_CHILD | WS_VISIBLE, marginw + 110, margin + rowH + 260, btnW, rowH, hWnd, (HMENU)IDC_BTN_SAVE, hInst, nullptr);
+        hBtnSend = CreateWindowW(L"BUTTON", L"Send", WS_CHILD | WS_VISIBLE, marginw + 220, margin + rowH + 260, btnW, rowH, hWnd, (HMENU)IDC_BTN_SEND, hInst, nullptr);
+
+        hRadioRegular = CreateWindowW(L"BUTTON", L"Regular", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON | WS_GROUP, margin, margin + rowH + 10, 120, rowH, hWnd, (HMENU)IDC_RADIO_REGULAR, hInst, nullptr);
+        hRadioShorthand = CreateWindowW(L"BUTTON", L"Shorthand", WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON, margin, margin + (rowH + 10)*2, 120, rowH, hWnd, (HMENU)IDC_RADIO_SHORTHAND, hInst, nullptr);
+        hBtnRegion = CreateWindowW(L"BUTTON", L"OCR (region)", WS_CHILD | WS_VISIBLE, margin, margin + (rowH + 10) * 3, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_REGION, hInst, nullptr);
+        hBtnFull = CreateWindowW(L"BUTTON", L"OCR (full)", WS_CHILD | WS_VISIBLE, margin, margin + (rowH + 10) * 4, 120, rowH, hWnd, (HMENU)IDC_BTN_OCR_FULLSCREEN, hInst, nullptr);
+
+        SendMessageW(hRadioRegular, BM_SETCHECK, BST_CHECKED, 0);
+        g_useShorthand = false;
 
         PopulatePorts();
         return 0;
@@ -1380,11 +1677,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     case WM_COMMAND: {
         int id = LOWORD(wParam);
         if (id == IDC_BTN_REFRESH && HIWORD(wParam) == BN_CLICKED) {
-            //std::wstring scriptDir = L"D:\Projects\VS\WindowsProject1\WindowsProject1";
+            /*
             if (!InitEmbeddedPython(scriptDir)) {
                 MsgBox((L"Python init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
                 return 0;
             }
+            */
+            
+            if (!InitSerialPython(scriptDir, sitePackagesDir)) {
+                MsgBox((L"Python serial init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
+                return 0;
+            }
+            
 
             std::wstring port = PyFindArduinoPort();
             if (port.empty()) {
@@ -1401,10 +1705,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             }
         }
         else if (id == IDC_BTN_CONNECT && HIWORD(wParam) == BN_CLICKED) {
+            /*
             if (!InitEmbeddedPython(scriptDir)) {
                 MsgBox((L"Python init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
                 return 0;
             }
+            */
+            
+            if (!InitSerialPython(scriptDir, sitePackagesDir)) {
+                MsgBox((L"Python serial init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
+                return 0;
+            }
+            
 
             if (g_pyArduinoObj) {
                 PyDisconnectArduino();
@@ -1443,11 +1755,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 MsgBox(L"Not connected.", MB_ICONWARNING);
             }
             else {
-                if (!PySendTextToArduino(buf, 600)) {
+                bool ok = false;
+
+                if (g_useShorthand) {
+                    ok = PySendShorthandTextToArduino(buf, 600);
+                }
+                else {
+                    ok = PySendTextToArduino(buf, 600);
+                }
+
+                if (!ok) {
                     MsgBox((L"Python send failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
                 }
                 else {
-                    MsgBox(L"Sent successfully.");
+                    MsgBox(g_useShorthand ? L"Sent successfully (shorthand)." : L"Sent successfully (regular).");
                 }
             }
         }
@@ -1585,30 +1906,81 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         else if (id == IDC_BTN_OPEN && HIWORD(wParam) == BN_CLICKED) {
             std::wstring path;
             if (PickOpenTxtFile(hWndMain, path)) {
-                if (!LoadTextFileToEdit(hEditText, path)) MsgBox(L"Open failed.", MB_ICONERROR);
-            }
-            /*
-            if (PickOpenTxtFile(hWndMain, path)) {
+                /*
                 if (!InitEmbeddedPython(scriptDir)) {
                     MsgBox((L"Python init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
                     return 0;
                 }
+                */
+                
+                if (!InitDocPython(scriptDir, sitePackagesDir)) {
+                    MsgBox((L"Python doc init/import failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
+                    return 0;
+                }
+                
 
-                std::wstring text;
-                if (!PyExtractDocumentText(path, text)) {
-                    MsgBox((L"Python document extract failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
+                std::wstring ext = std::filesystem::path(path).extension().wstring();
+                std::transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
+
+                if (ext == L".pdf") {
+                    std::wstring text;
+                    bool ok = PyExtractPdfText(path, text);
+
+                    if (ok && IsTextUsable(text)) {
+                        SetWindowTextW(hEditText, text.c_str());
+                    }
+                    else {
+                        PostToEdit(L"[PDF] No usable embedded text found. Running OCR...");
+
+                        winrt::fire_and_forget([path]() -> winrt::fire_and_forget {
+                            try {
+                                winrt::hstring textH = co_await OcrPdfFileAsync(path);
+                                std::wstring t = textH.c_str();
+
+                                if (!IsTextUsable(t)) {
+                                    PostToEdit(L"[PDF OCR] No readable text found.");
+                                }
+                                else {
+                                    auto* p = new std::wstring(t);
+                                    PostMessageW(hWndMain, WM_APP + 2, 0, (LPARAM)p);
+                                }
+                            }
+                            catch (winrt::hresult_error const& e) {
+                                std::wstring msg =
+                                    L"[PDF OCR] hresult_error 0x" + std::to_wstring((uint32_t)e.code().value) +
+                                    L"\n" + HrToStr(e.code()) +
+                                    L"\n" + std::wstring(e.message().c_str());
+                                PostToEdit(msg);
+                            }
+                            catch (...) {
+                                PostToEdit(L"[PDF OCR] Failed.");
+                            }
+                            co_return;
+                            }());
+                    }
                 }
                 else {
-                    SetWindowTextW(hEditText, text.c_str());
+                    std::wstring text;
+                    if (!PyExtractDocumentText(path, text)) {
+                        MsgBox((L"Document extract failed:\n" + PyErrorToString()).c_str(), MB_ICONERROR);
+                    }
+                    else {
+                        SetWindowTextW(hEditText, text.c_str());
+                    }
                 }
             }
-            */
-        }
+            }
         else if (id == IDC_BTN_SAVE && HIWORD(wParam) == BN_CLICKED) {
             std::wstring path;
             if (PickSaveTxtFile(hWndMain, path)) {
                 if (!SaveEditToTextFile(hEditText, path)) MsgBox(L"Save failed.", MB_ICONERROR);
             }
+        }
+        else if (id == IDC_RADIO_REGULAR && HIWORD(wParam) == BN_CLICKED) {
+            g_useShorthand = false;
+        }
+        else if (id == IDC_RADIO_SHORTHAND && HIWORD(wParam) == BN_CLICKED) {
+            g_useShorthand = true;
         }
 
         break;
@@ -1635,7 +2007,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         }
         return 0;
     }
-    case WM_DESTROY: CloseSerial(); PostQuitMessage(0); return 0;
+    case WM_APP + 2: {
+        auto* p = reinterpret_cast<std::wstring*>(lParam);
+        if (p) {
+            SetWindowTextW(hEditText, p->c_str());
+            delete p;
+        }
+        return 0;
+    }
+    case WM_DESTROY: ShutdownEmbeddedPython(); CloseSerial(); PostQuitMessage(0); return 0;
     }
     return DefWindowProcW(hWnd, msg, wParam, lParam);
 }
@@ -1670,13 +2050,13 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
     WNDCLASSW wc{ };
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
-    wc.lpszClassName = L"UsbTextSender";
+    wc.lpszClassName = L"BrailleDriver";
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
     RegisterClassW(&wc);
 
-    hWndMain = CreateWindowW(L"UsbTextSender", L"Text Sender v1.2.0", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT,
-        580, 360,
+    hWndMain = CreateWindowW(L"BrailleDriver", L"Braille Driver v1.4.0", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT,
+        670, 410,
         nullptr, nullptr, hInstance, nullptr);
 
     ShowWindow(hWndMain, nCmdShow);
@@ -1690,3 +2070,5 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
     winrt::uninit_apartment();
     return (int)msg.wParam;
 }
+
+

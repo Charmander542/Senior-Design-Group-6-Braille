@@ -328,6 +328,47 @@
       background: var(--surface); border: 1px solid var(--card-border);
       border-radius: 4px; font-family: inherit; font-size: 0.7rem;
     }
+
+    /* ── Access-code modal ── */
+    #accessModal {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.78);
+      z-index: 100;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    #accessModal.open { display: flex; }
+    .modal-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      width: 100%; max-width: 360px;
+      text-align: center;
+    }
+    .modal-icon { font-size: 2rem; margin-bottom: 12px; }
+    .modal-box h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .modal-box p  { font-size: 0.82rem; color: var(--muted); margin-bottom: 20px; }
+    .modal-input {
+      width: 100%;
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px; font-size: 1rem;
+      outline: none; margin-bottom: 12px;
+      font-family: inherit; transition: border-color .2s;
+    }
+    .modal-input:focus { border-color: var(--primary); }
+
+    /* ── Phone enhancements ── */
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 32px; }
+      .btn { padding: 13px 18px; font-size: 0.95rem; }
+      textarea { font-size: 1rem; min-height: 120px; }
+      select, input[type="text"], input[type="number"] { font-size: 1rem; padding: 11px 12px; }
+      .hint { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -359,12 +400,12 @@
 
       <!-- Mode toggle -->
       <div class="mode-toggle" style="margin-bottom:12px">
-        <button class="mode-btn active" id="modeSerial" onclick="setMode('serial')">USB Serial</button>
-        <button class="mode-btn" id="modeWifi" onclick="setMode('wifi')">WiFi TCP</button>
+        <button class="mode-btn" id="modeSerial" onclick="setMode('serial')">USB Serial</button>
+        <button class="mode-btn active" id="modeWifi" onclick="setMode('wifi')">WiFi TCP</button>
       </div>
 
       <!-- Serial controls -->
-      <div id="serialControls">
+      <div id="serialControls" style="display:none">
         <div class="row" style="margin-bottom:8px">
           <select id="portSelect"><option value="">Loading ports…</option></select>
           <button class="btn-icon" onclick="refreshPorts()" title="Refresh">↺</button>
@@ -372,7 +413,7 @@
       </div>
 
       <!-- WiFi controls -->
-      <div id="wifiControls" style="display:none">
+      <div id="wifiControls">
         <div class="row" style="margin-bottom:8px">
           <input type="text" id="espIp" placeholder="ESP32 IP (e.g. 10.193.237.143)"
                  style="flex:1;background:var(--surface);color:var(--text);border:1px solid var(--card-border);
@@ -490,14 +531,34 @@
   </div><!-- /right -->
 </div><!-- /grid -->
 
+<!-- Access code modal -->
+<div id="accessModal">
+  <div class="modal-box">
+    <div class="modal-icon">🔒</div>
+    <h2>Access Code Required</h2>
+    <p>Enter the access code to send messages to the Braille display.</p>
+    <input type="password" id="passInput" class="modal-input"
+           placeholder="Enter code…"
+           onkeydown="if(event.key==='Enter')submitPass()" />
+    <button class="btn btn-primary" style="width:100%;margin-bottom:8px" onclick="submitPass()">
+      Unlock
+    </button>
+    <p id="passErr" style="color:var(--danger);font-size:0.8rem;display:none">
+      Incorrect code — try again.
+    </p>
+  </div>
+</div>
+
 <script>
 // ── State ─────────────────────────────────────────────────────────────────────
-let isConnected = false;
-let isSending   = false;
-let currentText = '';
-let currentIdx  = 0;
-let es          = null;   // EventSource
-let connMode    = 'serial';  // 'serial' or 'wifi'
+let isConnected      = false;
+let isSending        = false;
+let currentText      = '';
+let currentIdx       = 0;
+let es               = null;   // EventSource
+let connMode         = 'wifi'; // 'serial' or 'wifi'
+let passcodeRequired = false;
+let accessCode       = sessionStorage.getItem('brailleAccessCode') || '';
 
 // ── SSE ───────────────────────────────────────────────────────────────────────
 function connectSSE() {
@@ -653,6 +714,25 @@ function showSendBtn(show) {
   document.getElementById('stopBtn').style.display = show ? 'none' : 'inline-flex';
 }
 
+// ── Access code modal ─────────────────────────────────────────────────────────
+function showAccessModal(showErr) {
+  const modal = document.getElementById('accessModal');
+  modal.classList.add('open');
+  document.getElementById('passErr').style.display = showErr ? 'block' : 'none';
+  setTimeout(() => document.getElementById('passInput').focus(), 50);
+}
+
+function hideAccessModal() {
+  document.getElementById('accessModal').classList.remove('open');
+}
+
+function submitPass() {
+  accessCode = document.getElementById('passInput').value;
+  sessionStorage.setItem('brailleAccessCode', accessCode);
+  document.getElementById('passInput').value = '';
+  hideAccessModal();
+}
+
 // ── Mode toggle ───────────────────────────────────────────────────────────────
 function setMode(mode) {
   if (isConnected) return;
@@ -750,11 +830,21 @@ async function sendMsg() {
   const text = document.getElementById('msgInput').value;
   if (!text.trim()) { log('Enter a message first', 'err'); return; }
   const delay = parseInt(document.getElementById('speedRange').value);
+  const body  = { text, delay_ms: delay };
+  if (passcodeRequired) body.access_code = accessCode;
+
   const res = await fetch('/api/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text, delay_ms: delay }),
+    body: JSON.stringify(body),
   });
+
+  if (res.status === 403) {
+    sessionStorage.removeItem('brailleAccessCode');
+    accessCode = '';
+    showAccessModal(true);
+    return;
+  }
   if (!res.ok) {
     const d = await res.json();
     log('Send error: ' + d.message, 'err');
@@ -806,9 +896,14 @@ connectSSE();
 fetch('/api/status').then(r => r.json()).then(d => {
   if (d.connected) {
     setConnectionUI(true, d.port);
-    if (d.mode === 'wifi') setMode('wifi');
+    if (d.mode === 'serial') setMode('serial');
   }
 });
+
+fetch('/api/config').then(r => r.json()).then(d => {
+  passcodeRequired = d.passcode_required;
+  if (passcodeRequired && !accessCode) showAccessModal(false);
+}).catch(() => {});
 </script>
 </body>
 </html>

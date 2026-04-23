@@ -25,6 +25,10 @@ import queue
 
 app = Flask(__name__)
 
+# Optional LAN passcode — set ACCESS_CODE=yourcode before starting Flask.
+# Leave unset (or empty) to allow anyone on the network to send messages.
+ACCESS_CODE = os.environ.get('ACCESS_CODE', '').strip()
+
 # ── Braille mapping ───────────────────────────────────────────────────────────
 BRAILLE_MAP = {
     ' ': 0x00,
@@ -66,6 +70,17 @@ _clients_lock = threading.Lock()
 ESP_KEYWORDS = ('cp210', 'ch340', 'ch341', 'ftdi', 'esp32', 'uart', 'silicon')
 
 ESP32_TCP_PORT = 3333
+
+
+def _check_access():
+    """Return a 403 error response if a passcode is configured and wrong; else None."""
+    if not ACCESS_CODE:
+        return None
+    data = request.json or {}
+    provided = data.get('access_code', '') or request.headers.get('X-Access-Code', '')
+    if provided != ACCESS_CODE:
+        return jsonify({'status': 'error', 'message': 'Invalid access code'}), 403
+    return None
 
 
 def broadcast(data):
@@ -172,6 +187,11 @@ def list_ports():
     return jsonify(result)
 
 
+@app.route('/api/config')
+def config():
+    return jsonify({'passcode_required': bool(ACCESS_CODE)})
+
+
 @app.route('/api/status')
 def status():
     return jsonify({
@@ -275,29 +295,58 @@ def disconnect():
 
 def _write(cmd):
     """Send a newline-terminated command to the ESP32 (serial or TCP)."""
+    global _tcp_sock, _connected, _connected_port, _conn_mode
     broadcast({'type': 'tx', 'message': cmd})
+    tcp_dropped = False
     with _conn_lock:
         if _conn_mode == 'serial' and _ser and _ser.is_open:
-            _ser.write((cmd + '\n').encode())
-            _ser.flush()
+            try:
+                _ser.write((cmd + '\n').encode())
+                _ser.flush()
+            except Exception as e:
+                broadcast({'type': 'error', 'message': f'Serial write error: {e}'})
         elif _conn_mode == 'wifi' and _tcp_sock:
             try:
                 _tcp_sock.sendall((cmd + '\n').encode())
             except (OSError, BrokenPipeError):
-                pass
+                try:
+                    _tcp_sock.close()
+                except Exception:
+                    pass
+                _tcp_sock = None
+                _connected = False
+                _connected_port = None
+                _conn_mode = None
+                _send_stop.set()
+                tcp_dropped = True
+    if tcp_dropped:
+        broadcast({'type': 'disconnected'})
 
+
+MAX_TEXT_LEN = 200
 
 @app.route('/api/send', methods=['POST'])
 def send_text():
+    err = _check_access()
+    if err:
+        return err
+
     if not _connected:
         return jsonify({'status': 'error', 'message': 'Not connected to ESP32'}), 400
 
     data     = request.json or {}
-    text     = data.get('text', '')
-    delay_ms = max(100, int(data.get('delay_ms', 1000)))
+    raw_text = data.get('text', '')
+    delay_ms = max(100, min(5000, int(data.get('delay_ms', 1000))))
 
+    # Strip control characters (keep printable ASCII + space)
+    text = ''.join(c for c in raw_text if c == ' ' or (0x20 <= ord(c) <= 0x7E))
     if not text:
         return jsonify({'status': 'error', 'message': 'Empty text'}), 400
+    if len(text) > MAX_TEXT_LEN:
+        return jsonify({
+            'status': 'error',
+            'message': f'Text too long ({len(text)} chars). Maximum is {MAX_TEXT_LEN}.',
+        }), 400
 
     _send_stop.clear()
     broadcast({'type': 'sending_start', 'text': text, 'total': len(text)})

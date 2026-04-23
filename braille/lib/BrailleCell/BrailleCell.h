@@ -25,6 +25,15 @@ public:
    * @param dotPins An array of 8 pin numbers (int) that control dots 1-8.
    */
   void begin(const int dotPins[8]);
+  
+  /**
+   * @brief Initializes chained SN74HC595 shift registers for multiple tiles.
+   * @param dataPin SER pin for the shift register chain.
+   * @param clockPin SRCLK pin for the shift register chain.
+   * @param latchPin RCLK pin for the shift register chain.
+   * @param tileCount Number of 8-bit tiles in the chain.
+   */
+  void beginShiftRegister(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin, uint8_t tileCount);
 
   /**
    * @brief Clears the cell (lowers all 8 dots).
@@ -50,6 +59,19 @@ public:
    * @param pattern The 8-bit pattern.
    */
   void setPattern(uint8_t pattern);
+  
+  /**
+   * @brief Displays a raw 8-bit pattern on a specific tile in a shift register chain.
+   * @param tileIndex Zero-based tile index.
+   * @param pattern The 8-bit pattern.
+   */
+  void setPattern(uint8_t tileIndex, uint8_t pattern);
+  
+  /**
+   * @brief Gets number of tiles currently configured.
+   * @return Number of tiles (always 1 in direct pin mode).
+   */
+  uint8_t getTileCount() const;
 
   /**
    * @brief Prints the current pattern visualization to Serial.
@@ -61,9 +83,16 @@ public:
 private:
   
   int _dotPins[8]; 
+  uint8_t _tilePatterns[32];
+  uint8_t _tileCount;
+  bool _useShiftRegister;
+  uint8_t _dataPin;
+  uint8_t _clockPin;
+  uint8_t _latchPin;
   
   uint8_t _translateToBraille(char c);
   void _writeToPins(uint8_t pattern);
+  void _writeToShiftRegisters();
   static uint8_t _bitIndexForDot(int dotNumber);
   static uint8_t _makePattern(const int* dots, int count);
 };

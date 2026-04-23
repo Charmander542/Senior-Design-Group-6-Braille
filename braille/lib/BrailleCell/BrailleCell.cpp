@@ -4,6 +4,12 @@ BrailleCell::BrailleCell() {
   for (int i = 0; i < 8; i++) {
     _dotPins[i] = -1;
   }
+  memset(_tilePatterns, 0, sizeof(_tilePatterns));
+  _tileCount = 1;
+  _useShiftRegister = false;
+  _dataPin = 0;
+  _clockPin = 0;
+  _latchPin = 0;
 }
 
 void BrailleCell::begin() {
@@ -11,6 +17,9 @@ void BrailleCell::begin() {
   for (int i = 0; i < 8; i++) {
     _dotPins[i] = -1;
   }
+  memset(_tilePatterns, 0, sizeof(_tilePatterns));
+  _tileCount = 1;
+  _useShiftRegister = false;
 }
 
 void BrailleCell::begin(const int dotPins[8]) {
@@ -21,6 +30,31 @@ void BrailleCell::begin(const int dotPins[8]) {
       digitalWrite(_dotPins[i], LOW);
     }
   }
+  memset(_tilePatterns, 0, sizeof(_tilePatterns));
+  _tileCount = 1;
+  _useShiftRegister = false;
+  clear();
+}
+
+void BrailleCell::beginShiftRegister(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin, uint8_t tileCount) {
+  _dataPin = dataPin;
+  _clockPin = clockPin;
+  _latchPin = latchPin;
+  _tileCount = tileCount;
+  if (_tileCount == 0) _tileCount = 1;
+  if (_tileCount > (uint8_t)(sizeof(_tilePatterns) / sizeof(_tilePatterns[0]))) {
+    _tileCount = (uint8_t)(sizeof(_tilePatterns) / sizeof(_tilePatterns[0]));
+  }
+  _useShiftRegister = true;
+  memset(_tilePatterns, 0, sizeof(_tilePatterns));
+
+  pinMode(_dataPin, OUTPUT);
+  pinMode(_clockPin, OUTPUT);
+  pinMode(_latchPin, OUTPUT);
+  digitalWrite(_dataPin, LOW);
+  digitalWrite(_clockPin, LOW);
+  digitalWrite(_latchPin, HIGH);
+
   clear();
 }
 
@@ -58,7 +92,25 @@ void BrailleCell::writeNumberIndicator() {
 }
 
 void BrailleCell::setPattern(uint8_t pattern) {
-  _writeToPins(pattern);
+  setPattern(0, pattern);
+}
+
+void BrailleCell::setPattern(uint8_t tileIndex, uint8_t pattern) {
+  if (tileIndex >= _tileCount) return;
+
+  if (_useShiftRegister) {
+    _tilePatterns[tileIndex] = pattern;
+    _writeToShiftRegisters();
+    return;
+  }
+
+  if (tileIndex == 0) {
+    _writeToPins(pattern);
+  }
+}
+
+uint8_t BrailleCell::getTileCount() const {
+  return _tileCount;
 }
 
 void BrailleCell::printVisualization(uint8_t pattern, const char* label) {
@@ -183,6 +235,16 @@ void BrailleCell::_writeToPins(uint8_t pattern) {
       digitalWrite(pin, on ? HIGH : LOW);
     }
   }
+}
+
+void BrailleCell::_writeToShiftRegisters() {
+  if (!_useShiftRegister) return;
+
+  digitalWrite(_latchPin, LOW);
+  for (int i = _tileCount - 1; i >= 0; i--) {
+    shiftOut(_dataPin, _clockPin, MSBFIRST, _tilePatterns[i]);
+  }
+  digitalWrite(_latchPin, HIGH);
 }
 
 uint8_t BrailleCell::_bitIndexForDot(int dotNumber) {

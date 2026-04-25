@@ -1,5 +1,5 @@
 /*
- * BrailleCell.h - Library for driving a single 2x4 8-dot Braille cell.
+ * BrailleCell.h - Library for driving a single 2x3 6-dot Braille cell.
  * Supports letters a-z, numbers 0-9, and common punctuation.
  */
 
@@ -22,27 +22,28 @@ public:
 
   /**
    * @brief Initializes the Braille cell and sets up the pins.
-   * @param dotPins An array of 8 pin numbers (int) that control dots 1-8.
+   * @param dotPins An array of 6 pin numbers (int) that control dots 1-6.
    */
-  void begin(const int dotPins[8]);
+  void begin(const int dotPins[6]);
   
   /**
    * @brief Initializes chained SN74HC595 shift registers for multiple tiles.
    * @param dataPin SER pin for the shift register chain.
    * @param clockPin SRCLK pin for the shift register chain.
    * @param latchPin RCLK pin for the shift register chain.
-   * @param tileCount Number of 8-bit tiles in the chain.
+   * @param tileCount Number of 6-bit tiles in the chain.
+   * @param outPin OE pin for the shift register chain (logical low for ON).
    */
-  void beginShiftRegister(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin, uint8_t tileCount);
+  void beginShiftRegister(uint8_t dataPin, uint8_t clockPin, uint8_t latchPin, uint8_t tileCount, uint8_t outPin);
 
   /**
-   * @brief Clears the cell (lowers all 8 dots).
+   * @brief Clears the cell (lowers all 6 dots).
    */
   void clear();
 
   /**
    * @brief Displays a single ASCII character on the cell.
-   * Also prints a visual 2x4 (o)/(.) grid to Serial.
+   * Also prints a visual 2x3 (o)/(.) grid to Serial.
    * @param c The character to display (e.g., 'a', 'b', '1', '.').
    */
   void write(char c);
@@ -61,9 +62,9 @@ public:
   void setPattern(uint8_t pattern);
   
   /**
-   * @brief Displays a raw 8-bit pattern on a specific tile in a shift register chain.
+   * @brief Displays a raw 6-bit pattern on a specific tile in a shift register chain.
    * @param tileIndex Zero-based tile index.
-   * @param pattern The 8-bit pattern.
+   * @param pattern The 6-bit pattern.
    */
   void setPattern(uint8_t tileIndex, uint8_t pattern);
   
@@ -82,13 +83,15 @@ public:
 
 private:
   
-  int _dotPins[8]; 
+  int _dotPins[6]; 
   uint8_t _tilePatterns[32];
   uint8_t _tileCount;
   bool _useShiftRegister;
   uint8_t _dataPin;
   uint8_t _clockPin;
   uint8_t _latchPin;
+  uint8_t _outPin;
+  uint8_t _clearPin;
   
   uint8_t _translateToBraille(char c);
   void _writeToPins(uint8_t pattern);

@@ -306,6 +306,30 @@
       margin-bottom: 10px;
     }
 
+    /* ── Queue ── */
+    .queue-box {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      max-height: 160px;
+      overflow-y: auto;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+    .queue-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(100,116,139,0.25);
+    }
+    .queue-item:last-child { border-bottom: none; }
+    .queue-item .label { color: var(--text); }
+    .queue-item .meta { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
+    .queue-empty { color: var(--muted); }
+
     /* ── Mode toggle ── */
     .mode-toggle {
       display: flex; gap: 0; border-radius: var(--radius-sm); overflow: hidden;
@@ -517,6 +541,17 @@
       <div class="char-seq" id="charSeq"></div>
     </div>
 
+    <!-- Queue -->
+    <div class="card">
+      <div class="log-title">
+        <span class="card-title" style="margin-bottom:0">Queue</span>
+        <span id="queueCount" style="font-size:0.72rem;color:var(--muted)">0 pending</span>
+      </div>
+      <div class="queue-box" id="queueBox">
+        <div class="queue-empty">No messages queued.</div>
+      </div>
+    </div>
+
     <!-- Log -->
     <div class="card">
       <div class="log-title">
@@ -625,6 +660,10 @@ function onEvent(e) {
     case 'test_started':
       log('Running 8-LED sweep test…', 'system');
       break;
+
+    case 'queue_update':
+      renderQueue(d);
+      break;
   }
 }
 
@@ -712,6 +751,30 @@ function finishProgress() {
 function showSendBtn(show) {
   document.getElementById('sendBtn').style.display = show ? 'inline-flex' : 'none';
   document.getElementById('stopBtn').style.display = show ? 'none' : 'inline-flex';
+}
+
+function renderQueue(data) {
+  const box = document.getElementById('queueBox');
+  const count = document.getElementById('queueCount');
+  const pending = data.pending || [];
+  const current = data.current || null;
+  count.textContent = `${pending.length} pending`;
+
+  const rows = [];
+  if (current) {
+    rows.push(
+      `<div class="queue-item"><span class="label">Now showing: "${esc(current.preview)}"</span><span class="meta">${current.length} ch</span></div>`
+    );
+  }
+  pending.forEach((job, idx) => {
+    rows.push(
+      `<div class="queue-item"><span class="label">${idx + 1}. "${esc(job.preview)}"</span><span class="meta">${job.length} ch</span></div>`
+    );
+  });
+
+  box.innerHTML = rows.length
+    ? rows.join('')
+    : '<div class="queue-empty">No messages queued.</div>';
 }
 
 // ── Access code modal ─────────────────────────────────────────────────────────
@@ -848,7 +911,11 @@ async function sendMsg() {
   if (!res.ok) {
     const d = await res.json();
     log('Send error: ' + d.message, 'err');
+    return;
   }
+  const d = await res.json();
+  const pos = d.queue_position || 1;
+  log(`Queued message at position ${pos}`, 'system');
 }
 
 async function stopMsg() {
@@ -904,6 +971,11 @@ fetch('/api/config').then(r => r.json()).then(d => {
   passcodeRequired = d.passcode_required;
   if (passcodeRequired && !accessCode) showAccessModal(false);
 }).catch(() => {});
+
+fetch('/api/queue')
+  .then(r => r.json())
+  .then(renderQueue)
+  .catch(() => {});
 </script>
 </body>
 </html>

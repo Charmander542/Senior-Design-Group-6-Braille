@@ -22,6 +22,7 @@ import threading
 import time
 import json
 import queue
+from collections import deque
 
 app = Flask(__name__)
 
@@ -63,6 +64,11 @@ _connected = False
 _connected_port = None            # serial port path or "wifi:<ip>:<port>"
 _conn_mode = None                 # "serial" or "wifi"
 _send_stop = threading.Event()
+_queue_lock = threading.Lock()
+_send_cv = threading.Condition(_queue_lock)
+_send_jobs = deque()
+_current_job = None
+_next_job_id = 1
 
 _clients = []
 _clients_lock = threading.Lock()
@@ -94,6 +100,46 @@ def broadcast(data):
                 dead.append(q)
         for q in dead:
             _clients.remove(q)
+
+
+def _job_preview(text, max_len=40):
+    compact = text.replace('\n', ' ')
+    if len(compact) <= max_len:
+        return compact
+    return compact[: max_len - 1] + '…'
+
+
+def _queue_state_locked():
+    """Build queue state payload. Caller must hold _queue_lock."""
+    current = None
+    if _current_job:
+        current = {
+            'id': _current_job['id'],
+            'preview': _job_preview(_current_job['text']),
+            'length': len(_current_job['text']),
+            'delay_ms': _current_job['delay_ms'],
+        }
+    pending = [
+        {
+            'id': job['id'],
+            'preview': _job_preview(job['text']),
+            'length': len(job['text']),
+            'delay_ms': job['delay_ms'],
+        }
+        for job in _send_jobs
+    ]
+    return {
+        'type': 'queue_update',
+        'current': current,
+        'pending': pending,
+        'pending_count': len(pending),
+    }
+
+
+def _broadcast_queue_state():
+    with _queue_lock:
+        state = _queue_state_locked()
+    broadcast(state)
 
 
 # ── Background readers ────────────────────────────────────────────────────────
@@ -162,8 +208,52 @@ def _tcp_reader():
             time.sleep(0.1)
 
 
+def _send_worker():
+    """Process queued send jobs one-by-one."""
+    global _current_job
+    while True:
+        with _send_cv:
+            while not _send_jobs:
+                _send_cv.wait()
+            _current_job = _send_jobs.popleft()
+            _send_stop.clear()
+        _broadcast_queue_state()
+
+        text = _current_job['text']
+        delay_ms = _current_job['delay_ms']
+        broadcast({'type': 'sending_start', 'text': text, 'total': len(text)})
+
+        for idx, ch in enumerate(text):
+            if _send_stop.is_set():
+                broadcast({'type': 'stopped', 'index': idx})
+                break
+
+            mask = BRAILLE_MAP.get(ch, 0xFF)
+            dots = mask_to_dots(mask)
+            cmd = ('DOTS:' + ','.join(map(str, dots))) if dots else 'DOTS:NONE'
+            _write(cmd)
+
+            broadcast({
+                'type': 'char',
+                'index': idx,
+                'char': ch,
+                'dots': dots,
+                'total': len(text),
+            })
+            time.sleep(delay_ms / 1000.0)
+
+        if not _send_stop.is_set():
+            _write('DOTS:NONE')
+            broadcast({'type': 'done'})
+
+        with _send_cv:
+            _current_job = None
+        _broadcast_queue_state()
+
+
 threading.Thread(target=_serial_reader, daemon=True).start()
 threading.Thread(target=_tcp_reader, daemon=True).start()
+threading.Thread(target=_send_worker, daemon=True).start()
 
 
 # ── Routes ────────────────────────────────────────────────────────────────────
@@ -268,6 +358,8 @@ def _close_all():
     """Disconnect whatever is currently open."""
     global _ser, _tcp_sock, _connected, _connected_port, _conn_mode
     _send_stop.set()
+    with _send_cv:
+        _send_jobs.clear()
     with _conn_lock:
         if _ser and _ser.is_open:
             try:
@@ -284,6 +376,10 @@ def _close_all():
         _connected = False
         _connected_port = None
         _conn_mode = None
+    with _send_cv:
+        global _current_job
+        _current_job = None
+    _broadcast_queue_state()
 
 
 @app.route('/api/disconnect', methods=['POST'])
@@ -325,8 +421,15 @@ def _write(cmd):
 
 MAX_TEXT_LEN = 200
 
+@app.route('/api/queue')
+def queue_status():
+    with _queue_lock:
+        return jsonify(_queue_state_locked())
+
+
 @app.route('/api/send', methods=['POST'])
 def send_text():
+    global _next_job_id
     err = _check_access()
     if err:
         return err
@@ -348,35 +451,20 @@ def send_text():
             'message': f'Text too long ({len(text)} chars). Maximum is {MAX_TEXT_LEN}.',
         }), 400
 
-    _send_stop.clear()
-    broadcast({'type': 'sending_start', 'text': text, 'total': len(text)})
+    with _send_cv:
+        job_id = _next_job_id
+        _next_job_id += 1
+        _send_jobs.append({
+            'id': job_id,
+            'text': text,
+            'delay_ms': delay_ms,
+            'created_at': time.time(),
+        })
+        position = len(_send_jobs)
+        _send_cv.notify()
 
-    def worker():
-        for idx, ch in enumerate(text):
-            if _send_stop.is_set():
-                broadcast({'type': 'stopped', 'index': idx})
-                break
-
-            mask = BRAILLE_MAP.get(ch, 0xFF)
-            dots = mask_to_dots(mask)
-            cmd  = ('DOTS:' + ','.join(map(str, dots))) if dots else 'DOTS:NONE'
-            _write(cmd)
-
-            broadcast({
-                'type':  'char',
-                'index': idx,
-                'char':  ch,
-                'dots':  dots,
-                'total': len(text),
-            })
-            time.sleep(delay_ms / 1000.0)
-
-        if not _send_stop.is_set():
-            _write('DOTS:NONE')
-            broadcast({'type': 'done'})
-
-    threading.Thread(target=worker, daemon=True).start()
-    return jsonify({'status': 'sending', 'chars': len(text)})
+    _broadcast_queue_state()
+    return jsonify({'status': 'queued', 'chars': len(text), 'job_id': job_id, 'queue_position': position})
 
 
 @app.route('/api/stop', methods=['POST'])

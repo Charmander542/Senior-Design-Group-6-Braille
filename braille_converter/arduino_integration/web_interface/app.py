@@ -76,6 +76,7 @@ _clients_lock = threading.Lock()
 ESP_KEYWORDS = ('cp210', 'ch340', 'ch341', 'ftdi', 'esp32', 'uart', 'silicon')
 
 ESP32_TCP_PORT = 3333
+DISPLAY_WINDOW_SIZE = 2
 
 
 def _check_access():
@@ -223,21 +224,31 @@ def _send_worker():
         delay_ms = _current_job['delay_ms']
         broadcast({'type': 'sending_start', 'text': text, 'total': len(text)})
 
-        for idx, ch in enumerate(text):
+        for idx in range(0, len(text), DISPLAY_WINDOW_SIZE):
             if _send_stop.is_set():
                 broadcast({'type': 'stopped', 'index': idx})
                 break
 
-            mask = BRAILLE_MAP.get(ch, 0xFF)
-            dots = mask_to_dots(mask)
-            cmd = ('DOTS:' + ','.join(map(str, dots))) if dots else 'DOTS:NONE'
+            chars = text[idx: idx + DISPLAY_WINDOW_SIZE]
+            window = []
+            for offset, ch in enumerate(chars):
+                mask = BRAILLE_MAP.get(ch, 0xFF)
+                window.append({
+                    'index': idx + offset,
+                    'char': ch,
+                    'dots': mask_to_dots(mask),
+                })
+
+            primary_dots = window[0]['dots']
+            cmd = ('DOTS:' + ','.join(map(str, primary_dots))) if primary_dots else 'DOTS:NONE'
             _write(cmd)
 
             broadcast({
                 'type': 'char',
                 'index': idx,
-                'char': ch,
-                'dots': dots,
+                'char': window[0]['char'],
+                'dots': primary_dots,
+                'window': window,
                 'total': len(text),
             })
             time.sleep(delay_ms / 1000.0)
@@ -346,8 +357,11 @@ def connect():
         time.sleep(2)
 
         with _conn_lock:
-            while _ser.in_waiting:
-                line = _ser.readline().decode(errors='replace').strip()
+            ser = _ser if _conn_mode == 'serial' else None
+
+        if ser:
+            while ser.in_waiting:
+                line = ser.readline().decode(errors='replace').strip()
                 if line:
                     broadcast({'type': 'esp32', 'message': line})
 
@@ -524,9 +538,16 @@ if __name__ == '__main__':
     requested_port = args.port if args.port is not None else int(os.environ.get('PORT', '5000'))
     port = requested_port
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        while sock.connect_ex(('127.0.0.1', port)) == 0:
-            port += 1
+    def can_bind_port(candidate_port):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.bind(('0.0.0.0', candidate_port))
+            return True
+        except OSError:
+            return False
+
+    while not can_bind_port(port):
+        port += 1
 
     print('=' * 50)
     print('  Braille ESP32 Web Interface')

@@ -43,13 +43,21 @@
       padding-bottom: 20px;
       border-bottom: 1px solid var(--card-border);
     }
-    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-left { display: flex; align-items: center; gap: 16px; }
     .logo {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--primary), var(--warning));
-      border-radius: 10px;
+      width: 150px; height: 48px;
+      background: #f8fafc;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; font-weight: bold; color: white;
+      padding: 9px 12px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+      flex-shrink: 0;
+    }
+    .logo img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
     .header h1 {
       font-size: 1.35rem;
@@ -167,12 +175,24 @@
     .btn-full { width: 100%; margin-top: 6px; }
     .btn-row  { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    /* ── Braille cell ── */
+    /* ── Braille cells ── */
     .braille-wrapper {
       display: flex; flex-direction: column; align-items: center; gap: 14px;
     }
+    .braille-cells {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .braille-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
     .current-char {
-      font-size: 3.5rem; font-weight: 800;
+      font-size: 3rem; font-weight: 800;
       color: var(--warning);
       min-height: 1.2em; text-align: center;
       text-shadow: 0 0 30px var(--warning-glow);
@@ -388,6 +408,9 @@
     /* ── Phone enhancements ── */
     @media (max-width: 600px) {
       body { padding: 12px 14px 32px; }
+      .header { align-items: flex-start; gap: 12px; }
+      .header-left { align-items: flex-start; gap: 12px; }
+      .logo { width: 118px; height: 40px; padding: 7px 10px; }
       .btn { padding: 13px 18px; font-size: 0.95rem; }
       textarea { font-size: 1rem; min-height: 120px; }
       select, input[type="text"], input[type="number"] { font-size: 1rem; padding: 11px 12px; }
@@ -400,7 +423,9 @@
 <!-- Header -->
 <div class="header">
   <div class="header-left">
-    <div class="logo">⠿</div>
+    <div class="logo">
+      <img src="{{ url_for('static', filename='dot-solutions-logo.svg') }}" alt="Dot Solutions logo" />
+    </div>
     <div>
       <h1>Braille ESP32 Controller</h1>
       <p>Send text to 8-LED braille display via Serial or WiFi</p>
@@ -462,10 +487,8 @@
 
     <!-- Braille cell -->
     <div class="card">
-      <div class="card-title">Live Braille Cell</div>
+      <div class="card-title">Live Braille Cells</div>
       <div class="braille-wrapper">
-        <div class="current-char" id="currentChar">—</div>
-
         <!--
           Standard 8-dot layout:
             dot1  dot4
@@ -473,24 +496,49 @@
             dot3  dot6
             dot7  dot8
         -->
-        <div class="braille-cell">
-          <!-- Left column: 1, 2, 3, 7 -->
-          <div>
-            <div class="dot-item"><div class="dot" id="dot1"></div><div class="dot-num">1</div></div>
-            <div class="dot-item"><div class="dot" id="dot2"></div><div class="dot-num">2</div></div>
-            <div class="dot-item"><div class="dot" id="dot3"></div><div class="dot-num">3</div></div>
-            <div class="dot-item"><div class="dot" id="dot7"></div><div class="dot-num">7</div></div>
+        <div class="braille-cells">
+          <div class="braille-panel">
+            <div class="current-char" id="currentChar0">—</div>
+            <div class="braille-cell">
+              <!-- Left column: 1, 2, 3, 7 -->
+              <div>
+                <div class="dot-item"><div class="dot" id="dot0-1"></div><div class="dot-num">1</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-2"></div><div class="dot-num">2</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-3"></div><div class="dot-num">3</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-7"></div><div class="dot-num">7</div></div>
+              </div>
+              <!-- Right column: 4, 5, 6, 8 -->
+              <div>
+                <div class="dot-item"><div class="dot" id="dot0-4"></div><div class="dot-num">4</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-5"></div><div class="dot-num">5</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-6"></div><div class="dot-num">6</div></div>
+                <div class="dot-item"><div class="dot" id="dot0-8"></div><div class="dot-num">8</div></div>
+              </div>
+            </div>
+            <div class="active-dots" id="activeDots0">No dots active</div>
           </div>
-          <!-- Right column: 4, 5, 6, 8 -->
-          <div>
-            <div class="dot-item"><div class="dot" id="dot4"></div><div class="dot-num">4</div></div>
-            <div class="dot-item"><div class="dot" id="dot5"></div><div class="dot-num">5</div></div>
-            <div class="dot-item"><div class="dot" id="dot6"></div><div class="dot-num">6</div></div>
-            <div class="dot-item"><div class="dot" id="dot8"></div><div class="dot-num">8</div></div>
+
+          <div class="braille-panel">
+            <div class="current-char" id="currentChar1">—</div>
+            <div class="braille-cell">
+              <!-- Left column: 1, 2, 3, 7 -->
+              <div>
+                <div class="dot-item"><div class="dot" id="dot1-1"></div><div class="dot-num">1</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-2"></div><div class="dot-num">2</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-3"></div><div class="dot-num">3</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-7"></div><div class="dot-num">7</div></div>
+              </div>
+              <!-- Right column: 4, 5, 6, 8 -->
+              <div>
+                <div class="dot-item"><div class="dot" id="dot1-4"></div><div class="dot-num">4</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-5"></div><div class="dot-num">5</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-6"></div><div class="dot-num">6</div></div>
+                <div class="dot-item"><div class="dot" id="dot1-8"></div><div class="dot-num">8</div></div>
+              </div>
+            </div>
+            <div class="active-dots" id="activeDots1">No dots active</div>
           </div>
         </div>
-
-        <div class="active-dots" id="activeDots">No dots active</div>
       </div>
     </div>
 
@@ -514,7 +562,7 @@
       <textarea id="msgInput" placeholder="Type your message here…" rows="3"></textarea>
       <div class="speed-wrap">
         <div class="speed-header">
-          Display speed &nbsp;<strong><span id="speedVal">1000</span> ms / character</strong>
+          Display speed &nbsp;<strong><span id="speedVal">1000</span> ms / 2 characters</strong>
         </div>
         <input type="range" id="speedRange" min="200" max="3000" step="100" value="1000"
                oninput="document.getElementById('speedVal').textContent=this.value">
@@ -620,7 +668,7 @@ function onEvent(e) {
       setConnectionUI(false);
       log('Disconnected', 'system');
       clearDots();
-      setChar('—');
+      setCharWindow([]);
       break;
 
     case 'esp32':
@@ -635,9 +683,9 @@ function onEvent(e) {
       break;
 
     case 'char':
-      setChar(d.char);
-      setDots(d.dots);
-      advanceProgress(d.index);
+      setCharWindow(d.window || [{ char: d.char, dots: d.dots }]);
+      setDotWindow(d.window || [{ dots: d.dots }]);
+      advanceProgress(d.index, (d.window || []).length || 1);
       break;
 
     case 'done':
@@ -649,12 +697,12 @@ function onEvent(e) {
       log('Sending stopped', 'system');
       showSendBtn(true);
       clearDots();
-      setChar('—');
+      setCharWindow([]);
       break;
 
     case 'cleared':
       clearDots();
-      setChar('—');
+      setCharWindow([]);
       break;
 
     case 'test_started':
@@ -668,14 +716,15 @@ function onEvent(e) {
 }
 
 // ── Dot helpers ───────────────────────────────────────────────────────────────
-function setDots(activeDotNums) {
+function setDots(activeDotNums, cellIdx = 0) {
   for (let i = 1; i <= 8; i++) {
-    const el = document.getElementById('dot' + i);
+    const el = document.getElementById(`dot${cellIdx}-${i}`);
+    if (!el) continue;
     const on = activeDotNums.includes(i);
     el.classList.toggle('on',      on);
     el.classList.toggle('sending', on && isSending);
   }
-  const lbl = document.getElementById('activeDots');
+  const lbl = document.getElementById('activeDots' + cellIdx);
   if (activeDotNums.length) {
     lbl.innerHTML = 'Dots: <b>' + activeDotNums.join(', ') + '</b>';
   } else {
@@ -683,13 +732,22 @@ function setDots(activeDotNums) {
   }
 }
 
-function clearDots() {
-  setDots([]);
+function setDotWindow(window) {
+  for (let i = 0; i < 2; i++) {
+    setDots((window[i] && window[i].dots) || [], i);
+  }
 }
 
-function setChar(ch) {
-  document.getElementById('currentChar').textContent =
-    ch === ' ' ? '␣' : ch;
+function clearDots() {
+  setDotWindow([]);
+}
+
+function setCharWindow(window) {
+  for (let i = 0; i < 2; i++) {
+    const ch = window[i] && window[i].char;
+    document.getElementById('currentChar' + i).textContent =
+      ch ? (ch === ' ' ? '␣' : ch) : '—';
+  }
 }
 
 // ── Progress ──────────────────────────────────────────────────────────────────
@@ -702,6 +760,8 @@ function startProgress(text) {
   document.getElementById('progFill').style.width = '0%';
   document.getElementById('progLabel').textContent  = `0 / ${text.length}`;
   document.getElementById('progPct').textContent    = '0%';
+  clearDots();
+  setCharWindow([]);
 
   const seq = document.getElementById('charSeq');
   seq.innerHTML = '';
@@ -716,18 +776,17 @@ function startProgress(text) {
   showSendBtn(false);
 }
 
-function advanceProgress(idx) {
-  // Mark previous char done
-  if (idx > 0) {
-    const prev = document.getElementById('cb' + (idx - 1));
-    if (prev) { prev.classList.remove('current'); prev.classList.add('done'); }
+function advanceProgress(idx, count = 1) {
+  const nextIdx = Math.min(idx + count, currentText.length);
+  for (let i = 0; i < currentText.length; i++) {
+    const box = document.getElementById('cb' + i);
+    if (!box) continue;
+    box.classList.toggle('done', i < idx);
+    box.classList.toggle('current', i >= idx && i < nextIdx);
   }
   const curr = document.getElementById('cb' + idx);
-  if (curr) {
-    curr.classList.add('current');
-    curr.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }
-  currentIdx = idx + 1;
+  if (curr) curr.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  currentIdx = nextIdx;
   const pct = Math.round((currentIdx / currentText.length) * 100);
   document.getElementById('progFill').style.width  = pct + '%';
   document.getElementById('progLabel').textContent = `${currentIdx} / ${currentText.length}`;
@@ -736,14 +795,15 @@ function advanceProgress(idx) {
 
 function finishProgress() {
   isSending = false;
-  // Mark last char done
-  const last = document.getElementById('cb' + (currentText.length - 1));
-  if (last) { last.classList.remove('current'); last.classList.add('done'); }
+  document.querySelectorAll('#charSeq .cb').forEach(box => {
+    box.classList.remove('current');
+    box.classList.add('done');
+  });
   document.getElementById('progFill').style.width  = '100%';
   document.getElementById('progLabel').textContent = `✓ ${currentText.length} / ${currentText.length}`;
   document.getElementById('progPct').textContent   = '100%';
   clearDots();
-  setChar('—');
+  setCharWindow([]);
   log(`Done — "${currentText}"`, 'ok');
   showSendBtn(true);
 }

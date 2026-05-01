@@ -487,57 +487,27 @@
 
     <!-- Braille cell -->
     <div class="card">
-      <div class="card-title">Live Braille Cells</div>
+      <div class="card-title">Live Braille Cell</div>
       <div class="braille-wrapper">
-        <!--
-          Standard 8-dot layout:
-            dot1  dot4
-            dot2  dot5
-            dot3  dot6
-            dot7  dot8
-        -->
-        <div class="braille-cells">
-          <div class="braille-panel">
-            <div class="current-char" id="currentChar0">—</div>
-            <div class="braille-cell">
-              <!-- Left column: 1, 2, 3, 7 -->
-              <div>
-                <div class="dot-item"><div class="dot" id="dot0-1"></div><div class="dot-num">1</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-2"></div><div class="dot-num">2</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-3"></div><div class="dot-num">3</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-7"></div><div class="dot-num">7</div></div>
-              </div>
-              <!-- Right column: 4, 5, 6, 8 -->
-              <div>
-                <div class="dot-item"><div class="dot" id="dot0-4"></div><div class="dot-num">4</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-5"></div><div class="dot-num">5</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-6"></div><div class="dot-num">6</div></div>
-                <div class="dot-item"><div class="dot" id="dot0-8"></div><div class="dot-num">8</div></div>
-              </div>
+        <div class="braille-panel">
+          <div class="current-char" id="currentChar0">—</div>
+          <div class="braille-cell">
+            <!-- Left column: 1, 2, 3, 7 -->
+            <div>
+              <div class="dot-item"><div class="dot" id="dot0-1"></div><div class="dot-num">1</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-2"></div><div class="dot-num">2</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-3"></div><div class="dot-num">3</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-7"></div><div class="dot-num">7</div></div>
             </div>
-            <div class="active-dots" id="activeDots0">No dots active</div>
-          </div>
-
-          <div class="braille-panel">
-            <div class="current-char" id="currentChar1">—</div>
-            <div class="braille-cell">
-              <!-- Left column: 1, 2, 3, 7 -->
-              <div>
-                <div class="dot-item"><div class="dot" id="dot1-1"></div><div class="dot-num">1</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-2"></div><div class="dot-num">2</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-3"></div><div class="dot-num">3</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-7"></div><div class="dot-num">7</div></div>
-              </div>
-              <!-- Right column: 4, 5, 6, 8 -->
-              <div>
-                <div class="dot-item"><div class="dot" id="dot1-4"></div><div class="dot-num">4</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-5"></div><div class="dot-num">5</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-6"></div><div class="dot-num">6</div></div>
-                <div class="dot-item"><div class="dot" id="dot1-8"></div><div class="dot-num">8</div></div>
-              </div>
+            <!-- Right column: 4, 5, 6, 8 -->
+            <div>
+              <div class="dot-item"><div class="dot" id="dot0-4"></div><div class="dot-num">4</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-5"></div><div class="dot-num">5</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-6"></div><div class="dot-num">6</div></div>
+              <div class="dot-item"><div class="dot" id="dot0-8"></div><div class="dot-num">8</div></div>
             </div>
-            <div class="active-dots" id="activeDots1">No dots active</div>
           </div>
+          <div class="active-dots" id="activeDots0">No dots active</div>
         </div>
       </div>
     </div>
@@ -562,7 +532,7 @@
       <textarea id="msgInput" placeholder="Type your message here…" rows="3"></textarea>
       <div class="speed-wrap">
         <div class="speed-header">
-          Display speed &nbsp;<strong><span id="speedVal">1000</span> ms / 2 characters</strong>
+          Display speed &nbsp;<strong><span id="speedVal">1000</span> ms / character</strong>
         </div>
         <input type="range" id="speedRange" min="200" max="3000" step="100" value="1000"
                oninput="document.getElementById('speedVal').textContent=this.value">
@@ -733,9 +703,7 @@ function setDots(activeDotNums, cellIdx = 0) {
 }
 
 function setDotWindow(window) {
-  for (let i = 0; i < 2; i++) {
-    setDots((window[i] && window[i].dots) || [], i);
-  }
+  setDots((window[0] && window[0].dots) || [], 0);
 }
 
 function clearDots() {
@@ -743,11 +711,9 @@ function clearDots() {
 }
 
 function setCharWindow(window) {
-  for (let i = 0; i < 2; i++) {
-    const ch = window[i] && window[i].char;
-    document.getElementById('currentChar' + i).textContent =
-      ch ? (ch === ' ' ? '␣' : ch) : '—';
-  }
+  const ch = window[0] && window[0].char;
+  document.getElementById('currentChar0').textContent =
+    ch ? (ch === ' ' ? '␣' : ch) : '—';
 }
 
 // ── Progress ──────────────────────────────────────────────────────────────────

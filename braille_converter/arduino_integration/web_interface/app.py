@@ -76,7 +76,7 @@ _clients_lock = threading.Lock()
 ESP_KEYWORDS = ('cp210', 'ch340', 'ch341', 'ftdi', 'esp32', 'uart', 'silicon')
 
 ESP32_TCP_PORT = 3333
-DISPLAY_WINDOW_SIZE = 2
+DISPLAY_WINDOW_SIZE = 1
 
 
 def _check_access():
@@ -541,6 +541,7 @@ if __name__ == '__main__':
     def can_bind_port(candidate_port):
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 sock.bind(('0.0.0.0', candidate_port))
             return True
         except OSError:
